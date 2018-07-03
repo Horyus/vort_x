@@ -1,6 +1,6 @@
 # Contributing
 
-To contribute, head to the [gitlab](https://gitlab.com/Horyus/vortex/vortex) version of this repository.
+To contribute, head to [github](https://github.com/Horyus/vortex).
 When contributing to this repository, please first discuss the change you wish to make via issue,
 email, or any other method with the owners of this repository before making a change.
 
@@ -16,7 +16,8 @@ Please note we have a code of conduct, please follow it in all your interactions
    should start from `develop` branch. Naming convention for the issue is `[(THEME)] (TITLE)` and Branch Naming
    should be `(TYPE)/(PROJECT_ID)-(ISSUE_NUMBER)-(TITLE)`. As an example, if you want to add
    something related with Redux, Issue name can be `[Redux] Add Reducer`, and Branch should be
-   (saying the issue number is 42) `feature/VTX-42-add-reducer`.
+   (saying the issue number is 42) `feature/VTX-42-add-reducer`. The github pull request title should be
+   named `Resolve VTX #42 "[Redux] Add Reducer"`.
 
    **THEME**: 1-2 Words defining the theme of the contribution. You can look at other contributions to use
    similar ones.
