@@ -40,7 +40,7 @@ class Footer extends React.Component {
             <a href={this.pageUrl('users.html', this.props.language)}>
               User Showcase
             </a>
-            <a href="https://gitter.im/ethvtx_hub/general">Project Chat</a>
+            <a href="https://gitter.im/ethvtx/general">Project Chat</a>
           </div>
           <div>
             <h5>More</h5>

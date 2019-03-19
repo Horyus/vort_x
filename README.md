@@ -28,7 +28,7 @@ More informations [here](http://doc.ethvtx.com/docs/install)
 
 An extensive usage documentation can be found [here](http://doc.ethvtx.com)
 
-## Questions ? [![Join the chat at https://gitter.im/ethvtx_hub/general](https://badges.gitter.im/ethvtx_hub/general.svg)](https://gitter.im/ethvtx_hub/general?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) !
+## Questions ? [![Join the chat at https://gitter.im/ethvtx/general](https://badges.gitter.im/ethvtx/general.svg)](https://gitter.im/ethvtx/general?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) !
 
 
 ## Examples
