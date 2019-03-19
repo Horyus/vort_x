@@ -33,10 +33,6 @@ setWeb3(store.dispatch, web3);
 
 Setting up initial smart contracts should happen between setting the web3 instance and calling the start method.
 
-### Embark
-
-Coming soon
-
 ### Manual
 
 Let's pretend you have a `SimpleStorage' contract, and you deployed two instances of it. If you wanted to load it you would do this.
@@ -92,6 +88,55 @@ loadContractInstance(store.dispatch, contract_name, contract_two_address, {
 // If permanent is true, same as the specs, the store will keep it even after a reset.
 
 ```
+
+### Embark
+
+You can use our utilities to convert `embark` artifacts to `ethvtx` specs.
+
+```jsx
+
+import { loadContractSpec, loadContractInstance } from 'ethvtx/lib/dispatchers';
+import { embark } from 'ethvtx/lib/utils';
+import SimpleStorage from 'Embark/contracts/SimpleStorage';
+
+const contract_name = 'SimpleStorage';
+
+// ######
+//   ##   
+//   ##   
+//   ##   
+// ######    Load your contract specifications
+
+//                                                     artifact       name         bin  permanent
+loadContractSpec(store.dispatch, ...embark.loadSpec(SimpleStorage, contract_name, true, true));
+
+// If bin is set to true, the store will check on the network if it 
+// finds the same bytecode at the specified address. 
+// Useful to find out if a user is not of the good network
+
+// If permanent is true, the store will keep the spec 
+// even after a reset of the store. The store resets itself 
+// when the user changes its coinbase or its network, 
+// or can be manually triggered
+
+// #########
+//   ## ##   
+//   ## ##   
+//   ## ##   
+// #########    Load your contract instance
+
+loadContractInstance(store.dispatch, contract_name, SimpleStorage.address, {
+    alias: '@defaultsimplestorage', // This is optional
+    permanent: true // By default false
+});
+
+// If alias is provided, you will be able to reference this contract with it
+// on most of the other helper functions and tools.
+
+// If permanent is true, same as the specs, the store will keep it even after a reset.
+
+```
+
 
 ## Starting everything up !
 

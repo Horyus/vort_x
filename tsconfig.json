@@ -19,6 +19,7 @@
         "./sources/getters.ts",
         "./sources/dispatchers.ts",
         "./sources/state.ts",
+        "./sources/utils.ts",
         "./sources/index.ts",
 
         "./sources/typings/ganache-core.d.ts"
