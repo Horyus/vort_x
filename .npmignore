@@ -10,4 +10,5 @@ Dockerfile
 /docs
 package-lock.json
 yarn.lock
+imgs
 
