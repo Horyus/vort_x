@@ -26,6 +26,8 @@
     },
     "homepage": "https://github.com/horyus/ethvtx#readme",
     "devDependencies": {
+        "@commitlint/cli": "^7.5.2",
+        "@commitlint/config-conventional": "^7.5.0",
         "@htmlacademy/editorconfig-cli": "^1.0.0",
         "@redux-saga/types": "^1.0.0-rc.0",
         "@types/jest": "^23.3.12",
@@ -38,14 +40,14 @@
         "jest": "^23.6.0",
         "linted": "^1.0.5",
         "lodash": "^4.17.11",
+        "redux": "^4.0.1",
+        "redux-saga": "^0.16.2",
         "solc": "0.5.0",
         "ts-jest": "^23.10.5",
         "tslint": "^5.12.1",
         "typescript": "^3.2.2",
         "web3": "1.0.0-beta.32",
-        "websocket": "^1.0.28",
-        "redux": "^4.0.1",
-        "redux-saga": "^0.16.2"
+        "websocket": "^1.0.28"
     },
     "peerDependencies": {
         "redux": "^4.0.1",
@@ -63,7 +65,8 @@
     ],
     "husky": {
         "hooks": {
-            "pre-commit": "npm run build && git status && editorconfig-cli"
+            "pre-commit": "npm run build && git status && editorconfig-cli",
+            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
         }
     }
 }
