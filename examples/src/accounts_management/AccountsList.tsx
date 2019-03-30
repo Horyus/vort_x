@@ -31,6 +31,7 @@ export class AccountsListRaw extends React.Component<IAccountsListProps> {
             <CardHeader>Stored Accounts</CardHeader>
             <CardBody>
                 <p>The balance and transaction count of these accounts is refreshed upon every new block</p>
+                <p>0xa087a6Ddc4BDB1028fe4431C8616F8E15Cf5F522 is a permanent account, so it stays in the store even when it resets</p>
                 {list}
             </CardBody>
         </Card>;

@@ -22,7 +22,7 @@ export function* VtxconfigResetSectionCompleteSaga(action: IVtxconfigResetSectio
             const tx_count = yield call(web3.eth.getTransactionCount, coinbase);
             const balance = new BigNumber(yield call(web3.eth.getBalance, coinbase));
 
-            yield put(AccountsAdd(coinbase, '@coinbase'));
+            yield put(AccountsAdd(coinbase, {alias: '@coinbase', permanent: false}));
             yield put(AccountsSetInfos(coinbase, balance, tx_count, undefined));
 
         }

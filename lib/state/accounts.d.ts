@@ -4,6 +4,7 @@ export interface Account {
     balance: BigNumber;
     transaction_count: number;
     contract: boolean;
+    permanent: boolean;
 }
 export interface AccountsStore {
     [key: string]: Account;

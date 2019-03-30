@@ -2,10 +2,11 @@ import { AccountsActions, IAccountsAdd, IAccountsRemove, IAccountsReset, IAccoun
 import { address_checker }                                                                   from '../../utils/address_checker';
 import { BigNumber }                                                                         from 'bignumber.js';
 
-export const AccountsAdd = (address: string, alias?: string): IAccountsAdd => ({
+export const AccountsAdd = (address: string, config?: {alias?: string, permanent?: boolean}): IAccountsAdd => ({
     type: AccountsActions.AccountsAdd,
     address: address_checker(address),
-    alias
+    alias: config ? config.alias : undefined,
+    permanent: config ? config.permanent : undefined
 });
 
 export const AccountsRemove = (address_or_alias: string): IAccountsRemove => ({

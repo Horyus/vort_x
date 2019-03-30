@@ -29,13 +29,13 @@ setWeb3(store.dispatch, web3);
 
 ```
 
-## Setting Initial Smart Contracts
+## Setting Initial Smart Contracts & Accounts
 
-Setting up initial smart contracts should happen between setting the web3 instance and calling the start method.
+Setting up initial smart contracts and accounts should happen between setting the web3 instance and calling the start method.
 
 ### Manual
 
-Let's pretend you have a `SimpleStorage' contract, and you deployed two instances of it. If you wanted to load it you would do this.
+Let's pretend you have a `SimpleStorage' contract, and you deployed two instances of it. If you wanted to load it you would do this. Also you have your friend Geroge's address that you want to keep in the store even between resets.
 
 ```jsx
 
@@ -87,6 +87,19 @@ loadContractInstance(store.dispatch, contract_name, contract_two_address, {
 
 // If permanent is true, same as the specs, the store will keep it even after a reset.
 
+// ############
+//   ## ## ##   
+//   ## ## ##   
+//   ## ## ##   
+// ############    Load your accounts
+
+addAccount(store.dispatch, '0xa087a6Ddc4BDB1028fe4431C8616F8E15Cf5F522', {
+    permanent: true // By default false,
+    alias: '@myfriendgeorge' // This is optional
+});
+
+// You might need accounts that stay in the store even if the store resets.
+
 ```
 
 ### Embark
@@ -136,6 +149,19 @@ loadContractInstance(store.dispatch, contract_name, SimpleStorage.address, {
 // on most of the other helper functions and tools.
 
 // If permanent is true, same as the specs, the store will keep it even after a reset.
+
+// ############
+//   ## ## ##   
+//   ## ## ##   
+//   ## ## ##   
+// ############    Load your accounts
+
+addAccount(store.dispatch, '0xa087a6Ddc4BDB1028fe4431C8616F8E15Cf5F522', {
+    permanent: true // By default false,
+    alias: '@myfriendgeorge' // This is optional
+});
+
+// You might need accounts that stay in the store even if the store resets.
 
 ```
 

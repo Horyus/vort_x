@@ -12,7 +12,8 @@ export const AccountsAddReducer: Reducer<AccountsSection, IAccountsAdd> = (state
                     address: action.address,
                     balance: null,
                     transaction_count: null,
-                    contract: null
+                    contract: null,
+                    permanent: !!action.permanent
                 }
             },
             alias: {
@@ -31,7 +32,8 @@ export const AccountsAddReducer: Reducer<AccountsSection, IAccountsAdd> = (state
                     address: action.address,
                     balance: null,
                     transaction_count: null,
-                    contract: null
+                    contract: null,
+                    permanent: !!action.permanent
                 }
             }
         };

@@ -11,6 +11,7 @@ export const AccountsActions = {
 export interface IAccountsAdd extends Action<string> {
     address: string;
     alias?: string;
+    permanent?: boolean;
 }
 
 export interface IAccountsRemove extends Action<string> {

@@ -4,17 +4,17 @@ import { getReducers }                                           from '../tools/
 import { getSagas }                                              from '../tools/getSagas';
 import { Saga }                                                  from '@redux-saga/types';
 import { State }                                                 from '../state/index';
-import createSagaMiddleware, { SagaMiddleware }                  from 'redux-saga';
-import * as Ganache                                              from 'ganache-core';
-import { configureVtx }                                          from '../tools/configureVtx';
-import { VtxpollKill }                                           from '../vtxpoll/actions/action';
-import * as Fs                                                   from 'fs';
-import { getAccount, getAccountList }                            from './helpers/getters';
-import { ganache_mine, vtx_status }                              from '../test_tools';
-import { addAccount, removeAccount }                             from './helpers/dispatchers';
-import { init, reset }                                           from '../vtxconfig/helpers/dispatchers';
-import { VtxStatus }                                             from '../state/vtxconfig';
-import { vtx_account }                                           from '../test_tools/vtx_account';
+import createSagaMiddleware, { SagaMiddleware } from 'redux-saga';
+import * as Ganache                             from 'ganache-core';
+import { configureVtx }                         from '../tools/configureVtx';
+import { VtxpollKill }                          from '../vtxpoll/actions/action';
+import * as Fs                                  from 'fs';
+import { getAccount, getAccountList }           from './helpers/getters';
+import { ganache_mine, vtx_status }             from '../test_tools';
+import { addAccount, removeAccount }            from './helpers/dispatchers';
+import { init, reset, setWeb3, start }          from '../vtxconfig/helpers/dispatchers';
+import { VtxStatus }                            from '../state/vtxconfig';
+import { vtx_account }                          from '../test_tools/vtx_account';
 
 const Web3 = require('web3');
 const Solc = require('solc');
@@ -176,8 +176,30 @@ describe('[accounts]', (): void => {
         init(this.store.dispatch, this.web3);
         await vtx_status(this.store, VtxStatus.Loaded, 10);
 
-        addAccount(this.store.dispatch, FROM_ADDRESS_MARC, '@marc');
-        addAccount(this.store.dispatch, TO_ADDRESS_LISA, '@lisa');
+        addAccount(this.store.dispatch, FROM_ADDRESS_MARC, {alias: '@marc'});
+        addAccount(this.store.dispatch, TO_ADDRESS_LISA, {alias: '@lisa'});
+
+        await vtx_account(this.store, FROM_ADDRESS_MARC, 0, 50);
+        await vtx_account(this.store, TO_ADDRESS_LISA, 0, 50);
+
+        const acc_marc = getAccount(this.store.getState(), '@marc');
+        const acc_lisa = getAccount(this.store.getState(), '@lisa');
+
+        expect(acc_marc.balance.toString()).toEqual('81985529206280466');
+        expect(acc_marc.transaction_count).toEqual(0);
+        expect(acc_lisa.balance.toString()).toEqual('81985529206280466');
+        expect(acc_lisa.transaction_count).toEqual(0);
+    });
+
+    test('Add permanent accounts before starting store, Fetch accounts, check balances', async () => {
+
+        setWeb3(this.store.dispatch, this.web3);
+
+        addAccount(this.store.dispatch, FROM_ADDRESS_MARC, {alias: '@marc', permanent: true});
+        addAccount(this.store.dispatch, TO_ADDRESS_LISA, {alias: '@lisa', permanent: true});
+
+        start(this.store.dispatch);
+        await vtx_status(this.store, VtxStatus.Loaded, 10);
 
         await vtx_account(this.store, FROM_ADDRESS_MARC, 0, 50);
         await vtx_account(this.store, TO_ADDRESS_LISA, 0, 50);
@@ -196,8 +218,8 @@ describe('[accounts]', (): void => {
         init(this.store.dispatch, this.web3);
         await vtx_status(this.store, VtxStatus.Loaded, 10);
 
-        addAccount(this.store.dispatch, FROM_ADDRESS_MARC, '@marc');
-        addAccount(this.store.dispatch, TO_ADDRESS_GEORGE, '@george');
+        addAccount(this.store.dispatch, FROM_ADDRESS_MARC, {alias: '@marc'});
+        addAccount(this.store.dispatch, TO_ADDRESS_GEORGE, {alias: '@george'});
 
         let accounts = getAccountList(this.store.getState());
 
@@ -216,8 +238,8 @@ describe('[accounts]', (): void => {
         init(this.store.dispatch, this.web3);
         await vtx_status(this.store, VtxStatus.Loaded, 10);
 
-        addAccount(this.store.dispatch, FROM_ADDRESS_MARC, '@marc');
-        addAccount(this.store.dispatch, TO_ADDRESS_LISA, '@lisa');
+        addAccount(this.store.dispatch, FROM_ADDRESS_MARC, {alias: '@marc'});
+        addAccount(this.store.dispatch, TO_ADDRESS_LISA, {alias: '@lisa'});
 
         await vtx_account(this.store, FROM_ADDRESS_MARC, 0, 50);
         await vtx_account(this.store, TO_ADDRESS_LISA, 0, 50);
