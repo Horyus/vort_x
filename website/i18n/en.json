@@ -5,6 +5,10 @@
     "previous": "Previous",
     "tagline": "The Ethereum-Ready & Framework-Agnostic Redux Configuration",
     "docs": {
+      "accounts_actions": {
+        "title": "Accounts Actions",
+        "sidebar_label": "Actions"
+      },
       "accounts_dispatchers": {
         "title": "Accounts Dispatchers",
         "sidebar_label": "Dispatchers"
@@ -21,6 +25,10 @@
         "title": "Accounts State",
         "sidebar_label": "State"
       },
+      "blocks_actions": {
+        "title": "Blocks Actions",
+        "sidebar_label": "Actions"
+      },
       "blocks_dispatchers": {
         "title": "Blocks Dispatchers",
         "sidebar_label": "Dispatchers"
@@ -36,6 +44,10 @@
       "blocks_state": {
         "title": "Blocks State",
         "sidebar_label": "State"
+      },
+      "contracts_actions": {
+        "title": "Contracts Actions",
+        "sidebar_label": "Actions"
       },
       "contracts_dispatchers": {
         "title": "Contracts Dispatchers",
@@ -77,6 +89,10 @@
         "title": "Starting ethvtx",
         "sidebar_label": "Starting ethvtx"
       },
+      "transactions_actions": {
+        "title": "Transactions Actions",
+        "sidebar_label": "Actions"
+      },
       "transactions_dispatchers": {
         "title": "Transactions Dispatchers",
         "sidebar_label": "Dispatchers"
@@ -92,6 +108,10 @@
       "transactions_state": {
         "title": "Transactions State",
         "sidebar_label": "State"
+      },
+      "vtx_actions": {
+        "title": "Vortex Actions",
+        "sidebar_label": "Actions"
       },
       "vtx_dispatchers": {
         "title": "ΞVTX Dispatchers",
@@ -124,7 +144,7 @@
       "Blocks": "Blocks",
       "Transactions": "Transactions",
       "Contracts": "Contracts",
-      "ΞVTX": "ΞVTX"
+      "VTX": "VTX"
     }
   },
   "pages-strings": {
