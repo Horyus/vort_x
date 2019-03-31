@@ -9,7 +9,7 @@ All these dispatchers are accessible from from `ethvtx/lib/dispatchers`;
 To efficiently dispatch actions in the store, you can use the accounts dispatchers.
 All dispatchers take a dispatch function as first argument.
 
-## addAccount(dispatch: Dispatch, address: string, config?: {alias?: string, permanent?: boolean}): void
+## `addAccount(dispatch: Dispatch, address: string, config?: {alias?: string, permanent?: boolean}) => void`
 
 To add an account in the store, use this dispatcher. After adding an account in the store, its informations will start getting fetched and updated accordingly.
 
@@ -26,7 +26,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 ```
 
-## removeAccount(dispatch: Dispatch, address_or_alias: string): void
+## `removeAccount(dispatch: Dispatch, address_or_alias: string) => void`
 
 You can of course remove an account from the store.
 
