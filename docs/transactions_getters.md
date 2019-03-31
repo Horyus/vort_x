@@ -8,7 +8,7 @@ All these getters are accessible from from `ethvtx/lib/getters`;
 
 To efficiently recover informations about the transactions from the `state` (ex: in `mapStateToProps`), you can use the transactions getter helper functions. All of them take the state of the store as first argument.
 
-## getTransaction(state: State, transaction_hash: string): Tx
+## `getTransaction(state: State, transaction_hash: string) => Tx`
 
 This function helps you recover a specific transaction from its transaction hash.
 
@@ -20,7 +20,7 @@ const mapStateToProps = (state) => ({
 
 ```
 
-## getTransactionById(state: State, tx_id: number): Tx
+## `getTransactionById(state: State, tx_id: number) => Tx`
 
 When you dispatch a transaction from our `dispatchers`, you will recover a transaction id. This transaction id can be used to recover the transaction you just broadcasted very easily.
 
@@ -32,7 +32,7 @@ const mapStateToProps = (state) => ({
 
 ```
 
-## getTransactions(state: State, tx_infos?: DeepPartial<TxInfos>): Tx[]
+## `getTransactions(state: State, tx_infos?: DeepPartial<TxInfos>) => Tx[]`
 
 Recover a group of transactions. If no tx_infos are provided, recovers all the transactions.
 Otherwise, will filter on defined fields.
