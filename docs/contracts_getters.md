@@ -8,7 +8,7 @@ All these getters are accessible from from `ethvtx/lib/getters`;
 
 To efficiently recover informations about the contracts from the `state` (ex: in `mapStateToProps`), you can use the contracts getter helper functions. All of them take the state of the store as first argument.
 
-## getContractSpecList(state: State): string[]
+## `getContractSpecList(state: State) => string[]`
 
 This function will give you a full list of loaded contract specs.
 
@@ -21,7 +21,7 @@ const mapStateToProps = (state) => ({
 ```
 
 
-## getContract(state: State, contract_name: string, address_or_alias: string): VtxContract
+## `getContract(state: State, contract_name: string, address_or_alias: string) => VtxContract`
 
 Very useful function. By providing a contract type and its address / alias, it will recover the `VtxContract` instance for you.
 
@@ -64,7 +64,7 @@ const mapStateToProps = (state) => ({
 
 ```
 
-## getContractList(state: State): ContractList
+## `getContractList(state: State) => ContractList`
 
 The `ContractList` type is defined by:
 
