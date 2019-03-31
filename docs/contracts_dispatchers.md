@@ -9,7 +9,7 @@ All these dispatchers are accessible from from `ethvtx/lib/dispatchers`;
 To efficiently dispatch actions in the store, you can use the contracts dispatchers.
 All dispatchers take a dispatch function as first argument.
 
-## loadContractSpec(dispatch: Dispatch, name: string, abi: any, options?: {bin?: string; permanent?: boolean}): void
+## `loadContractSpec(dispatch: Dispatch, name: string, abi: any, options?: {bin?: string; permanent?: boolean}) => void`
 
 Loads a contract spec into the store.
 
@@ -21,7 +21,7 @@ The best usage example of `loadContractSpec` is in the [**Starting ethvtx sectio
 
 Most of the time, you will call this method only during the store setup, not while the app is really running.
 
-## removeContractSpec(dispatch: Dispatch, name: string): void
+## `removeContractSpec(dispatch: Dispatch, name: string) => void`
 
 Remove a contract spec from the store. (Yes, there might be no point in having this feature, but if someone needs dynamic contract spec loading / unloading, then why not)
 
@@ -33,7 +33,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 ```
 
-## loadContractInstance(dispatch: Dispatch, contract_name: string, address: string, options?: {alias?: string, permanent?: boolean, balance?: boolean}): void
+## `loadContractInstance(dispatch: Dispatch, contract_name: string, address: string, options?: {alias?: string, permanent?: boolean, balance?: boolean}): void`
 
 Loads a contract instance into the store.
 When a contract is loaded, the store will perform various verifications in order to set its status to `valid`. If you load a contract instance **BEFORE** starting the store, these verifications will alter the [**ethvtx status**](/ethvtx/docs/ethvtx_status), which can be very useful if you want extra security and prevent any user to use the application if contracts are not properly loaded.
@@ -48,7 +48,7 @@ If `balance` is provided, it will also add this contract address to the `account
 
 The best usage example of `loadContractInstance` is in the [**Starting ethvtx section**](/ethvtx/docs/starting_ethvtx#manual)
 
-## removeContractInstance(dispatch: Dispatch, contract_name: string, address_or_alias: string): void
+## `removeContractInstance(dispatch: Dispatch, contract_name: string, address_or_alias: string) => void`
 
 Removes a contract instance from the store.
 
