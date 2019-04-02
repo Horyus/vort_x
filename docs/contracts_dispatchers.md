@@ -33,7 +33,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 ```
 
-## loadContractInstance(dispatch: Dispatch, contract_name: string, address: string, options?: {alias?: string, permanent?: boolean}): void
+## loadContractInstance(dispatch: Dispatch, contract_name: string, address: string, options?: {alias?: string, permanent?: boolean, balance?: boolean}): void
 
 Loads a contract instance into the store.
 When a contract is loaded, the store will perform various verifications in order to set its status to `valid`. If you load a contract instance **BEFORE** starting the store, these verifications will alter the [**ethvtx status**](/ethvtx/docs/ethvtx_status), which can be very useful if you want extra security and prevent any user to use the application if contracts are not properly loaded.
@@ -43,6 +43,8 @@ If `alias` is provided, you will be able to refer to this instance by its alias 
 Ex: You can't have two `SimpleStorage` instances with the alias `@default`, but you can have one `SimpleStorage` instance and one `SimpleMath` instance both with the `@default` alias.
 
 If `permanent` is provided, it only means that this spec will stay in the store even if the store resets itself.
+
+If `balance` is provided, it will also add this contract address to the `accounts` section.
 
 The best usage example of `loadContractInstance` is in the [**Starting ethvtx section**](/ethvtx/docs/starting_ethvtx#manual)
 

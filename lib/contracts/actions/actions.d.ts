@@ -8,6 +8,7 @@ export declare const ContractsRemoveSpec: (name: string) => IContractsRemoveSpec
 export declare const ContractsNew: (contract: string, address: string, options?: {
     alias?: string;
     permanent?: boolean;
+    balance?: boolean;
 }) => IContractsNew;
 export declare const ContractsReset: () => IContractsReset;
 export declare const ContractsRemove: (contract: string, address_or_alias: string) => IContractsRemove;

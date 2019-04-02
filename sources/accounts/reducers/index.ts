@@ -6,14 +6,16 @@ import {
     IAccountsAdd,
     IAccountsRemove, IAccountsReset,
     IAccountsSetInfos
-}                                  from '../actions/actionTypes';
-import { AccountsAddReducer }      from './AccountsAdd';
-import { AccountsRemoveReducer }   from './AccountsRemove';
-import { AccountsSetInfosReducer } from './AccountsSetInfos';
-import { AccountsResetReducer }    from './AccountsReset';
-import { InitialState }            from '../../state/index';
+}                                          from '../actions/actionTypes';
+import { AccountsAddReducer }              from './AccountsAdd';
+import { AccountsRemoveReducer }           from './AccountsRemove';
+import { AccountsSetInfosReducer }         from './AccountsSetInfos';
+import { AccountsResetReducer }            from './AccountsReset';
+import { InitialState }                    from '../../state/index';
+import { ContractsActions, IContractsNew } from '../../contracts/actions/actionTypes';
+import { ContractsNewReducer }             from './ContractNew';
 
-export const AccountsReducer: Reducer<AccountsSection, AccountsActionTypes> = (state: AccountsSection = InitialState.accounts, action: AccountsActionTypes): AccountsSection => {
+export const AccountsReducer: Reducer<AccountsSection, AccountsActionTypes | IContractsNew> = (state: AccountsSection = InitialState.accounts, action: AccountsActionTypes): AccountsSection => {
     switch (action.type) {
         case AccountsActions.AccountsAdd:
             return AccountsAddReducer(state, action as IAccountsAdd);
@@ -23,6 +25,10 @@ export const AccountsReducer: Reducer<AccountsSection, AccountsActionTypes> = (s
             return AccountsSetInfosReducer(state, action as IAccountsSetInfos);
         case AccountsActions.AccountsReset:
             return AccountsResetReducer(state, action as IAccountsReset);
+
+        case ContractsActions.ContractsNew:
+            return ContractsNewReducer(state, action as IContractsNew);
+
         default:
             return state;
     }
