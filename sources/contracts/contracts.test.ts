@@ -28,6 +28,7 @@ import {
 import { vtx_valid_instance }                  from '../test_tools/vtx_valid_contract';
 import { getTransactionById }                  from '../txs/helpers/getters';
 import { VtxStatus }                           from '../state/vtxconfig';
+import { getAccount }                          from '../accounts/helpers/getters';
 
 const Web3 = require('web3');
 const Solc = require('solc');
@@ -228,6 +229,39 @@ describe('[contracts]', (): void => {
         expect(getContract(this.store.getState(), 'ValueStore', deployed.options.address)).toBeDefined();
         expect(getContract(this.store.getState(), 'ValueStore', '@default')).toBeDefined();
         expect(getContractList(this.store.getState())['ValueStore'][0]).toEqual(deployed.options.address);
+
+    });
+
+    test('Loads a spec, deploys instance, loads instance with permanent, alias and balance, check accounts', async () => {
+
+        loadContractSpec(this.store.dispatch, 'ValueStore', contracts.ValueStore.abi, {
+            bin: contracts.ValueStore.evm.deployedBytecode.object,
+            permanent: true
+        });
+
+        const web3 = buildTestWeb3();
+        const contract = new  web3.eth.Contract(contracts.ValueStore.abi);
+
+        const coinbase = await web3.eth.getCoinbase();
+        const deployed = await contract.deploy({
+            arguments: [5],
+            data: contracts.ValueStore.evm.bytecode.object
+        }).send({
+            from: coinbase,
+            gas: 0xffffff
+        });
+
+        init(this.store.dispatch, web3);
+        await vtx_status(this.store, VtxStatus.Loaded, 10);
+
+        loadContractInstance(this.store.dispatch, 'ValueStore', deployed.options.address, {alias: '@default', permanent: true, balance: true});
+
+        expect(getContract(this.store.getState(), 'ValueStore', deployed.options.address)).toBeDefined();
+        expect(getContract(this.store.getState(), 'ValueStore', '@default')).toBeDefined();
+        expect(getContractList(this.store.getState())['ValueStore'][0]).toEqual(deployed.options.address);
+        expect(this.store.getState().contracts.alias.ValueStore['@default']).toBeDefined();
+        expect(getAccount(this.store.getState(), '@default')).toBeDefined();
+        expect(getAccount(this.store.getState(), deployed.options.address)).toBeDefined();
 
     });
 

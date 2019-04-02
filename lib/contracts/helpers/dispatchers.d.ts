@@ -21,11 +21,12 @@ export declare const removeContractSpec: (dispatch: Dispatch<import("redux").Any
  * @param dispatch
  * @param name Name of the specification to use
  * @param address
- * @param options If alias is provided, creates a new alias for this specific contract/address. If permanent is true, will remain in store event after reset
+ * @param options If alias is provided, creates a new alias for this specific contract/address. If permanent is true, will remain in store event after reset. If balance is true, will add address to accounts
  */
 export declare const loadContractInstance: (dispatch: Dispatch<import("redux").AnyAction>, name: string, address: string, options?: {
     alias?: string;
     permanent?: boolean;
+    balance?: boolean;
 }) => void;
 /**
  * @description Remove specified contract instance

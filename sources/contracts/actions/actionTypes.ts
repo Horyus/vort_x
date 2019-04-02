@@ -35,6 +35,7 @@ export interface IContractsNew extends Action<string> {
     address: string;
     alias?: string;
     permanent?: boolean;
+    balance?: boolean;
 }
 
 export interface IContractsRemove extends Action<string> {

@@ -27,9 +27,9 @@ export const removeContractSpec = (dispatch: Dispatch, name: string): void => {
  * @param dispatch
  * @param name Name of the specification to use
  * @param address
- * @param options If alias is provided, creates a new alias for this specific contract/address. If permanent is true, will remain in store event after reset
+ * @param options If alias is provided, creates a new alias for this specific contract/address. If permanent is true, will remain in store event after reset. If balance is true, will add address to accounts
  */
-export const loadContractInstance = (dispatch: Dispatch, name: string, address: string, options?: { alias?: string, permanent?: boolean }): void => {
+export const loadContractInstance = (dispatch: Dispatch, name: string, address: string, options?: { alias?: string, permanent?: boolean, balance?: boolean }): void => {
     dispatch(ContractsNew(name, address, options));
 };
 

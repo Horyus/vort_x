@@ -31,12 +31,13 @@ export const ContractsRemoveSpec = (name: string): IContractsRemoveSpec => ({
     name
 });
 
-export const ContractsNew = (contract: string, address: string, options?: { alias?: string, permanent?: boolean }): IContractsNew => ({
+export const ContractsNew = (contract: string, address: string, options?: { alias?: string, permanent?: boolean, balance?: boolean }): IContractsNew => ({
     type: ContractsActions.ContractsNew,
     contract,
     address: address_checker(address),
     alias: options ? alias_checker(options.alias) : null,
-    permanent: options ? options.permanent : false
+    permanent: options ? options.permanent : false,
+    balance: options ? options.balance : false
 });
 
 export const ContractsReset = (): IContractsReset => ({
