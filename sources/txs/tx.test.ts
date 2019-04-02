@@ -93,7 +93,7 @@ const buildStore = (): Store => {
     const composer = compose;
     const initial_state: State = configureVtx(getInitialState(), {
         poll_timer: 10,
-        confirmation_treshold: 3
+        confirmation_threshold: 3
     });
     const reducers: Reducer = getReducers();
 

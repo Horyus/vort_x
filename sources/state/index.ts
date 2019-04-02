@@ -58,7 +58,7 @@ export const InitialState: State = {
             accounts: false
         },
         poll_timer: 100,
-        confirmation_treshold: 12,
+        confirmation_threshold: 12,
         coinbase: null,
         net_id: null,
         allowed_nets: null

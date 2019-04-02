@@ -19,7 +19,7 @@ export const poll_transaction: VtxPollCb = async (state: State, emit: Dispatch, 
 
     try {
         const current_block: number = state.blocks.current_height || await state.vtxconfig.web3.eth.getBlockNumber();
-        const treshold: number = state.vtxconfig.confirmation_treshold;
+        const threshold: number = state.vtxconfig.confirmation_threshold;
 
         for (const tx of Object.keys(state.txs)) {
 
@@ -38,7 +38,7 @@ export const poll_transaction: VtxPollCb = async (state: State, emit: Dispatch, 
                             type: VtxeventsTypes.TxError,
                             tx_hash: tx
                         } as VtxeventsTxError));
-                    } else if (current_block - receipt.blockNumber >= treshold) {
+                    } else if (current_block - receipt.blockNumber >= threshold) {
                         emit(TxSet(tx, {}, TxStatus.Confirmed));
                         emit(VtxeventsAdd({
                             type: VtxeventsTypes.TxConfirmed,

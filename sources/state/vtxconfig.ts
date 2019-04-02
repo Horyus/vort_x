@@ -29,7 +29,7 @@ export interface VtxconfigSection {
     status: VtxStatus;
     reset_status: VtxResetStatus;
     poll_timer: number;
-    confirmation_treshold: number;
+    confirmation_threshold: number;
     coinbase: string;
     net_id: number;
     allowed_nets: VtxconfigAllowedNetworks;

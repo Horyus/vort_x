@@ -110,7 +110,7 @@ const buildStore = (net_id: number, genesis_hash: string): Store => {
 
     const initial_state: State = configureVtx(getInitialState(), {
         poll_timer: 10,
-        confirmation_treshold: 3,
+        confirmation_threshold: 3,
         allowed_nets: {
             [net_id]: genesis_hash
         }

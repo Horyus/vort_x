@@ -13,7 +13,7 @@ export const createVtxStore = (): Store => {
     const composer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
     const initial_state: State = configureVtx(getInitialState(), {
         poll_timer: 200,
-        confirmation_treshold: 5
+        confirmation_threshold: 5
     });
     const reducers: Reducer = getReducers();
 
