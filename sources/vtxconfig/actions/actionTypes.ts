@@ -3,12 +3,12 @@ import { VtxStatus } from '../../state/vtxconfig';
 import Web3 = require('web3');
 
 export const VtxconfigActions = {
-    VtxconfigSetWeb3: 'VTXCONFIG_SET_WEB3',
-    VtxconfigSetStatus: 'VTXCONFIG_SET_STATUS',
-    VtxconfigReset: 'VTXCONFIG_RESET',
-    VtxconfigResetSectionComplete: 'VTXCONFIG_RESET_SECTION_COMPLETE',
-    VtxconfigResetComplete: 'VTXCONFIG_RESET_COMPLETE',
-    VtxconfigSetInfos: 'VTXCONFIG_SET_INFOS'
+    VtxconfigSetWeb3: '[VTX][VTXCONFIG] SET_WEB3',
+    VtxconfigSetStatus: '[VTX][VTXCONFIG] SET_STATUS',
+    VtxconfigReset: '[VTX][VTXCONFIG] RESET',
+    VtxconfigResetSectionComplete: '[VTX][VTXCONFIG] RESET_SECTION_COMPLETE',
+    VtxconfigResetComplete: '[VTX][VTXCONFIG] RESET_COMPLETE',
+    VtxconfigSetInfos: '[VTX][VTXCONFIG] SET_INFOS'
 };
 
 export interface IVtxconfigSetInfos extends Action<string> {

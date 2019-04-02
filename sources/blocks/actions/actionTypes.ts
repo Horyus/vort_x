@@ -2,11 +2,11 @@ import { Action } from 'redux';
 import { Block }  from '../../state/blocks';
 
 export const BlocksActions = {
-    BlocksInitialHeight: 'BLOCKS_INITIAL_HEIGHT',
-    BlocksFetch: 'BLOCKS_FETCH',
-    BlocksFetched: 'BLOCKS_FETCHED',
-    BlocksFetchedHeight: 'BLOCKS_FETCHED_HEIGHT',
-    BlocksNew: 'BLOCKS_NEW'
+    BlocksInitialHeight: '[VTX][BLOCKS] INITIAL_HEIGHT',
+    BlocksFetch: '[VTX][BLOCKS] FETCH',
+    BlocksFetched: '[VTX][BLOCKS] FETCHED',
+    BlocksFetchedHeight: '[VTX][BLOCKS] FETCHED_HEIGHT',
+    BlocksNew: '[VTX][BLOCKS] NEW'
 };
 
 export interface IBlocksInitialHeight extends Action<string> {

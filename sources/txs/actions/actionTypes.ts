@@ -2,13 +2,13 @@ import { Action }            from 'redux';
 import { TxInfos, TxStatus } from '../../state/txs';
 
 export const TxActions = {
-    TxAdd: 'TX_ADD',
-    TxRemove: 'TX_REMOVE',
-    TxSet: 'TX_SET',
-    TxError: 'TX_ERROR',
-    TxSend: 'TX_SEND',
-    TxReset: 'TX_RESET',
-    TxFollow: 'TX_FOLLOW'
+    TxAdd: '[VTX][TX] ADD',
+    TxRemove: '[VTX][TX] REMOVE',
+    TxSet: '[VTX][TX] SET',
+    TxError: '[VTX][TX] ERROR',
+    TxSend: '[VTX][TX] SEND',
+    TxReset: '[VTX][TX] RESET',
+    TxFollow: '[VTX][TX] FOLLOW'
 };
 
 export interface ITxAdd extends Action<string> {

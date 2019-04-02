@@ -2,9 +2,9 @@ import { Action }    from 'redux';
 import { Web3Event } from '../../state/events';
 
 export const EventsActions = {
-    EventsFollow: 'EVENTS_FOLLOW',
-    EventsCaught: 'EVENTS_CAUGHT',
-    EventsSetHeight: 'EVENTS_SET_HEIGHT'
+    EventsFollow: '[VTX][EVM EVENTS] FOLLOW',
+    EventsCaught: '[VTX][EVM EVENTS] CAUGHT',
+    EventsSetHeight: '[VTX][EVM EVENTS] SET_HEIGHT'
 };
 
 export interface IEventsFollow extends Action<string> {
