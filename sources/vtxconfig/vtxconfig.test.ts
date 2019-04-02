@@ -4,15 +4,14 @@ import { getReducers }                                           from '../tools/
 import { getSagas }                                              from '../tools/getSagas';
 import { Saga }                                                  from '@redux-saga/types';
 import { State }                                                 from '../state/index';
-import createSagaMiddleware, { SagaMiddleware }                  from 'redux-saga';
-import * as Ganache                                              from 'ganache-core';
-import { configureVtx }                                          from '../tools/configureVtx';
-import { VtxpollKill }                                           from '../vtxpoll/actions/action';
-import * as Fs                        from 'fs';
-import { vtx_status }   from '../test_tools';
-import { VtxStatus }                  from '../state/vtxconfig';
-import { VtxconfigSetWeb3 }           from '../../lib/vtxconfig/actions/actions';
-import { VtxconfigReset }             from './actions/actions';
+import createSagaMiddleware, { SagaMiddleware } from 'redux-saga';
+import * as Ganache                             from 'ganache-core';
+import { configureVtx }                         from '../tools/configureVtx';
+import { VtxpollKill }                          from '../vtxpoll/actions/action';
+import * as Fs                                  from 'fs';
+import { vtx_status }                           from '../test_tools';
+import { VtxStatus }                            from '../state/vtxconfig';
+import { VtxconfigReset, VtxconfigSetWeb3 }     from './actions/actions';
 
 const Web3 = require('web3');
 const Solc = require('solc');
@@ -153,11 +152,11 @@ describe('[vtxconfig]', (): void => {
 
         this.store.dispatch(VtxconfigSetWeb3(this.web3));
         this.store.dispatch(VtxconfigReset());
-        await vtx_status(this.store, VtxStatus.Loaded, 10);
+        await vtx_status(this.store, VtxStatus.Loaded, 20);
 
         this.store.dispatch(VtxconfigSetWeb3(null));
         this.store.dispatch(VtxconfigReset());
-        await vtx_status(this.store, VtxStatus.Idle, 10);
+        await vtx_status(this.store, VtxStatus.Idle, 20);
     });
 
 });

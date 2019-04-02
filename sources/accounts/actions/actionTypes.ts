@@ -2,10 +2,10 @@ import { Action }    from 'redux';
 import { BigNumber } from 'bignumber.js';
 
 export const AccountsActions = {
-    AccountsAdd: 'ACCOUNTS_ADD',
-    AccountsRemove: 'ACCOUNTS_REMOVE',
-    AccountsSetInfos: 'ACCOUNTS_SET_INFOS',
-    AccountsReset: 'ACCOUNTS_RESET'
+    AccountsAdd: '[VTX][ACCOUNTS] ADD',
+    AccountsRemove: '[VTX][ACCOUNTS] REMOVE',
+    AccountsSetInfos: '[VTX][ACCOUNTS] SET_INFOS',
+    AccountsReset: '[VTX][ACCOUNTS] RESET'
 };
 
 export interface IAccountsAdd extends Action<string> {

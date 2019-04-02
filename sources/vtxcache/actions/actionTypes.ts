@@ -1,11 +1,11 @@
 import { Action } from 'redux';
 
 export const VtxcacheActions = {
-    VtxcacheCreate: 'VTXCACHE_CREATE',
-    VtxcacheSetData: 'VTXCACHE_SET_DATA',
-    VtxcacheSetError: 'VTXCACHE_SET_ERROR',
-    VtxcacheSetRequired: 'VTXCACHE_SET_REQUIRED',
-    VtxcacheReset: 'VTXCACHE_RESET'
+    VtxcacheCreate: '[VTX][VTXCACHE] CREATE',
+    VtxcacheSetData: '[VTX][VTXCACHE] SET_DATA',
+    VtxcacheSetError: '[VTX][VTXCACHE] SET_ERROR',
+    VtxcacheSetRequired: '[VTX][VTXCACHE] SET_REQUIRED',
+    VtxcacheReset: '[VTX][VTXCACHE] RESET'
 };
 
 export type VtxcacheCb<T> = (block: number) => Promise<T>;
