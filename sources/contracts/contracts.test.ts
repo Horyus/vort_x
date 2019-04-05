@@ -218,6 +218,7 @@ describe('[contracts]', (): void => {
         await vtx_status(this.store, VtxStatus.Loaded, 10);
 
         loadContractInstance(this.store.dispatch, 'ValueStore', deployed.options.address, {alias: '@default', permanent: true});
+        expect(getContract(this.store.getState(), 'ValueStore', '@default').fn).toBeDefined();
 
         await vtx_event(this.store, 0, VtxeventsTypes.ContractsInstanceAdded, 10);
         const add_events = getVtxEvents(this.store.getState(), VtxeventsTypes.ContractsInstanceAdded);
