@@ -15,7 +15,8 @@ export const VtxconfigActions = {
     VtxconfigReset: '[VTX][VTXCONFIG] RESET',
     VtxconfigResetSectionComplete: '[VTX][VTXCONFIG] RESET_SECTION_COMPLETE',
     VtxconfigResetComplete: '[VTX][VTXCONFIG] RESET_COMPLETE',
-    VtxconfigSetInfos: '[VTX][VTXCONFIG] SET_INFOS'
+    VtxconfigSetInfos: '[VTX][VTXCONFIG] SET_INFOS',
+    VtxconfigSetAllowedNet: `[VTX][VTXCONFIG] SET_ALLOWED_NET`
 };
 ```
 
@@ -53,6 +54,11 @@ Sets the web3 instance in the redux store.
 ## `VtxconfigReset(enable?: () => Promise<void>) => IVtxconfigReset`
 
 Resets the store. Erases everything that is not marked `permanent`
+
+## `VtxconfigSetAllowedNet(net_id: number, genesis_hash: string) => IVtxconfigSetAllowedNet`
+
+Sets the expected genesis hash for a specific network id. Used to detect invalid networks
+
 
 ## Internal Actions
 

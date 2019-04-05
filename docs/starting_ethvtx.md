@@ -37,6 +37,8 @@ Setting up initial smart contracts and accounts should happen between setting th
 
 Let's pretend you have a `SimpleStorage' contract, and you deployed two instances of it. If you wanted to load it you would do this. Also you have your friend Geroge's address that you want to keep in the store even between resets.
 
+Also, let's say that your contracts only exist on a network with network id of 1337.
+
 ```jsx
 
 import { loadContractSpec, loadContractInstance } from 'ethvtx/lib/dispatchers';
@@ -46,6 +48,8 @@ const contract_one_address = '0x6C90AeCe04198DA2d5CA9B956b8F95aF8041DE37';
 const contract_two_address = '0x09A38F24D34fa76CFe79725AE62ABb0906571634';
 const contract_abi = // Load your contract abi.
 const contract_runtime_bytecode = // Load your contract runtime bytecode
+const network_id = 1337;
+const network_genesis_hash = // hash of block 0 on the network where your contracts exist
 
 // ######
 //   ##   
@@ -99,6 +103,20 @@ addAccount(store.dispatch, '0xa087a6Ddc4BDB1028fe4431C8616F8E15Cf5F522', {
 });
 
 // You might need accounts that stay in the store even if the store resets.
+
+// ##############
+//   ## ##   ##   
+//   ##  ## ##   
+//   ##   ##     
+// ##############  Set network check informations
+
+setAllowedNet(store.dispatch, network_id, network_genesis_hash);
+
+// This is completely optional, but is useful if you want to quickly detect if you are on the good network.
+// You can also provide several networks by calling this method for each network
+// If not provided, network check will only happen on smart contraccts (comparing the bytecode stored on the chain vs the bytecode you provided to tell if it's the good network or not)
+// This will update the status of the store so you can easily display a message to your user
+
 
 ```
 
@@ -162,6 +180,19 @@ addAccount(store.dispatch, '0xa087a6Ddc4BDB1028fe4431C8616F8E15Cf5F522', {
 });
 
 // You might need accounts that stay in the store even if the store resets.
+
+// ##############
+//   ## ##   ##   
+//   ##  ## ##   
+//   ##   ##     
+// ##############  Set network check informations
+
+setAllowedNet(store.dispatch, network_id, network_genesis_hash);
+
+// This is completely optional, but is useful if you want to quickly detect if you are on the good network.
+// You can also provide several networks by calling this method for each network
+// If not provided, network check will only happen on smart contraccts (comparing the bytecode stored on the chain vs the bytecode you provided to tell if it's the good network or not)
+// This will update the status of the store so you can easily display a message to your user
 
 ```
 
