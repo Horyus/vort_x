@@ -54,7 +54,7 @@ export {
 }   from './vtxcache/actions/actionTypes';
 
 export {
-    VtxconfigSetStatus, VtxconfigReset, VtxconfigSetWeb3, VtxconfigResetComplete, VtxconfigResetSectionComplete
+    VtxconfigSetStatus, VtxconfigReset, VtxconfigSetWeb3, VtxconfigResetComplete, VtxconfigResetSectionComplete, VtxconfigSetAllowedNet, VtxconfigSetInfos
 }   from './vtxconfig/actions/actions';
 export {
     VtxconfigActions,
@@ -63,7 +63,9 @@ export {
     IVtxconfigResetSectionComplete,
     IVtxconfigSetStatus,
     IVtxconfigSetWeb3,
-    VtxconfigActionTypes
+    VtxconfigActionTypes,
+    IVtxconfigSetAllowedNet,
+    IVtxconfigSetInfos
 }   from './vtxconfig/actions/actionTypes';
 
 export { VtxeventsAdd }                                          from './vtxevents/actions/actions';

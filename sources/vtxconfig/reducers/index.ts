@@ -2,7 +2,7 @@ import { Reducer }                              from 'redux';
 import {
     IVtxconfigReset,
     IVtxconfigResetComplete,
-    IVtxconfigResetSectionComplete, IVtxconfigSetInfos,
+    IVtxconfigResetSectionComplete, IVtxconfigSetAllowedNet, IVtxconfigSetInfos,
     IVtxconfigSetStatus,
     IVtxconfigSetWeb3,
     VtxconfigActions,
@@ -16,6 +16,7 @@ import { VtxconfigResetCompleteReducer }        from './VtxconfigResetComplete';
 import { VtxconfigSetInfosReducer }             from './VtxconfigSetInfos';
 import { VtxconfigResetReducer }                from './VtxconfigReset';
 import { InitialState }                         from '../../state/index';
+import { VtxconfigSetAllowedNetReducer }        from './VtxconfigSetAllowedNet';
 
 export const VtxconfigReducer: Reducer<VtxconfigSection, VtxconfigActionTypes> =
     (state: VtxconfigSection = InitialState.vtxconfig, action: VtxconfigActionTypes): VtxconfigSection => {
@@ -32,6 +33,8 @@ export const VtxconfigReducer: Reducer<VtxconfigSection, VtxconfigActionTypes> =
                 return VtxconfigSetInfosReducer(state, action as IVtxconfigSetInfos);
             case VtxconfigActions.VtxconfigReset:
                 return VtxconfigResetReducer(state, action as IVtxconfigReset);
+            case VtxconfigActions.VtxconfigSetAllowedNet:
+                return VtxconfigSetAllowedNetReducer(state, action as IVtxconfigSetAllowedNet);
             default:
                 return state;
         }

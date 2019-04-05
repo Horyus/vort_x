@@ -4,14 +4,14 @@ import { getReducers }                                           from '../tools/
 import { getSagas }                                              from '../tools/getSagas';
 import { Saga }                                                  from '@redux-saga/types';
 import { State }                                                 from '../state/index';
-import createSagaMiddleware, { SagaMiddleware } from 'redux-saga';
-import * as Ganache                             from 'ganache-core';
-import { configureVtx }                         from '../tools/configureVtx';
-import { VtxpollKill }                          from '../vtxpoll/actions/action';
-import * as Fs                                  from 'fs';
-import { vtx_status }                           from '../test_tools';
-import { VtxStatus }                            from '../state/vtxconfig';
-import { VtxconfigReset, VtxconfigSetWeb3 }     from './actions/actions';
+import createSagaMiddleware, { SagaMiddleware }                     from 'redux-saga';
+import * as Ganache                                                 from 'ganache-core';
+import { configureVtx }                                             from '../tools/configureVtx';
+import { VtxpollKill }                                              from '../vtxpoll/actions/action';
+import * as Fs                                                      from 'fs';
+import { vtx_status }                                               from '../test_tools';
+import { VtxStatus }                                                from '../state/vtxconfig';
+import { VtxconfigReset, VtxconfigSetAllowedNet, VtxconfigSetWeb3 } from './actions/actions';
 
 const Web3 = require('web3');
 const Solc = require('solc');
@@ -102,15 +102,12 @@ const fetch_net_infos = async (web3: Web3, val: any): Promise<void> => {
     val.genesis_hash = (await web3.eth.getBlock(0)).hash.toLowerCase();
 }
 
-const buildStore = (net_id: number, genesis_hash: string): Store => {
+const buildStore = (): Store => {
     const composer = compose;
 
     const initial_state: State = configureVtx(getInitialState(), {
         poll_timer: 10,
-        confirmation_threshold: 3,
-        allowed_nets: {
-            [net_id]: genesis_hash
-        }
+        confirmation_threshold: 3
     });
     const reducers: Reducer = getReducers();
 
@@ -141,7 +138,7 @@ describe('[vtxconfig]', (): void => {
     beforeEach(async () => {
         this.web3 = buildTestWeb3();
         await fetch_net_infos(this.web3, this);
-        this.store = buildStore(this.net_id, this.genesis_hash);
+        this.store = buildStore();
     });
 
     afterEach(() => {
@@ -157,6 +154,39 @@ describe('[vtxconfig]', (): void => {
         this.store.dispatch(VtxconfigSetWeb3(null));
         this.store.dispatch(VtxconfigReset());
         await vtx_status(this.store, VtxStatus.Idle, 20);
+    });
+
+    test('Setting valid allowed_nets config', async () => {
+
+        const net_id = await this.web3.eth.net.getId();
+        const hash = (await this.web3.eth.getBlock(0)).hash;
+
+        this.store.dispatch(VtxconfigSetWeb3(this.web3));
+        this.store.dispatch(VtxconfigSetAllowedNet(net_id, hash));
+        this.store.dispatch(VtxconfigReset());
+        await vtx_status(this.store, VtxStatus.Loaded, 20);
+    });
+
+    test('Setting invalid hash in allowed_nets config', async () => {
+
+        const net_id = await this.web3.eth.net.getId();
+        const hash = '0abcd';
+
+        this.store.dispatch(VtxconfigSetWeb3(this.web3));
+        this.store.dispatch(VtxconfigSetAllowedNet(net_id, hash));
+        this.store.dispatch(VtxconfigReset());
+        await vtx_status(this.store, VtxStatus.WrongNet, 20);
+    });
+
+    test('Setting invalid net_id in allowed_nets config', async () => {
+
+        const net_id = (await this.web3.eth.net.getId()) + 1;
+        const hash = (await this.web3.eth.getBlock(0)).hash;
+
+        this.store.dispatch(VtxconfigSetWeb3(this.web3));
+        this.store.dispatch(VtxconfigSetAllowedNet(net_id, hash));
+        this.store.dispatch(VtxconfigReset());
+        await vtx_status(this.store, VtxStatus.WrongNet, 20);
     });
 
 });
