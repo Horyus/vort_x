@@ -1,13 +1,19 @@
 import {
     IVtxconfigReset,
     IVtxconfigResetComplete,
-    IVtxconfigResetSectionComplete, IVtxconfigSetInfos,
+    IVtxconfigResetSectionComplete, IVtxconfigSetAllowedNet, IVtxconfigSetInfos,
     IVtxconfigSetStatus,
     IVtxconfigSetWeb3,
     VtxconfigActions
 } from './actionTypes';
 import { VtxStatus } from '../../state/vtxconfig';
 import Web3 = require('web3');
+
+export const VtxconfigSetAllowedNet = (net_id: number, genesis_hash: string): IVtxconfigSetAllowedNet => ({
+    type: VtxconfigActions.VtxconfigSetAllowedNet,
+    net_id,
+    genesis_hash
+});
 
 export const VtxconfigSetWeb3 = (web3: Web3): IVtxconfigSetWeb3 => ({
     type: VtxconfigActions.VtxconfigSetWeb3,

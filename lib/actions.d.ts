@@ -6,8 +6,8 @@ export { TxAdd, TxFollow, TxError, TxRemove, TxReset, TxSend, TxSet } from './tx
 export { TxActions, ITxFollow, ITxAdd, ITxError, ITxRemove, ITxReset, ITxSend, ITxSet, TxActionTypes } from './txs/actions/actionTypes';
 export { VtxcacheReset, VtxcacheSetData, VtxcacheSetRequired, VtxcacheCreate, VtxcacheSetError } from './vtxcache/actions/actions';
 export { IVtxcacheReset, VtxcacheActions, IVtxcacheSetError, IVtxcacheCreate, IVtxcacheSetData, IVtxcacheSetRequired, VtxcacheActionTypes, VtxcacheCb } from './vtxcache/actions/actionTypes';
-export { VtxconfigSetStatus, VtxconfigReset, VtxconfigSetWeb3, VtxconfigResetComplete, VtxconfigResetSectionComplete } from './vtxconfig/actions/actions';
-export { VtxconfigActions, IVtxconfigReset, IVtxconfigResetComplete, IVtxconfigResetSectionComplete, IVtxconfigSetStatus, IVtxconfigSetWeb3, VtxconfigActionTypes } from './vtxconfig/actions/actionTypes';
+export { VtxconfigSetStatus, VtxconfigReset, VtxconfigSetWeb3, VtxconfigResetComplete, VtxconfigResetSectionComplete, VtxconfigSetAllowedNet, VtxconfigSetInfos } from './vtxconfig/actions/actions';
+export { VtxconfigActions, IVtxconfigReset, IVtxconfigResetComplete, IVtxconfigResetSectionComplete, IVtxconfigSetStatus, IVtxconfigSetWeb3, VtxconfigActionTypes, IVtxconfigSetAllowedNet, IVtxconfigSetInfos } from './vtxconfig/actions/actionTypes';
 export { VtxeventsAdd } from './vtxevents/actions/actions';
 export { IVtxeventsAdd, VtxeventsActions, VtxeventsActionTypes } from './vtxevents/actions/actionTypes';
 export { IVtxpollKill, IVtxpollSetIntervalId, VtxpollActions, VtxpollActionTypes } from './vtxpoll/actions/actionTypes';

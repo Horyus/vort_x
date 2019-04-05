@@ -8,8 +8,14 @@ export const VtxconfigActions = {
     VtxconfigReset: '[VTX][VTXCONFIG] RESET',
     VtxconfigResetSectionComplete: '[VTX][VTXCONFIG] RESET_SECTION_COMPLETE',
     VtxconfigResetComplete: '[VTX][VTXCONFIG] RESET_COMPLETE',
-    VtxconfigSetInfos: '[VTX][VTXCONFIG] SET_INFOS'
+    VtxconfigSetInfos: '[VTX][VTXCONFIG] SET_INFOS',
+    VtxconfigSetAllowedNet: `[VTX][VTXCONFIG] SET_ALLOWED_NET`
 };
+
+export interface IVtxconfigSetAllowedNet extends Action<string> {
+    net_id: number;
+    genesis_hash: string;
+}
 
 export interface IVtxconfigSetInfos extends Action<string> {
     coinbase: string;
@@ -41,4 +47,5 @@ export type VtxconfigActionTypes =
     | IVtxconfigReset
     | IVtxconfigResetSectionComplete
     | IVtxconfigResetComplete
-    | IVtxconfigSetInfos;
+    | IVtxconfigSetInfos
+    | IVtxconfigSetAllowedNet;
