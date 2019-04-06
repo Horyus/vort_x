@@ -7,10 +7,10 @@ import {
     ITxSend,
     ITxSet,
     TxActions
-}                            from './actionTypes';
-import { TxInfos, TxStatus } from '../../state/txs';
-import { tx_hash_checker }   from '../../utils/tx_hash_checker';
-import { format_txinfos }    from '../../utils/format_txinfos';
+}                          from './actionTypes';
+import { TxInfos }         from '../../state/txs';
+import { tx_hash_checker } from '../../utils/tx_hash_checker';
+import { format_txinfos }  from '../../utils/format_txinfos';
 
 export const TxAdd = (tx_hash: string, tx_infos: Partial<TxInfos>, tx_id?: number): ITxAdd => ({
     type: TxActions.TxAdd,
@@ -24,7 +24,7 @@ export const TxRemove = (tx_hash: string): ITxRemove => ({
     tx_hash: tx_hash_checker(tx_hash)
 });
 
-export const TxSet = (tx_hash: string, tx_infos: Partial<TxInfos>, status?: TxStatus): ITxSet => ({
+export const TxSet = (tx_hash: string, tx_infos: Partial<TxInfos>, status?: string): ITxSet => ({
     type: TxActions.TxSet,
     tx_hash: tx_hash_checker(tx_hash),
     tx_infos: format_txinfos(tx_infos),

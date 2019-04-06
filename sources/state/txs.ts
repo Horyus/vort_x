@@ -1,10 +1,10 @@
-export enum TxStatus {
-    Broadcasted = 0,
-    Confirming,
-    Confirmed,
-    Unknown,
-    Error
-}
+export const TxStatus: {[key: string]: string} = {
+    Broadcasted: 'Broadcasted',
+    Confirming: 'Confirming',
+    Confirmed: 'Confirmed',
+    Unknown: 'Unknown',
+    Error: 'Error'
+};
 
 export interface TxInfos {
     hash: string;
@@ -25,7 +25,7 @@ export interface TxInfos {
 
 export interface Tx {
     infos: Partial<TxInfos>;
-    status: TxStatus;
+    status: string;
     e: Error;
     hash: string;
     id?: number;

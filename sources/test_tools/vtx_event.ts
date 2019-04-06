@@ -1,12 +1,12 @@
 import { Store }                            from 'redux';
 import { VtxeventsSection, VtxeventsTypes } from '../state/vtxevents';
 
-const contains_event = (events: VtxeventsSection[], event_type: VtxeventsTypes): boolean =>
+const contains_event = (events: VtxeventsSection[], event_type: string): boolean =>
     events.findIndex(
         (event: VtxeventsSection): boolean => event.type === event_type
     ) !== -1;
 
-export const vtx_event = async (store: Store, start_idx: number, event_type: VtxeventsTypes, max?: number): Promise<void> =>
+export const vtx_event = async (store: Store, start_idx: number, event_type: string, max?: number): Promise<void> =>
     new Promise<void>(
         (ok: any, ko: any): void => {
             let idx: number = 0;

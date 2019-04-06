@@ -1,14 +1,14 @@
 import Web3 = require('web3');
 
-export enum VtxStatus {
-    Loading = 0,
-    Authorizing,
-    Idle,
-    Loaded,
-    WrongNet,
-    Error,
-    Unauthorized
-}
+export const VtxStatus: {[key: string]: string} = {
+    Loading: 'Loading',
+    Authorizing: 'Authorizing',
+    Idle: 'Idle',
+    Loaded: 'Loaded',
+    WrongNet: 'WrongNet',
+    Error: 'Error',
+    Unauthorized: 'Unauthorized'
+};
 
 export interface VtxResetStatus {
     txs: boolean;
@@ -26,7 +26,7 @@ export interface VtxconfigAllowedNetworks {
 export interface VtxconfigSection {
     web3: Web3;
     last_error: Error;
-    status: VtxStatus;
+    status: string;
     reset_status: VtxResetStatus;
     poll_timer: number;
     confirmation_threshold: number;

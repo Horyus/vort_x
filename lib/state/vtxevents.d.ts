@@ -1,30 +1,15 @@
-export declare enum VtxeventsTypes {
-    Error = 0,
-    TxBroadcasted = 1,
-    TxFollowed = 2,
-    TxConfirmed = 3,
-    TxError = 4,
-    TxInvalid = 5,
-    ContractsSpecAdded = 6,
-    ContractsSpecRemoved = 7,
-    ContractsInstanceAdded = 8,
-    ContractsInstanceRemoved = 9,
-    ContractsTxBroadcasted = 10
-}
+export declare const VtxeventsTypes: {
+    [key: string]: string;
+};
 export interface Vtxevent {
-    type: VtxeventsTypes;
+    type: string;
 }
-export declare enum VtxeventErrorTypes {
-    TxBroadcastError = 0,
-    TxFollowError = 1,
-    BlockFetchError = 2,
-    ContractInvalid = 3,
-    ContractTxError = 4,
-    TxFetchError = 5
-}
+export declare const VtxeventErrorTypes: {
+    [key: string]: string;
+};
 export interface VtxeventsError extends Vtxevent {
     e: Error;
-    error_type: VtxeventErrorTypes;
+    error_type: string;
 }
 export interface VtxeventsTxBroadcasted extends Vtxevent {
     tx_hash: string;

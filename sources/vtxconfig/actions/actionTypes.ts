@@ -27,7 +27,7 @@ export interface IVtxconfigSetWeb3 extends Action<string> {
 }
 
 export interface IVtxconfigSetStatus extends Action<string> {
-    status: VtxStatus;
+    status: string;
 }
 
 export interface IVtxconfigReset extends Action<string> {

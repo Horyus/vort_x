@@ -1,10 +1,6 @@
-export declare enum TxStatus {
-    Broadcasted = 0,
-    Confirming = 1,
-    Confirmed = 2,
-    Unknown = 3,
-    Error = 4
-}
+export declare const TxStatus: {
+    [key: string]: string;
+};
 export interface TxInfos {
     hash: string;
     nonce: number;
@@ -23,7 +19,7 @@ export interface TxInfos {
 }
 export interface Tx {
     infos: Partial<TxInfos>;
-    status: TxStatus;
+    status: string;
     e: Error;
     hash: string;
     id?: number;

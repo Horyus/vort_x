@@ -20,7 +20,7 @@ export const VtxconfigSetWeb3 = (web3: Web3): IVtxconfigSetWeb3 => ({
     web3,
 });
 
-export const VtxconfigSetStatus = (status: VtxStatus): IVtxconfigSetStatus => ({
+export const VtxconfigSetStatus = (status: string): IVtxconfigSetStatus => ({
     type: VtxconfigActions.VtxconfigSetStatus,
     status
 });

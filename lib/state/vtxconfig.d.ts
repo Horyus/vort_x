@@ -1,12 +1,6 @@
-export declare enum VtxStatus {
-    Loading = 0,
-    Authorizing = 1,
-    Idle = 2,
-    Loaded = 3,
-    WrongNet = 4,
-    Error = 5,
-    Unauthorized = 6
-}
+export declare const VtxStatus: {
+    [key: string]: string;
+};
 export interface VtxResetStatus {
     txs: boolean;
     blocks: boolean;
@@ -21,7 +15,7 @@ export interface VtxconfigAllowedNetworks {
 export interface VtxconfigSection {
     web3: Web3;
     last_error: Error;
-    status: VtxStatus;
+    status: string;
     reset_status: VtxResetStatus;
     poll_timer: number;
     confirmation_threshold: number;
