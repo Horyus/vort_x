@@ -3,7 +3,7 @@ import { connect }          from 'react-redux';
 import { State, VtxStatus } from 'ethvtx/lib/state';
 
 interface IStatusManagerProps {
-    status: number;
+    status: string;
 }
 
 class StatusManagerRaw extends React.Component<IStatusManagerProps> {
