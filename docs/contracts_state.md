@@ -11,7 +11,6 @@ The organization of the `contracts` might seem non-trivial to use, and it's norm
 
 ## ContractsSpec
 
-
 ```
 {
     name: string;

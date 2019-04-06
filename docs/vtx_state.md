@@ -13,13 +13,13 @@ You know this one, it's the enum with all the `ethvtx` statuses.
 
 ```jsx
 {
-    Loading = 0,
-    Authorizing = 1,
-    Idle = 2,
-    Loaded = 3,
-    WrongNet = 4,
-    Error = 5,
-    Unauthorized = 6
+    Loading: 'Loading',
+    Authorizing: 'Authorizing',
+    Idle: 'Idle',
+    Loaded: 'Loaded',
+    WrongNet: 'WrongNet',
+    Error: 'Error',
+    Unauthorized: 'Unauthorized'
 }
 ```
 
@@ -74,19 +74,19 @@ Enumeration, representing the type of event that occured in the store.
 
 ```jsx
 {
-    Error = 0,
+    Error: 'Error',
 
-    TxBroadcasted,
-    TxFollowed,
-    TxConfirmed,
-    TxError,
-    TxInvalid,
+    TxBroadcasted: 'TxBroadcasted',
+    TxFollowed: 'TxFollowed',
+    TxConfirmed: 'TxConfirmed',
+    TxError: 'TxError',
+    TxInvalid: 'TxInvalid',
 
-    ContractsSpecAdded,
-    ContractsSpecRemoved,
-    ContractsInstanceAdded,
-    ContractsInstanceRemoved,
-    ContractsTxBroadcasted
+    ContractsSpecAdded: 'ContractsSpecAdded',
+    ContractsSpecRemoved: 'ContractsSpecRemoved',
+    ContractsInstanceAdded: 'ContractsInstanceAdded',
+    ContractsInstanceRemoved: 'ContractsInstanceRemoved',
+    ContractsTxBroadcasted: 'ContractsTxBroadcasted'
 }
 ```
 

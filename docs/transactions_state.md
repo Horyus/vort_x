@@ -12,11 +12,11 @@ This enumeration contains the different possible statuses of a transaction.
 
 ```jsx
 {
-    Broadcasted = 0,
-    Confirming = 1,
-    Confirmed = 2,
-    Unknown = 3,
-    Error = 4
+    Broadcasted: 'Broadcasted',
+    Confirming: 'Confirming',
+    Confirmed: 'Confirmed',
+    Unknown: 'Unknown',
+    Error: 'Error'
 }
 ```
 
