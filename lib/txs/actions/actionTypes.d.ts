@@ -1,5 +1,5 @@
 import { Action } from 'redux';
-import { TxInfos, TxStatus } from '../../state/txs';
+import { TxInfos } from '../../state/txs';
 export declare const TxActions: {
     TxAdd: string;
     TxRemove: string;
@@ -20,7 +20,7 @@ export interface ITxRemove extends Action<string> {
 export interface ITxSet extends Action<string> {
     tx_hash: string;
     tx_infos: Partial<TxInfos>;
-    status?: TxStatus;
+    status?: string;
 }
 export interface ITxError extends Action<string> {
     tx_hash: string;

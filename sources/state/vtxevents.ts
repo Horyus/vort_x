@@ -1,35 +1,36 @@
-export enum VtxeventsTypes {
-    Error = 0,
+export const VtxeventsTypes: {[key: string]: string} = {
+    Error: 'Error',
 
-    TxBroadcasted,
-    TxFollowed,
-    TxConfirmed,
-    TxError,
-    TxInvalid,
+    TxBroadcasted: 'TxBroadcasted',
+    TxFollowed: 'TxFollowed',
+    TxConfirmed: 'TxConfirmed',
+    TxError: 'TxError',
+    TxInvalid: 'TxInvalid',
 
-    ContractsSpecAdded,
-    ContractsSpecRemoved,
-    ContractsInstanceAdded,
-    ContractsInstanceRemoved,
-    ContractsTxBroadcasted
-}
+    ContractsSpecAdded: 'ContractsSpecAdded',
+    ContractsSpecRemoved: 'ContractsSpecRemoved',
+    ContractsInstanceAdded: 'ContractsInstanceAdded',
+    ContractsInstanceRemoved: 'ContractsInstanceRemoved',
+    ContractsTxBroadcasted: 'ContractsTxBroadcasted'
+};
 
 export interface Vtxevent {
-    type: VtxeventsTypes;
+    type: string;
 }
 
-export enum VtxeventErrorTypes {
-    TxBroadcastError = 0,
-    TxFollowError,
-    BlockFetchError,
-    ContractInvalid,
-    ContractTxError,
-    TxFetchError
-}
+export const VtxeventErrorTypes: {[key: string]: string} = {
+    TxBroadcastError: 'TxBroadcastError',
+    TxFollowError: 'TxFollowError',
+    BlockFetchError: 'BlockFetchError',
+    ContractInvalid: 'ContractInvalid',
+    ContractTxError: 'ContractTxError',
+    TxFetchError: 'TxFetchError'
+
+};
 
 export interface VtxeventsError extends Vtxevent {
     e: Error;
-    error_type: VtxeventErrorTypes;
+    error_type: string;
 }
 
 export interface VtxeventsTxBroadcasted extends Vtxevent {

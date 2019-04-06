@@ -1,8 +1,7 @@
 import { State }     from '../../state';
-import { VtxStatus } from '../../state/vtxconfig';
 import Web3 = require('web3');
 
-export const getVtxStatus = (state: State): VtxStatus =>
+export const getVtxStatus = (state: State): string =>
     state.vtxconfig.status;
 
 export const getVtxLastError = (state: State): Error =>

@@ -1,5 +1,4 @@
 import {
-    VtxeventErrorTypes,
     VtxeventsError,
     VtxeventsSection,
     VtxeventsTypes
@@ -7,7 +6,7 @@ import {
 import { State } from '../../state';
 
 export const getVtxEvents =
-    (state: State, type: VtxeventsTypes, error_type?: VtxeventErrorTypes): VtxeventsSection[] => {
+    (state: State, type: string, error_type?: string): VtxeventsSection[] => {
         if (error_type && type !== VtxeventsTypes.Error) {
             throw new Error('Cannot ask for error_type when not fetching Error Events');
         }

@@ -1,5 +1,4 @@
 import { Action } from 'redux';
-import { VtxStatus } from '../../state/vtxconfig';
 export declare const VtxconfigActions: {
     VtxconfigSetWeb3: string;
     VtxconfigSetStatus: string;
@@ -21,7 +20,7 @@ export interface IVtxconfigSetWeb3 extends Action<string> {
     web3: Web3;
 }
 export interface IVtxconfigSetStatus extends Action<string> {
-    status: VtxStatus;
+    status: string;
 }
 export interface IVtxconfigReset extends Action<string> {
     enable?: () => Promise<void>;
