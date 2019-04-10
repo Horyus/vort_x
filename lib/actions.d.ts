@@ -10,7 +10,7 @@ export { VtxconfigSetStatus, VtxconfigReset, VtxconfigSetWeb3, VtxconfigResetCom
 export { VtxconfigActions, IVtxconfigReset, IVtxconfigResetComplete, IVtxconfigResetSectionComplete, IVtxconfigSetStatus, IVtxconfigSetWeb3, VtxconfigActionTypes, IVtxconfigSetAllowedNet, IVtxconfigSetInfos } from './vtxconfig/actions/actionTypes';
 export { VtxeventsAdd } from './vtxevents/actions/actions';
 export { IVtxeventsAdd, VtxeventsActions, VtxeventsActionTypes } from './vtxevents/actions/actionTypes';
-export { IVtxpollKill, IVtxpollSetIntervalId, VtxpollActions, VtxpollActionTypes } from './vtxpoll/actions/actionTypes';
-export { VtxpollKill, VtxpollSetIntervalId } from './vtxpoll/actions/action';
+export { IVtxpollKill, IVtxpollSetIntervalId, VtxpollActions, VtxpollActionTypes, IVtxpollAdd } from './vtxpoll/actions/actionTypes';
+export { VtxpollKill, VtxpollSetIntervalId, VtxpollAdd } from './vtxpoll/actions/action';
 export { IAccountsReset, AccountsActions, IAccountsSetInfos, IAccountsRemove, IAccountsAdd, AccountsActionTypes } from './accounts/actions/actionTypes';
 export { AccountsReset, AccountsRemove, AccountsAdd, AccountsSetInfos } from './accounts/actions/actions';

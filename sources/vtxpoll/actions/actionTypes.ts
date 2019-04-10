@@ -1,8 +1,10 @@
-import { Action } from 'redux';
+import { Action }    from 'redux';
+import { VtxPollCb } from '../../state/vtxpoll';
 
 export const VtxpollActions = {
     VtxpollSetIntervalId: '[VTX][VTXPOLL] SET_INTERVAL_ID',
-    VtxpollKill: '[VTX][VTXPOLL] KILL'
+    VtxpollKill: '[VTX][VTXPOLL] KILL',
+    VtxpollAdd: '[VTX][VTXPOLL] ADD'
 };
 
 export interface IVtxpollSetIntervalId extends Action<string> {
@@ -12,6 +14,13 @@ export interface IVtxpollSetIntervalId extends Action<string> {
 export interface IVtxpollKill extends Action<string> {
 }
 
+export interface IVtxpollAdd extends Action<string> {
+    name: string;
+    interval: number;
+    cb: VtxPollCb;
+}
+
 export type VtxpollActionTypes =
     | IVtxpollSetIntervalId
-    | IVtxpollKill;
+    | IVtxpollKill
+    | IVtxpollAdd;
