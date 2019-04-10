@@ -41,7 +41,7 @@ async function loop(dispatcher: Dispatch, state_getter: () => State): Promise<vo
 
         await Promise.all(
             state.vtxpoll.actions
-                .filter((entity: VtxpollEntity): boolean => (timer % entity.interval === 0 && polling[entity.name] === false))
+                .filter((entity: VtxpollEntity): boolean => (timer % entity.interval === 0 && !polling[entity.name]))
                 .map(async (entity: VtxpollEntity): Promise<void> => {
                     polling[entity.name] = true;
                     await entity.cb(state, dispatcher, block_dependent);

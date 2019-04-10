@@ -1,15 +1,8 @@
 import { VtxPollCb }        from '../../state/vtxpoll';
 import { State }            from '../../state';
 import { Dispatch }         from 'redux';
-import { ready }            from '../../utils/ready';
 import { BigNumber }        from 'bignumber.js';
 import { AccountsSetInfos } from '../../accounts/actions/actions';
-
-const null_accounts = (state: State): boolean => {
-    for (const account of Object.keys(state.accounts.accounts)) {
-        if (state.accounts.accounts[account].balance === null) return true;
-    }
-};
 
 export const poll_accounts: VtxPollCb = async (state: State, emit: Dispatch, new_block: boolean): Promise<void> => {
 
