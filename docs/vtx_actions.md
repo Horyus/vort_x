@@ -39,7 +39,8 @@ export const VtxcacheActions = {
 ```jsx
 export const VtxpollActions = {
     VtxpollSetIntervalId: '[VTX][VTXPOLL] SET_INTERVAL_ID',
-    VtxpollKill: '[VTX][VTXPOLL] KILL'
+    VtxpollKill: '[VTX][VTXPOLL] KILL',
+    VtxpollAdd: '[VTX][VTXPOLL] ADD'
 };
 ```
 
@@ -59,6 +60,9 @@ Resets the store. Erases everything that is not marked `permanent`
 
 Sets the expected genesis hash for a specific network id. Used to detect invalid networks
 
+## `VtxpollAdd(name: string, interval: number, cb: VtxPollCb) => IVtxpollAdd`
+
+Adds the given `cb` to the polling engine. The function will be called once between `interval` * `poll_interval` time.
 
 ## Internal Actions
 
