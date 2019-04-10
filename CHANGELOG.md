@@ -1,3 +1,13 @@
+## [2.0.3](https://github.com/horyus/ethvtx/compare/2.0.2...2.0.3) (2019-04-10)
+
+
+### Features
+
+* add VtxConfigSetAllowedNet action ([3ff3fd4](https://github.com/horyus/ethvtx/commit/3ff3fd4)), closes [#48](https://github.com/horyus/ethvtx/issues/48)
+* custom poll function adder ([97fd66a](https://github.com/horyus/ethvtx/commit/97fd66a)), closes [#52](https://github.com/horyus/ethvtx/issues/52)
+
+
+
 ## [2.0.2](https://github.com/horyus/ethvtx/compare/2.0.1...2.0.2) (2019-04-02)
 
 
