@@ -66,5 +66,5 @@ Be sure to have [Metamask](https://metamask.io/) installed, and quadruple-check 
 
 | Service | Status |
 | :---: | :---: |
-| Travis CI | [![Build Status](https://travis-ci.org/Horyus/ethvtx.svg?branch=develop)](https://travis-ci.org/Horyus/ethvtx) |
+| Travis CI | [![Build Status](https://travis-ci.org/horyus/ethvtx.svg?branch=develop)](https://travis-ci.org/horyus/ethvtx) |
 | Coveralls | [![Coverage Status](https://coveralls.io/repos/github/Horyus/ethvtx/badge.svg?branch=develop)](https://coveralls.io/github/Horyus/ethvtx?branch=develop) |
