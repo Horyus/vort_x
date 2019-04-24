@@ -1,3 +1,20 @@
+<a name="2.0.4"></a>
+## [2.0.4](https://github.com/horyus/ethvtx/compare/2.0.3...2.0.4) (2019-04-24)
+
+
+### Bug Fixes
+
+* add conventional-changelog-cli dep ([a19f2db](https://github.com/horyus/ethvtx/commit/a19f2db))
+* typo in travis shield url ([76eaf2d](https://github.com/horyus/ethvtx/commit/76eaf2d))
+
+
+### Features
+
+* deploy contract from spec ([ccab3cf](https://github.com/horyus/ethvtx/commit/ccab3cf)), closes [#54](https://github.com/horyus/ethvtx/issues/54)
+
+
+
+<a name="2.0.3"></a>
 ## [2.0.3](https://github.com/horyus/ethvtx/compare/2.0.2...2.0.3) (2019-04-10)
 
 
@@ -8,6 +25,7 @@
 
 
 
+<a name="2.0.2"></a>
 ## [2.0.2](https://github.com/horyus/ethvtx/compare/2.0.1...2.0.2) (2019-04-02)
 
 
@@ -22,6 +40,7 @@
 
 
 
+<a name="2.0.1"></a>
 ## [2.0.1](https://github.com/horyus/ethvtx/compare/2.0.0...2.0.1) (2019-03-30)
 
 
@@ -31,6 +50,7 @@
 
 
 
+<a name="2.0.0"></a>
 # 2.0.0 (2019-03-19)
 
 
