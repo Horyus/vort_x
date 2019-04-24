@@ -14,6 +14,7 @@ import {
     VtxeventsTxError,
     VtxeventsTypes
 }                       from '../../state/vtxevents';
+import { ContractsNew } from '../../contracts/actions/actions';
 
 export const poll_transaction: VtxPollCb = async (state: State, emit: Dispatch, new_block: boolean): Promise<void> => {
 
@@ -32,6 +33,18 @@ export const poll_transaction: VtxPollCb = async (state: State, emit: Dispatch, 
 
                 case TxStatus.Confirming:
                     const receipt: any = await state.vtxconfig.web3.eth.getTransactionReceipt(tx);
+
+                    if (receipt.contractAddress && !state.txs[tx].contract_address) {
+                        emit(TxSet(tx, {}, TxStatus.Confirming, receipt.contractAddress));
+                        if (state.txs[tx].new_contract) {
+                            emit(ContractsNew(state.txs[tx].new_contract.name, receipt.contractAddress, {
+                                permanent: state.txs[tx].new_contract.permanent,
+                                alias: state.txs[tx].new_contract.alias,
+                                balance: state.txs[tx].new_contract.balance
+                            }));
+                        }
+                    }
+
                     if (receipt.status === 1) {
                         emit(TxSet(tx, {}, TxStatus.Error));
                         emit(VtxeventsAdd({

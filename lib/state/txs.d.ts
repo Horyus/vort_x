@@ -17,11 +17,19 @@ export interface TxInfos {
     r?: string;
     s?: string;
 }
+export interface NewContractInfos {
+    name: string;
+    permanent?: boolean;
+    alias?: string;
+    balance?: boolean;
+}
 export interface Tx {
     infos: Partial<TxInfos>;
     status: string;
     e: Error;
     hash: string;
+    new_contract?: NewContractInfos;
+    contract_address?: string;
     id?: number;
 }
 export interface TxSection {

@@ -8,6 +8,7 @@ import { VtxconfigResetSaga }      from './VtxconfigReset';
 import { ContractsSendSaga }       from './ContractsSend';
 import { ContractsNewSaga }        from './ContractsNew';
 import { ContractsRemoveSaga }     from './ContractsRemove';
+import { ContractsDeploySaga }     from './ContractsDeploy';
 
 export function* ContractsSagas(): SagaIterator {
     yield takeEvery(ContractsActions.ContractsAddSpec, ContractsAddSpecSaga);
@@ -15,6 +16,7 @@ export function* ContractsSagas(): SagaIterator {
     yield takeEvery(ContractsActions.ContractsSend, ContractsSendSaga);
     yield takeEvery(ContractsActions.ContractsNew, ContractsNewSaga);
     yield takeEvery(ContractsActions.ContractsRemove, ContractsRemoveSaga);
+    yield takeEvery(ContractsActions.ContractsDeploy, ContractsDeploySaga);
 
     yield takeEvery(VtxconfigActions.VtxconfigReset, VtxconfigResetSaga);
 }

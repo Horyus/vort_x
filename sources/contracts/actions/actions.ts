@@ -1,12 +1,21 @@
 import {
     ContractsActions,
-    IContractsAddSpec,
+    IContractsAddSpec, IContractsDeploy,
     IContractsNew, IContractsRemove,
     IContractsRemoveSpec,
     IContractsReset, IContractsSend
-}                          from './actionTypes';
-import { alias_checker }   from '../../utils/alias_checker';
-import { address_checker } from '../../utils/address_checker';
+}                                    from './actionTypes';
+import { alias_checker }             from '../../utils/alias_checker';
+import { address_checker }           from '../../utils/address_checker';
+import { NewContractInfos, TxInfos } from '../../state/txs';
+
+export const ContractsDeploy = (contract: NewContractInfos, tx_infos: Partial<TxInfos>, args: any[], id: number): IContractsDeploy => ({
+    type: ContractsActions.ContractsDeploy,
+    contract,
+    tx_infos,
+    args,
+    id
+});
 
 export const ContractsSend = (call: () => Promise<string>, id: number, method: string, args: any[], contract: string, address: string): IContractsSend => ({
     type: ContractsActions.ContractsSend,
@@ -18,11 +27,12 @@ export const ContractsSend = (call: () => Promise<string>, id: number, method: s
     address: address_checker(address)
 });
 
-export const ContractsAddSpec = (name: string, abi: any, options?: { bin?: string, permanent?: boolean }): IContractsAddSpec => ({
+export const ContractsAddSpec = (name: string, abi: any, options?: { bin?: string, permanent?: boolean, constructor_bin?: string }): IContractsAddSpec => ({
     type: ContractsActions.ContractsAddSpec,
     name,
     abi,
     bin: options ? options.bin : null,
+    constructor_bin: options ? options.constructor_bin : null,
     permanent: options ? !!options.permanent : false
 });
 

@@ -18,7 +18,8 @@ export {
     ContractsNew,
     ContractsReset,
     ContractsRemoveSpec,
-    ContractsAddSpec
+    ContractsAddSpec,
+    ContractsDeploy,
 } from './contracts/actions/actions';
 
 export {
@@ -29,13 +30,14 @@ export {
     IContractsReset,
     IContractsRemoveSpec,
     IContractsAddSpec,
+    IContractsDeploy,
     ContractsActionTypes
 } from './contracts/actions/actionTypes';
 
-export { TxAdd, TxFollow, TxError, TxRemove, TxReset, TxSend, TxSet } from './txs/actions/actions';
+export { TxAdd, TxFollow, TxError, TxRemove, TxReset, TxSend, TxSet, TxContractCreation } from './txs/actions/actions';
 
 export {
-    TxActions, ITxFollow, ITxAdd, ITxError, ITxRemove, ITxReset, ITxSend, ITxSet, TxActionTypes
+    TxActions, ITxFollow, ITxAdd, ITxError, ITxRemove, ITxReset, ITxSend, ITxSet, ITxContractCreation, TxActionTypes
 }                                                                     from './txs/actions/actionTypes';
 
 export {

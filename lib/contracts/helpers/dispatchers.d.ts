@@ -1,4 +1,5 @@
 import { Dispatch } from 'redux';
+import { NewContractInfos, TxInfos } from '../../state/txs';
 /**
  * @description This method loads a contract specification. Required before creating instances.
  * @param dispatch
@@ -9,6 +10,7 @@ import { Dispatch } from 'redux';
 export declare const loadContractSpec: (dispatch: Dispatch<import("redux").AnyAction>, name: string, abi: any, options?: {
     bin?: string;
     permanent?: boolean;
+    constructor_bin?: string;
 }) => void;
 /**
  * @description Removes the specified contract specification
@@ -35,3 +37,11 @@ export declare const loadContractInstance: (dispatch: Dispatch<import("redux").A
  * @param address_or_alias
  */
 export declare const removeContractInstance: (dispatch: Dispatch<import("redux").AnyAction>, name: string, address_or_alias: string) => void;
+/**
+ * @description Deploys a contract (if contract spec contains bin only)
+ * @param dispatch
+ * @param contract
+ * @param tx
+ * @param args
+ */
+export declare const deployContract: (dispatch: Dispatch<import("redux").AnyAction>, contract: NewContractInfos, tx: Partial<TxInfos>, args: any[]) => number;

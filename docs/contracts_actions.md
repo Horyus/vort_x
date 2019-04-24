@@ -18,7 +18,8 @@ export const ContractsActions = {
     ContractsNew: '[VTX][CONTRACTS] NEW',
     ContractsRemove: '[VTX][CONTRACTS] REMOVE',
     ContractsSetSigner: '[VTX][CONTRACTS] SET_SIGNER',
-    ContractsSend: '[VTX][CONTRACTS] SEND'
+    ContractsSend: '[VTX][CONTRACTS] SEND',
+    ContractsDeploy: '[VTX][CONTRACTS] DEPLOY'
 };
 ```
 
@@ -26,7 +27,7 @@ export const ContractsActions = {
 
 Actions that you can use as you want in your app, sagas etc ...
 
-### `ContractsAddSpec(name: string, abi: any, options?: { bin?: string, permanent?: boolean) => IContractsAddSpec`
+### `ContractsAddSpec(name: string, abi: any, options?: { bin?: string, permanent?: boolean, constructor_bin?: string}) => IContractsAddSpec`
 
 Adds a contract specification into the store.
 
@@ -37,6 +38,7 @@ Adds a contract specification into the store.
 * If no `bin` is provided, then no checks occur.
 
 Setting `permanent` to true ensures that the spec remains in the store even after a reset
+Setting `constructor_bin` is required if you want to deploy new contract instances.
 
 ### `ContractsRemoveSpec(name: string) => IContractsRemoveSpec`
 
@@ -50,6 +52,10 @@ Loads a contract instance into the store and builds and `VtxContract` instance f
 ### `ContractsRemove(contract: string, address_or_alias: string) => IContractsRemove`
 
 Removes a contract instance
+
+### `ContractsDeploy(contract: NewContractInfos, tx_infos: Partial<TxInfos>, args: any[], id: number) => IContractsDeploy`
+
+Deploys a new contract instance. The selected contract spec must have its `constructor_bin` defined.
 
 ## Internal Actions
 

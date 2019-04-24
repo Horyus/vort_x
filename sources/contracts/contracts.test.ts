@@ -11,11 +11,12 @@ import { configureVtx }                                          from '../tools/
 import { VtxpollKill }                                           from '../vtxpoll/actions/action';
 import * as Fs                                                   from 'fs';
 import {
+    deployContract,
     loadContractInstance,
     loadContractSpec,
     removeContractInstance,
     removeContractSpec
-}                                                                from './helpers/dispatchers';
+} from './helpers/dispatchers';
 import { getContract, getContractList, getContractsSpecList }    from './helpers/getters';
 import { getVtxEvents }                                          from '../vtxevents/helpers/getters';
 import { VtxContract }                         from './VtxContract';
@@ -29,6 +30,7 @@ import { vtx_valid_instance }                  from '../test_tools/vtx_valid_con
 import { getTransactionById }                  from '../txs/helpers/getters';
 import { VtxStatus }                           from '../state/vtxconfig';
 import { getAccount }                          from '../accounts/helpers/getters';
+import { vtx_tx_id }                           from '../test_tools/vtx_tx_id';
 
 const Web3 = require('web3');
 const Solc = require('solc');
@@ -538,5 +540,37 @@ describe('[contracts]', (): void => {
         const tx = getTransactionById(this.store.getState(), id);
 
         expect(tx.hash).toEqual(broad.tx_hash);
+    });
+
+    test('Loads a spec, deploys instance from store, make tx call', async () => {
+
+        loadContractSpec(this.store.dispatch, 'ValueStore', contracts.ValueStore.abi, {
+            bin: contracts.ValueStore.evm.deployedBytecode.object,
+            constructor_bin: contracts.ValueStore.evm.bytecode.object,
+            permanent: true
+        });
+
+        const web3 = buildTestWeb3();
+        init(this.store.dispatch, web3);
+        await vtx_status(this.store, VtxStatus.Loaded, 10);
+
+        const coinbase = await web3.eth.getCoinbase();
+
+        const id = deployContract(this.store.dispatch, {
+            name: 'ValueStore',
+            alias: '@valuestore'
+        }, {
+            from: coinbase,
+            gas: 0xffffff
+        }, [5]);
+        await ganache_mine(web3, 10);
+
+        await vtx_tx_id(this.store, id, 20);
+
+        const tx = getTransactionById(this.store.getState(), id);
+
+        await vtx_valid_instance(this.store, 'ValueStore', tx.contract_address, 20);
+
+        expect(this.store.getState().contracts.alias['ValueStore']['@valuestore']).toBeDefined();
     });
 });
