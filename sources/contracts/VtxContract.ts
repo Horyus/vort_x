@@ -1,4 +1,4 @@
-import { State }                               from '../state';
+import { State, TxInfos }                      from '../state';
 import { Dispatch, Store }                     from 'redux';
 import { VtxcacheElement }                     from '../state/vtxcache';
 import { VtxcacheCreate, VtxcacheSetRequired } from '../vtxcache/actions/actions';
@@ -25,6 +25,7 @@ export class VtxContract {
     private static store: Store;
     private _contract: any;
     private readonly _bin: string;
+    private readonly _constructor_bin: string;
     private _valid: boolean = false;
     private readonly _name: string;
     private readonly _methods: Methods = {};
@@ -32,7 +33,7 @@ export class VtxContract {
     private readonly _address: string;
     private readonly _abi: any;
 
-    constructor(web3: Web3, name: string, address: string, abi: any, bin?: string) {
+    constructor(web3: Web3, name: string, address: string, abi: any, bin?: string, constructor_bin?: string) {
         this._contract = new web3.eth.Contract(abi, address);
         this._name = name;
         this._address = address;
@@ -44,6 +45,12 @@ export class VtxContract {
             this._bin = bin.slice(hex_begin).toLowerCase();
         }
 
+        hex_begin = 0;
+
+        if (constructor_bin && (hexReg.test(constructor_bin) || hexReg.test(constructor_bin.slice((hex_begin = 2))))) {
+            this._constructor_bin = constructor_bin.slice(hex_begin).toLowerCase();
+        }
+
         if (!VtxContract.store) {
             throw new Error('Call VtxContract.init(store) to properly init all the contracts');
         }
@@ -51,6 +58,26 @@ export class VtxContract {
         this.generate_constant_calls();
         this.generate_transaction_calls();
         this.generate_event_calls();
+    }
+
+    public get address(): string {
+        return this._address;
+    }
+
+    public get abi(): any {
+        return this._abi;
+    }
+
+    public get web3_instance(): any {
+        return this._contract;
+    }
+
+    public get bin(): string {
+        return this._bin;
+    }
+
+    public get constructor_bin(): string {
+        return this._constructor_bin;
     }
 
     private static get dispatch(): Dispatch {

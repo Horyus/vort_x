@@ -4,6 +4,7 @@ export interface ContractsSpec {
     name: string;
     abi: any;
     bin: string;
+    constructor_bin: string;
     permanent: boolean;
 }
 

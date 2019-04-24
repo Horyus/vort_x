@@ -1,4 +1,5 @@
 import { Action } from 'redux';
+import { NewContractInfos, TxInfos } from '../../state/txs';
 export declare const ContractsActions: {
     ContractsAddSpec: string;
     ContractsRemoveSpec: string;
@@ -7,7 +8,14 @@ export declare const ContractsActions: {
     ContractsRemove: string;
     ContractsSetSigner: string;
     ContractsSend: string;
+    ContractsDeploy: string;
 };
+export interface IContractsDeploy extends Action<string> {
+    id: number;
+    contract: NewContractInfos;
+    args: any[];
+    tx_infos: Partial<TxInfos>;
+}
 export interface IContractsSend extends Action<string> {
     call: () => Promise<string>;
     id: number;
@@ -20,6 +28,7 @@ export interface IContractsAddSpec extends Action<string> {
     name: string;
     abi: any;
     bin?: string;
+    constructor_bin?: string;
     permanent?: boolean;
 }
 export interface IContractsRemoveSpec extends Action<string> {

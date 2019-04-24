@@ -11,7 +11,8 @@ export const VtxeventsTypes: {[key: string]: string} = {
     ContractsSpecRemoved: 'ContractsSpecRemoved',
     ContractsInstanceAdded: 'ContractsInstanceAdded',
     ContractsInstanceRemoved: 'ContractsInstanceRemoved',
-    ContractsTxBroadcasted: 'ContractsTxBroadcasted'
+    ContractsTxBroadcasted: 'ContractsTxBroadcasted',
+    ContractsDeployed: 'ContractsDeployed'
 };
 
 export interface Vtxevent {
@@ -24,7 +25,8 @@ export const VtxeventErrorTypes: {[key: string]: string} = {
     BlockFetchError: 'BlockFetchError',
     ContractInvalid: 'ContractInvalid',
     ContractTxError: 'ContractTxError',
-    TxFetchError: 'TxFetchError'
+    TxFetchError: 'TxFetchError',
+    ContractDeployError: 'ContractDeployError'
 
 };
 

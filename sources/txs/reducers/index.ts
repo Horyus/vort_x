@@ -1,5 +1,5 @@
-import { Reducer }         from 'redux';
-import { TxSection }       from '../../state/txs';
+import { Reducer }                      from 'redux';
+import { TxSection }                    from '../../state/txs';
 import {
     ITxAdd,
     ITxError,
@@ -8,13 +8,13 @@ import {
     ITxSet,
     TxActions,
     TxActionTypes
-}                          from '../actions/actionTypes';
-import { TxAddReducer }    from './TxAdd';
-import { TxRemoveReducer } from './TxRemove';
-import { TxSetReducer }    from './TxSet';
-import { TxErrorReducer }  from './TxError';
-import { TxResetReducer }  from './TxReset';
-import { InitialState }    from '../../state/index';
+}                                          from '../actions/actionTypes';
+import { TxAddReducer }                    from './TxAdd';
+import { TxRemoveReducer }                 from './TxRemove';
+import { TxSetReducer }                    from './TxSet';
+import { TxErrorReducer }                  from './TxError';
+import { TxResetReducer }                  from './TxReset';
+import { InitialState }                    from '../../state/index';
 
 export const TxReducer: Reducer<TxSection, TxActionTypes> = (state: TxSection = InitialState.txs, action: TxActionTypes): TxSection => {
     switch (action.type) {

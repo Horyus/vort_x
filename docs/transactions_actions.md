@@ -17,6 +17,7 @@ export const TxActions = {
     TxSet: '[VTX][TX] SET',
     TxError: '[VTX][TX] ERROR',
     TxSend: '[VTX][TX] SEND',
+    TxContractCreation: '[VTX][TX] CONTRACT CREATION',
     TxReset: '[VTX][TX] RESET',
     TxFollow: '[VTX][TX] FOLLOW'
 };
@@ -39,7 +40,6 @@ Sends a new transaction. The `tx_id` that you can specify can be used later to r
 Tells the store to start fetching informations about given transaction hash. Also works with the `tx_id` if you want.
 
 
-
 ## Internal Actions
 
 These actions are used internally by the store to make things work. You should not use them.
@@ -59,4 +59,8 @@ When an error occured with the transaction, this action is called.
 ### `TxReset() => ITxReset`
 
 Resets this section of the store.
+
+### `TxContractCreation(tx_infos: Partial<TxInfos>, contract: NewContractInfos, tx_id?: number) => ITxContractCreation`
+
+Sends a contract creation transaction
 

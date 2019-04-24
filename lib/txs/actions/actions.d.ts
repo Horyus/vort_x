@@ -1,9 +1,10 @@
-import { ITxAdd, ITxError, ITxFollow, ITxRemove, ITxReset, ITxSend, ITxSet } from './actionTypes';
-import { TxInfos } from '../../state/txs';
-export declare const TxAdd: (tx_hash: string, tx_infos: Partial<TxInfos>, tx_id?: number) => ITxAdd;
+import { ITxAdd, ITxError, ITxFollow, ITxContractCreation, ITxRemove, ITxReset, ITxSend, ITxSet } from './actionTypes';
+import { NewContractInfos, TxInfos } from '../../state/txs';
+export declare const TxAdd: (tx_hash: string, tx_infos: Partial<TxInfos>, tx_id?: number, contract?: NewContractInfos) => ITxAdd;
 export declare const TxRemove: (tx_hash: string) => ITxRemove;
-export declare const TxSet: (tx_hash: string, tx_infos: Partial<TxInfos>, status?: string) => ITxSet;
+export declare const TxSet: (tx_hash: string, tx_infos: Partial<TxInfos>, status?: string, contract_address?: string) => ITxSet;
 export declare const TxError: (tx_hash: string, e: Error) => ITxError;
 export declare const TxSend: (tx_infos: Partial<TxInfos>, tx_id?: number) => ITxSend;
+export declare const TxContractCreation: (tx_infos: Partial<TxInfos>, contract: NewContractInfos, tx_id?: number) => ITxContractCreation;
 export declare const TxReset: () => ITxReset;
 export declare const TxFollow: (tx_hash: string, tx_id?: number) => ITxFollow;

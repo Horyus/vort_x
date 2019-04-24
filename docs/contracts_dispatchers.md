@@ -60,3 +60,9 @@ const mapDispatchToProps = (dispatch) => ({
 
 ```
 
+## `deployContract(dispatch: Dispatch, contract: NewContractInfos, tx: Partial<TxInfos>, args: any[]) => number`
+
+Deploys a new contract.
+
+The `contract` argument is composed of a mandatory `name` referencing a contract spec, optional `permament`, `alias` and `balance` which will be forwarded to the contract constructor.
+

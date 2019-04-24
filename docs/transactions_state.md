@@ -43,6 +43,17 @@ Interface representing the informations about a transaction. This is what is fet
 }
 ```
 
+## NewContractInfos
+
+```jsx
+{
+    name: string;
+    permanent?: boolean;
+    alias?: string;
+    balance?: boolean;
+}
+```
+
 ## Tx
 
 This is the complete informations you can have about a transaction, containing its infos, status and possible errors. Also contains its id for easier fetching, we'll cover this under the `getters` section.
@@ -50,9 +61,11 @@ This is the complete informations you can have about a transaction, containing i
 ```jsx
 {
     infos: Partial<TxInfos>;
-    status: TxStatus;
+    status: string;
     e: Error;
     hash: string;
+    new_contract?: NewContractInfos;
+    contract_address?: string;
     id?: number;
 }
 ```

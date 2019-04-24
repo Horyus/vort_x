@@ -16,6 +16,7 @@ The organization of the `contracts` might seem non-trivial to use, and it's norm
     name: string;
     abi: any;
     bin: string;
+    constructor_bin: string;
     permanent: boolean;
 }
 ```

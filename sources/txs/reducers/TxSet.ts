@@ -12,7 +12,8 @@ export const TxSetReducer: Reducer<TxSection, ITxSet> = (state: TxSection, actio
                     ...state[action.tx_hash].infos,
                     ...action.tx_infos
                 },
-                status: action.status
+                status: action.status,
+                contract_address: action.contract_address ? action.contract_address : state[action.tx_hash].contract_address
             }
         }
         : {
@@ -22,6 +23,7 @@ export const TxSetReducer: Reducer<TxSection, ITxSet> = (state: TxSection, actio
                 infos: {
                     ...state[action.tx_hash].infos,
                     ...action.tx_infos
-                }
+                },
+                contract_address: action.contract_address ? action.contract_address : state[action.tx_hash].contract_address
             }
         };

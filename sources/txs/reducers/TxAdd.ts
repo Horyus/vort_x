@@ -11,6 +11,7 @@ export const TxAddReducer: Reducer<TxSection, ITxAdd> = (state: TxSection, actio
         status: TxStatus.Unknown,
         hash: action.tx_hash,
         id: action.tx_id,
-        e: null
+        e: null,
+        new_contract: action.contract
     }
 });

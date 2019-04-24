@@ -1,4 +1,5 @@
-import { Action }      from 'redux';
+import { Action }                    from 'redux';
+import { NewContractInfos, TxInfos } from '../../state/txs';
 
 export const ContractsActions = {
     ContractsAddSpec: '[VTX][CONTRACTS] ADD_SPEC',
@@ -7,8 +8,16 @@ export const ContractsActions = {
     ContractsNew: '[VTX][CONTRACTS] NEW',
     ContractsRemove: '[VTX][CONTRACTS] REMOVE',
     ContractsSetSigner: '[VTX][CONTRACTS] SET_SIGNER',
-    ContractsSend: '[VTX][CONTRACTS] SEND'
+    ContractsSend: '[VTX][CONTRACTS] SEND',
+    ContractsDeploy: '[VTX][CONTRACTS] DEPLOY'
 };
+
+export interface IContractsDeploy extends Action<string> {
+    id: number;
+    contract: NewContractInfos;
+    args: any[];
+    tx_infos: Partial<TxInfos>;
+}
 
 export interface IContractsSend extends Action<string> {
     call: () => Promise<string>;
@@ -23,6 +32,7 @@ export interface IContractsAddSpec extends Action<string> {
     name: string;
     abi: any;
     bin?: string;
+    constructor_bin?: string;
     permanent?: boolean;
 }
 
