@@ -1,3 +1,13 @@
+<a name="2.0.6"></a>
+## [2.0.6](https://github.com/horyus/ethvtx/compare/v2.0.5...v2.0.6) (2019-05-12)
+
+
+### Bug Fixes
+
+* authorization process error ([df83cd2](https://github.com/horyus/ethvtx/commit/df83cd2))
+
+
+
 <a name="2.0.5"></a>
 ## [2.0.5](https://github.com/horyus/ethvtx/compare/v2.0.4...v2.0.5) (2019-05-12)
 
