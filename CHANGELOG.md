@@ -1,5 +1,15 @@
+<a name="2.0.5"></a>
+## [2.0.5](https://github.com/horyus/ethvtx/compare/v2.0.4...v2.0.5) (2019-05-12)
+
+
+### Bug Fixes
+
+* refactor authorization process ([830ad7d](https://github.com/horyus/ethvtx/commit/830ad7d)), closes [#56](https://github.com/horyus/ethvtx/issues/56)
+
+
+
 <a name="2.0.4"></a>
-## [2.0.4](https://github.com/horyus/ethvtx/compare/2.0.3...2.0.4) (2019-04-24)
+## [2.0.4](https://github.com/horyus/ethvtx/compare/2.0.3...v2.0.4) (2019-04-24)
 
 
 ### Bug Fixes

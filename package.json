@@ -1,6 +1,6 @@
 {
     "name": "ethvtx",
-    "version": "2.0.4",
+    "version": "2.0.5",
     "description": "Ethereum-Ready Redux Store Configuration",
     "main": "lib/index.js",
     "scripts": {
