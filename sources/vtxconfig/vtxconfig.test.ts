@@ -189,4 +189,24 @@ describe('[vtxconfig]', (): void => {
         await vtx_status(this.store, VtxStatus.WrongNet, 20);
     });
 
+    test('Using authorization', async () => {
+
+        const window: any = {};
+
+        const enable = async (): Promise<void> => {
+            window.web3 = this.web3;
+        };
+
+        const web3 = async (): Promise<void> => {
+            return window.web3;
+        };
+
+        this.store.dispatch(VtxconfigReset({
+            enable,
+            web3
+        }));
+
+        await vtx_status(this.store, VtxStatus.Loaded, 20);
+    });
+
 });

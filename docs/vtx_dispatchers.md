@@ -13,7 +13,7 @@ All dispatchers take a dispatch function as first argument.
 
 Sets the web3 instance into the store. Used when configuring the store, like in explained [**here**](/ethvtx/docs/starting_ethvtx#setting-web3)
 
-## `start(dispatch: Dispatch, enable?: () => Promise<void>) => void`
+## `start(dispatch: Dispatch, enable?: Authorization) => void`
 
 Starts `ethvtx`. If you have a callback to ask for permission to the wallet provider, use it as `enable` argument. A usage example can be found [**here**](/ethvtx/docs/starting_ethvtx#setting-web3)
 
