@@ -11,11 +11,15 @@ All dispatchers take a dispatch function as first argument.
 
 ## `setWeb3(dispatch: Dispatch, web3: Web3) => void`
 
-Sets the web3 instance into the store. Used when configuring the store, like in explained [**here**](/ethvtx/docs/starting_ethvtx#setting-web3)
+Sets the web3 instance into the store. Used when configuring the store, explained [**here**](/ethvtx/docs/starting_ethvtx#setting-web3)
 
-## `start(dispatch: Dispatch, enable?: Authorization) => void`
+## `authorizeAndSetWeb3(dispatch: Dispatch, authorization: Authorization) => Promise<void>`
 
-Starts `ethvtx`. If you have a callback to ask for permission to the wallet provider, use it as `enable` argument. A usage example can be found [**here**](/ethvtx/docs/starting_ethvtx#setting-web3)
+Should be used just like `setWeb3` but only in the case where your wallet provider requires a manually authorization. This method returns a Promise that resolves when authorization is granted and web is set (or when no authorization is granted). Explained [**here**](/ethvtx/docs/starting_ethvtx#setting-web3)
+
+## `start(dispatch: Dispatch) => void`
+
+Starts `ethvtx`. A usage example can be found [**here**](/ethvtx/docs/starting_ethvtx#setting-web3)
 
 ## `reset(dispatch: Dispatch) => void`
 

@@ -16,7 +16,8 @@ export const VtxconfigActions = {
     VtxconfigResetSectionComplete: '[VTX][VTXCONFIG] RESET_SECTION_COMPLETE',
     VtxconfigResetComplete: '[VTX][VTXCONFIG] RESET_COMPLETE',
     VtxconfigSetInfos: '[VTX][VTXCONFIG] SET_INFOS',
-    VtxconfigSetAllowedNet: `[VTX][VTXCONFIG] SET_ALLOWED_NET`
+    VtxconfigSetAllowedNet: '[VTX][VTXCONFIG] SET_ALLOWED_NET',
+    VtxconfigAuthorizeAndSetWeb3: '[VTX][VTXCONFIG] AUTHORIZE_AND_SET_WEB3'
 };
 ```
 
@@ -59,9 +60,13 @@ Actions that you can use as you want in your app, sagas etc ...
 
 Sets the web3 instance in the redux store.
 
-## `VtxconfigReset(enable?: Authorization) => IVtxconfigReset`
+## `VtxconfigAuthorizeAndSetWeb3(authorization: Authorization, cb: () => void) => void`
 
-Resets the store. Erases everything that is not marked `permanent`. If enable is defined, it will call the enable callback, recover web3, set web3 for you then resume store creation.
+Calls the authorization process on the wallet providers and sets the web3 instance if everything went well. The `cb` is called after web3 has been set into the store.
+
+## `VtxconfigReset() => IVtxconfigReset`
+
+Resets the store. Erases everything that is not marked `permanent`.
 
 ## `VtxconfigSetAllowedNet(net_id: number, genesis_hash: string) => IVtxconfigSetAllowedNet`
 

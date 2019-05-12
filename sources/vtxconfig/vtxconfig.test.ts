@@ -12,6 +12,7 @@ import * as Fs                                                      from 'fs';
 import { vtx_status }                                               from '../test_tools';
 import { VtxStatus }                                                from '../state/vtxconfig';
 import { VtxconfigReset, VtxconfigSetAllowedNet, VtxconfigSetWeb3 } from './actions/actions';
+import { authorizeAndSetWeb3 }                                      from './helpers/dispatchers';
 
 const Web3 = require('web3');
 const Solc = require('solc');
@@ -201,10 +202,12 @@ describe('[vtxconfig]', (): void => {
             return window.web3;
         };
 
-        this.store.dispatch(VtxconfigReset({
+        await authorizeAndSetWeb3(this.store.dispatch, {
             enable,
             web3
-        }));
+        });
+
+        this.store.dispatch(VtxconfigReset());
 
         await vtx_status(this.store, VtxStatus.Loaded, 20);
     });

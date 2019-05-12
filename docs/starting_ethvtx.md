@@ -6,6 +6,52 @@ sidebar_label: Starting ethvtx
 
 Once the store is created, `ethvtx` is ready to be started, it just needs your signal !
 
+## Setting Web3
+
+The first thing you should do is set the `web3` instance of your choice inside the store. In most of the cases, you want to recover it from your browser. These are the steps to properly load `web3` inside `ethvtx`.
+
+Two methods exist: `setWeb3` or `authorizeAndSetWeb3`. The second one is asynchronous and resolves when authorization is granted (or not) and web3 is set in the store.
+
+First you will need to install `web3@1.0.0-beta.32`. This is currently the most stable version tested with `ethvtx`. We will try to update this version as soon as `web3` releases new versions that work consistently with our mechanisms.
+
+```jsx
+
+// Import your web3@1.0.0-beta.32
+import * as Web3 from 'web3';
+import { setWeb3, authorizeAndSetWeb3 } from 'ethvtx/lib/dispatchers';
+
+// If wallet provider requires authorization
+if (window.ethereum) {
+   
+    // This will be called only when user grants authorization 
+    const web3_getter = () => {
+        // recover provider
+        const provider = window.ethereum;
+        
+        const web3 = new Web3(provider);
+        
+        return web3;
+    } 
+   
+    // Assume we are in an async context and we are able to use await
+    await authorizeAndSetWeb3(store.dispatch, {
+        enable: window.ethereum.enable,
+        web3: web3_getter
+    });
+    
+} else if (window.web3) {
+
+    // Here we use the provider to build the web3 version we want
+    const web3 = new Web3(window.web3.currentProvider);
+    
+    setWeb3(store.dispatch, web3);
+
+} else {
+    console.error('This is not a dapp ?!');
+}
+
+```
+
 ## Setting Initial Smart Contracts & Accounts
 
 Setting up initial smart contracts and accounts should happen between setting the web3 instance and calling the start method.
@@ -193,39 +239,9 @@ And now you can finally call the start function to boot things up !
 
 import { start } from 'ethvtx/lib/dispatchers';
 
-import Web3 from 'web3';
+start(store.dispatch);
 
-// Before being able to use a wallet provider, you now need to require access.
-// A function is exposed on the window if the access request is required.
-// This function must be called before being able to use the wallet provider.
-
-if (window.ethereum) {
-    /// This means that the wallet provider wants the Dapp to request access
-    
-    /// In our specific case
-    const web3_getter = async () => {
-       const provider = window.ethereum; 
-      
-       // Build your own web3 instance from the given provider
-       const web3 = new Web3(provider);
-       
-       return web3;
-    } 
-    
-    start(store.dispatch, {
-        enable: window.ethereum.enable,
-        web3: web3_getter
-    });
-    
-} else if (window.web3) {
-    /// This web3 instance should be usable
-
-    setWeb3(store.dispatch, window.web3);
-    start(store.dispatch);
-
-} else {
-    /// This website is not a dapp, you should handle the error here
-}
+// And that's it ! If you followed the step carefuly, everything should work fine !
 
 ```
 

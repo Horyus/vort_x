@@ -7,10 +7,15 @@ export declare const VtxconfigActions: {
     VtxconfigResetComplete: string;
     VtxconfigSetInfos: string;
     VtxconfigSetAllowedNet: string;
+    VtxconfigAuthorizeAndSetWeb3: string;
 };
 export interface Authorization {
     enable: () => Promise<void>;
     web3: () => Promise<Web3>;
+}
+export interface IVtxconfigAuthorizeAndSetWeb3 extends Action<string> {
+    authorization: Authorization;
+    cb: () => void;
 }
 export interface IVtxconfigSetAllowedNet extends Action<string> {
     net_id: number;
@@ -27,7 +32,6 @@ export interface IVtxconfigSetStatus extends Action<string> {
     status: string;
 }
 export interface IVtxconfigReset extends Action<string> {
-    enable?: Authorization;
 }
 export interface IVtxconfigResetSectionComplete extends Action<string> {
     section: string;
