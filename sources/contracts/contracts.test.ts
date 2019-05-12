@@ -328,18 +328,18 @@ describe('[contracts]', (): void => {
 
         init(this.store.dispatch, web3);
 
+        await vtx_status(this.store, VtxStatus.Loaded, 20);
+
         loadContractSpec(this.store.dispatch, 'ValueStore', contracts.ValueStore.abi, {
             bin: contracts.ValueStore.evm.deployedBytecode.object
         });
-
-        await vtx_status(this.store, VtxStatus.Loaded, 10);
 
         loadContractInstance(this.store.dispatch, 'ValueStore', deployed.options.address);
 
         expect(getContract(this.store.getState(), 'ValueStore', deployed.options.address)).toBeDefined();
 
         init(this.store.dispatch, web3);
-        await vtx_status(this.store, VtxStatus.Loaded, 10);
+        await vtx_status(this.store, VtxStatus.Loaded, 20);
 
         expect(getContract(this.store.getState(), 'ValueStore', deployed.options.address)).toBeUndefined();
 
@@ -362,11 +362,12 @@ describe('[contracts]', (): void => {
 
         init(this.store.dispatch, web3);
 
+        await vtx_status(this.store, VtxStatus.Loaded, 10);
+
         loadContractSpec(this.store.dispatch, 'ValueStore', contracts.ValueStore.abi, {
             bin: contracts.ValueStore.evm.deployedBytecode.object
         });
 
-        await vtx_status(this.store, VtxStatus.Loaded, 10);
         loadContractInstance(this.store.dispatch, 'ValueStore', deployed.options.address, {permanent: true});
 
         expect(getContract(this.store.getState(), 'ValueStore', deployed.options.address)).toBeDefined();
@@ -404,7 +405,7 @@ describe('[contracts]', (): void => {
         expect(getContract(this.store.getState(), 'ValueStore', deployed.options.address)).toBeDefined();
 
         start(this.store.dispatch);
-        await vtx_status(this.store, VtxStatus.WrongNet, 10);
+        await vtx_status(this.store, VtxStatus.WrongNet, 20);
 
     });
 

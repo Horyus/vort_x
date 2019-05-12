@@ -30,7 +30,7 @@
         "eslint-plugin-import": "2.14.0",
         "eslint-plugin-jsx-a11y": "6.1.2",
         "eslint-plugin-react": "7.12.4",
-        "ethvtx": "file:ethvtx-2.0.2.tgz",
+        "ethvtx": "file:ethvtx-2.0.4.tgz",
         "file-loader": "2.0.0",
         "fork-ts-checker-webpack-plugin-alt": "0.4.14",
         "fs-extra": "7.0.1",

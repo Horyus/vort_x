@@ -8,6 +8,10 @@ export declare const VtxconfigActions: {
     VtxconfigSetInfos: string;
     VtxconfigSetAllowedNet: string;
 };
+export interface Authorization {
+    enable: () => Promise<void>;
+    web3: () => Promise<Web3>;
+}
 export interface IVtxconfigSetAllowedNet extends Action<string> {
     net_id: number;
     genesis_hash: string;
@@ -23,7 +27,7 @@ export interface IVtxconfigSetStatus extends Action<string> {
     status: string;
 }
 export interface IVtxconfigReset extends Action<string> {
-    enable?: () => Promise<void>;
+    enable?: Authorization;
 }
 export interface IVtxconfigResetSectionComplete extends Action<string> {
     section: string;

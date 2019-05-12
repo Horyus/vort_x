@@ -21,6 +21,13 @@ export const VtxconfigActions = {
 ```
 
 ```jsx
+export interface Authorization {
+    enable: () => Promise<void>;
+    web3: () => Promise<Web3>;
+}
+```
+
+```jsx
 export const VtxeventsActions = {
     VtxeventsAdd: '[VTX][VTXEVENTS] ADD'
 };
@@ -52,9 +59,9 @@ Actions that you can use as you want in your app, sagas etc ...
 
 Sets the web3 instance in the redux store.
 
-## `VtxconfigReset(enable?: () => Promise<void>) => IVtxconfigReset`
+## `VtxconfigReset(enable?: Authorization) => IVtxconfigReset`
 
-Resets the store. Erases everything that is not marked `permanent`
+Resets the store. Erases everything that is not marked `permanent`. If enable is defined, it will call the enable callback, recover web3, set web3 for you then resume store creation.
 
 ## `VtxconfigSetAllowedNet(net_id: number, genesis_hash: string) => IVtxconfigSetAllowedNet`
 

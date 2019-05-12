@@ -1,4 +1,5 @@
 import {
+    Authorization,
     IVtxconfigReset,
     IVtxconfigResetComplete,
     IVtxconfigResetSectionComplete, IVtxconfigSetAllowedNet, IVtxconfigSetInfos,
@@ -25,7 +26,7 @@ export const VtxconfigSetStatus = (status: string): IVtxconfigSetStatus => ({
     status
 });
 
-export const VtxconfigReset = (enable?: () => Promise<void>): IVtxconfigReset => ({
+export const VtxconfigReset = (enable?: Authorization): IVtxconfigReset => ({
     type: VtxconfigActions.VtxconfigReset,
     enable
 });

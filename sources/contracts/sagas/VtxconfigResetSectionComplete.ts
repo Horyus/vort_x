@@ -1,4 +1,4 @@
-import { IVtxconfigReset }                                   from '../../vtxconfig/actions/actionTypes';
+import { IVtxconfigResetSectionComplete }                    from '../../vtxconfig/actions/actionTypes';
 import { SagaIterator }                                      from 'redux-saga';
 import { call, put, select }                                 from 'redux-saga/effects';
 import { ContractsReset }                                    from '../actions/actions';
@@ -24,14 +24,17 @@ function* ValidateInstances(): SagaIterator {
 
 }
 
-export function* VtxconfigResetSaga(action: IVtxconfigReset): SagaIterator {
+export function* VtxconfigResetSectionCompleteSaga(action: IVtxconfigResetSectionComplete): SagaIterator {
 
-    const state: State = yield select();
+    if (action.section === 'vtxconfig') {
+        const state: State = yield select();
 
-    const clear: boolean = state.vtxconfig.web3 === null;
+        const clear: boolean = state.vtxconfig.web3 === null;
 
-    if (!clear) {
-        yield put(ContractsReset());
+        if (!clear) {
+            yield put(ContractsReset());
+        }
+
+        yield call(ValidateInstances);
     }
-    yield call(ValidateInstances);
 }
