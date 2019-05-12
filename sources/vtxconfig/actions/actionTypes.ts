@@ -1,5 +1,4 @@
 import { Action }    from 'redux';
-import { VtxStatus } from '../../state/vtxconfig';
 import Web3 = require('web3');
 
 export const VtxconfigActions = {
@@ -9,12 +8,18 @@ export const VtxconfigActions = {
     VtxconfigResetSectionComplete: '[VTX][VTXCONFIG] RESET_SECTION_COMPLETE',
     VtxconfigResetComplete: '[VTX][VTXCONFIG] RESET_COMPLETE',
     VtxconfigSetInfos: '[VTX][VTXCONFIG] SET_INFOS',
-    VtxconfigSetAllowedNet: `[VTX][VTXCONFIG] SET_ALLOWED_NET`
+    VtxconfigSetAllowedNet: '[VTX][VTXCONFIG] SET_ALLOWED_NET',
+    VtxconfigAuthorizeAndSetWeb3: '[VTX][VTXCONFIG] AUTHORIZE_AND_SET_WEB3'
 };
 
 export interface Authorization {
     enable: () => Promise<void>;
     web3: () => Promise<Web3>;
+}
+
+export interface IVtxconfigAuthorizeAndSetWeb3 extends Action<string> {
+    authorization: Authorization;
+    cb: () => void;
 }
 
 export interface IVtxconfigSetAllowedNet extends Action<string> {
@@ -36,7 +41,6 @@ export interface IVtxconfigSetStatus extends Action<string> {
 }
 
 export interface IVtxconfigReset extends Action<string> {
-    enable?: Authorization;
 }
 
 export interface IVtxconfigResetSectionComplete extends Action<string> {

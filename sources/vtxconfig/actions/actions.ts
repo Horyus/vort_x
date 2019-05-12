@@ -1,5 +1,5 @@
 import {
-    Authorization,
+    Authorization, IVtxconfigAuthorizeAndSetWeb3,
     IVtxconfigReset,
     IVtxconfigResetComplete,
     IVtxconfigResetSectionComplete, IVtxconfigSetAllowedNet, IVtxconfigSetInfos,
@@ -26,9 +26,8 @@ export const VtxconfigSetStatus = (status: string): IVtxconfigSetStatus => ({
     status
 });
 
-export const VtxconfigReset = (enable?: Authorization): IVtxconfigReset => ({
-    type: VtxconfigActions.VtxconfigReset,
-    enable
+export const VtxconfigReset = (): IVtxconfigReset => ({
+    type: VtxconfigActions.VtxconfigReset
 });
 
 export const VtxconfigResetSectionComplete = (section: 'txs' | 'blocks' | 'vtxcache' | 'contracts' | 'vtxconfig' | 'accounts'): IVtxconfigResetSectionComplete => ({
@@ -44,4 +43,10 @@ export const VtxconfigSetInfos = (coinbase: string, net: number): IVtxconfigSetI
     type: VtxconfigActions.VtxconfigSetInfos,
     coinbase,
     net
+});
+
+export const VtxconfigAuthorizeAndSetWeb3 = (authorization: Authorization, cb: () => void): IVtxconfigAuthorizeAndSetWeb3 => ({
+    type: VtxconfigActions.VtxconfigAuthorizeAndSetWeb3,
+    authorization,
+    cb
 });
