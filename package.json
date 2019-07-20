@@ -43,7 +43,7 @@
         "linted": "^1.0.5",
         "lodash": "^4.17.11",
         "redux": "^4.0.1",
-        "redux-saga": "^0.16.2",
+        "redux-saga": "^1.0.5",
         "solc": "0.5.0",
         "ts-jest": "^23.10.5",
         "tslint": "^5.12.1",
@@ -53,7 +53,7 @@
     },
     "peerDependencies": {
         "redux": "^4.0.1",
-        "redux-saga": "^0.16.2"
+        "redux-saga": "^1.0.5"
     },
     "dependencies": {
         "bignumber.js": "^8.1.1",
