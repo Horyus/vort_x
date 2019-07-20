@@ -31,7 +31,7 @@
         "@commitlint/config-conventional": "^7.5.0",
         "@htmlacademy/editorconfig-cli": "^1.0.0",
         "@redux-saga/types": "^1.0.0-rc.0",
-        "@types/jest": "^23.3.12",
+        "@types/jest": "^24.0.15",
         "@types/lodash": "^4.14.119",
         "@types/node": "^10.12.18",
         "@types/redux": "^3.6.0",
