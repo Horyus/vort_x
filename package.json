@@ -56,7 +56,7 @@
         "redux-saga": "^0.16.2"
     },
     "dependencies": {
-        "bignumber.js": "^8.1.1",
+        "bignumber.js": "^9.0.0",
         "eip55": "^1.0.3",
         "js-sha3": "^0.8.0"
     },
