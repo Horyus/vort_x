@@ -33,7 +33,7 @@
         "@redux-saga/types": "^1.0.0-rc.0",
         "@types/jest": "^23.3.12",
         "@types/lodash": "^4.14.119",
-        "@types/node": "^10.12.18",
+        "@types/node": "^12.7.2",
         "@types/redux": "^3.6.0",
         "conventional-changelog-cli": "^2.0.17",
         "coveralls": "^3.0.2",
