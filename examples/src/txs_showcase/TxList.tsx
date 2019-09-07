@@ -2,13 +2,8 @@ import React               from 'react';
 import {
     Card,
     CardHeader,
-    CardTitle,
-    CardImg,
     CardBody,
-    CardFooter,
-    Button
 }                          from 'shards-react';
-import { TxBroadcast }     from './TxBroadcast';
 import { State }           from 'ethvtx/lib/state';
 import { getTransactions } from 'ethvtx/lib/getters';
 import { connect }         from 'react-redux';
@@ -17,14 +12,6 @@ interface ITxListProps {
     txs?: any[];
 }
 
-const TxStatusName =  [
-    'Broadcasted',
-    'Confirming',
-    'Confirmed',
-    'Unknown',
-    'Error'
-]
-
 export class TxListRaw extends React.Component<ITxListProps> {
     render(): React.ReactNode {
         const list = this.props.txs!.map((e: any, idx: number) => {
@@ -32,7 +19,7 @@ export class TxListRaw extends React.Component<ITxListProps> {
                 <Card key={idx} style={{marginTop: '10px'}}>
                     <CardHeader>{e.hash}</CardHeader>
                     <CardBody>
-                        <p>Status: {TxStatusName[e.status]}</p>
+                        <p>Status: {e.status}</p>
 
                         <p>From: {e.infos.from}</p>
 
