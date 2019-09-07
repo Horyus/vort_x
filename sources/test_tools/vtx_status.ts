@@ -12,10 +12,11 @@ export const vtx_status = async (store: Store, status: string, max?: number): Pr
 
                 if (max !== undefined && idx >= max) {
                     clearInterval(interval_id);
+                    console.log(store.getState().vtxconfig.status, status);
                     ko(new Error('Cannot have required status'));
                 }
 
                 ++idx;
-            }, 100);
+            }, 1000);
         }
     );

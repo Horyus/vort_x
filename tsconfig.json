@@ -6,7 +6,8 @@
         "declaration": true,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
-        "downlevelIteration": true
+        "downlevelIteration": true,
+        "strictNullChecks": false
     },
     "exclude": [
         "node_modules",

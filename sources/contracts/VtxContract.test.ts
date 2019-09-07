@@ -7,6 +7,7 @@ import { State }                                                 from '../state/
 import createSagaMiddleware, { SagaMiddleware }                  from 'redux-saga';
 import * as Ganache                                              from 'ganache-core';
 import { VtxeventsTypes }                                        from '../state/vtxevents';
+import * as expect                                               from 'expect';
 import { configureVtx }                                          from '../tools/configureVtx';
 import { VtxpollKill }                                           from '../vtxpoll/actions/action';
 import * as Fs                                                   from 'fs';
@@ -132,19 +133,21 @@ const killStore = (store: Store): void => {
 
 describe('[VtxContract]', (): void => {
 
-    beforeAll(() => {
+    before(function (): void {
         compile_contract();
     });
 
-    beforeEach(() => {
+    beforeEach(function (): void {
         this.store = buildStore();
     });
 
-    afterEach(() => {
+    afterEach(function (): void {
         killStore(this.store);
     });
 
-    test('Deploy contract, call constant method, not calling init on VortexContract', async () => {
+    it('Deploy contract, call constant method, not calling init on VortexContract', async function (): Promise<void> {
+
+        VtxContract.init(null);
 
         const web3 = buildTestWeb3();
         const contract = new  web3.eth.Contract(contracts.ValueStore.abi);
@@ -161,13 +164,13 @@ describe('[VtxContract]', (): void => {
         init(this.store.dispatch, web3);
         await vtx_status(this.store, VtxStatus.Loaded, 100);
 
-        expect(() => {
+        expect(function (): void {
             new VtxContract(web3, 'ValueStore', deployed.options.address, contracts.ValueStore.abi, contracts.ValueStore.evm.deployedBytecode.object);
         }).toThrow();
 
     });
 
-    test('Deploy contract, call constant method', async () => {
+    it('Deploy contract, call constant method', async function (): Promise<void> {
 
         VtxContract.init(this.store);
 
@@ -197,9 +200,9 @@ describe('[VtxContract]', (): void => {
 
         expect(parseInt(vtx.fn.getValue())).toEqual(5);
 
-    }, 60000);
+    }).timeout(60000);
 
-    test('Deploy contract, call constant method with invalid args', async () => {
+    it('Deploy contract, call constant method with invalid args', async function (): Promise<void> {
 
         VtxContract.init(this.store);
 
@@ -230,7 +233,7 @@ describe('[VtxContract]', (): void => {
 
     });
 
-    test('Deploy contract, call tx method', async () => {
+    it('Deploy contract, call tx method', async function (): Promise<void> {
 
         VtxContract.init(this.store);
 
@@ -266,7 +269,7 @@ describe('[VtxContract]', (): void => {
 
     });
 
-    test('Deploy contract, call tx method with wrong args', async () => {
+    it('Deploy contract, call tx method with wrong args', async function (): Promise<void> {
 
         VtxContract.init(this.store);
 

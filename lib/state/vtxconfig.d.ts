@@ -1,3 +1,4 @@
+import Web3 = require('web3');
 export declare const VtxStatus: {
     [key: string]: string;
 };

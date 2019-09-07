@@ -4,7 +4,7 @@
     "description": "Ethereum-Ready Redux Store Configuration",
     "main": "lib/index.js",
     "scripts": {
-        "test:jest": "jest --verbose --notify --runInBand --coverage",
+        "test:mocha": "nyc ts-mocha -p ./tsconfig.json --timeout 10000 sources/**/**.test.ts",
         "coverage:upload": "cat ./coverage/lcov.info | coveralls",
         "test:lint": "tslint --project .",
         "test:editorconfig": "editorconfig-cli",
@@ -27,36 +27,57 @@
     },
     "homepage": "https://github.com/horyus/ethvtx#readme",
     "devDependencies": {
-        "@commitlint/cli": "^7.5.2",
-        "@commitlint/config-conventional": "^7.5.0",
+        "@commitlint/cli": "^8.1.0",
+        "@commitlint/config-conventional": "^8.1.0",
         "@htmlacademy/editorconfig-cli": "^1.0.0",
+        "@istanbuljs/nyc-config-typescript": "^0.1.3",
         "@redux-saga/types": "^1.0.0-rc.0",
-        "@types/jest": "^23.3.12",
+        "@types/expect": "^1.20.4",
         "@types/lodash": "^4.14.119",
+        "@types/mocha": "^5.2.7",
         "@types/node": "^10.12.18",
         "@types/redux": "^3.6.0",
         "conventional-changelog-cli": "^2.0.17",
         "coveralls": "^3.0.2",
-        "ganache-core": "2.5.3",
+        "expect": "^24.9.0",
+        "ganache-core": "2.7.0",
         "husky": "^1.3.1",
-        "jest": "^23.6.0",
         "linted": "^1.0.5",
         "lodash": "^4.17.11",
+        "mocha": "^6.2.0",
+        "nyc": "^14.1.1",
         "redux": "^4.0.1",
         "redux-saga": "^0.16.2",
         "solc": "0.5.0",
         "ts-jest": "^23.10.5",
+        "ts-mocha": "^6.0.0",
         "tslint": "^5.12.1",
         "typescript": "^3.2.2",
-        "web3": "1.0.0-beta.32",
-        "websocket": "^1.0.28"
+        "web3": "1.2.1"
+    },
+    "nyc": {
+        "extends": "@istanbuljs/nyc-config-typescript",
+        "check-coverage": true,
+        "all": true,
+        "reporter": [
+            "text",
+            "lcov"
+        ],
+        "include": [
+            "sources/**/*.ts",
+            "sources/**/**/*.ts"
+        ],
+        "exclude": [
+            "sources/*.ts",
+            "sources/state/*.ts"
+        ]
     },
     "peerDependencies": {
         "redux": "^4.0.1",
         "redux-saga": "^0.16.2"
     },
     "dependencies": {
-        "bignumber.js": "^8.1.1",
+        "bignumber.js": "^9.0.0",
         "eip55": "^1.0.3",
         "js-sha3": "^0.8.0"
     },

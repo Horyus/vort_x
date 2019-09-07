@@ -8,11 +8,12 @@ import {
 }                            from '../actions/actions';
 import { VtxStatus }         from '../../state/vtxconfig';
 import { address_checker }   from '../../utils/address_checker';
+import { State }             from '../../state';
 
 export function* VtxconfigResetSaga(action: IVtxconfigReset): SagaIterator {
 
-    const state = (yield select());
-    const clear: boolean =  state.vtxconfig.web3 === null;
+    const state: State = (yield select());
+    const clear: boolean = state.vtxconfig.web3 === null;
 
     if (!clear) {
 
@@ -20,7 +21,7 @@ export function* VtxconfigResetSaga(action: IVtxconfigReset): SagaIterator {
 
         const coinbase = address_checker(yield call(web3.eth.getCoinbase));
 
-        const net = yield call(web3.eth.net.getId);
+        const net: number = yield call(web3.eth.net.getId);
 
         if (state.vtxconfig.allowed_nets !== null) {
 
@@ -29,7 +30,7 @@ export function* VtxconfigResetSaga(action: IVtxconfigReset): SagaIterator {
                 return;
             }
 
-            const genesis_hash: string = (yield call(web3.eth.getBlock, 0)).hash.toLowerCase();
+            const genesis_hash: string = ((yield call(web3.eth.getBlock, 0)) as any).hash.toLowerCase();
             if (state.vtxconfig.allowed_nets[net].toLowerCase() !== genesis_hash) {
                 yield put(VtxconfigSetStatus(VtxStatus.WrongNet));
                 return;

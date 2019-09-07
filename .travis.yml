@@ -7,5 +7,5 @@ install:
 script:
     - npm run test:editorconfig
     - npm run test:lint
-    - npm run test:jest
+    - npm run test:mocha
     - npm run coverage:upload

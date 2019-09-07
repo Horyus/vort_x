@@ -133,20 +133,17 @@ const killStore = (store: Store): void => {
 
 describe('[vtxconfig]', (): void => {
 
-    beforeAll(() => {
-    });
-
-    beforeEach(async () => {
+    beforeEach(async function (): Promise<void> {
         this.web3 = buildTestWeb3();
         await fetch_net_infos(this.web3, this);
         this.store = buildStore();
     });
 
-    afterEach(() => {
+    afterEach(function (): void {
         killStore(this.store);
     });
 
-    test('Resetting store', async () => {
+    it('Resetting store', async function (): Promise<void> {
 
         this.store.dispatch(VtxconfigSetWeb3(this.web3));
         this.store.dispatch(VtxconfigReset());
@@ -157,7 +154,7 @@ describe('[vtxconfig]', (): void => {
         await vtx_status(this.store, VtxStatus.Idle, 20);
     });
 
-    test('Setting valid allowed_nets config', async () => {
+    it('Setting valid allowed_nets config', async function (): Promise<void> {
 
         const net_id = await this.web3.eth.net.getId();
         const hash = (await this.web3.eth.getBlock(0)).hash;
@@ -168,7 +165,7 @@ describe('[vtxconfig]', (): void => {
         await vtx_status(this.store, VtxStatus.Loaded, 20);
     });
 
-    test('Setting invalid hash in allowed_nets config', async () => {
+    it('Setting invalid hash in allowed_nets config', async function (): Promise<void> {
 
         const net_id = await this.web3.eth.net.getId();
         const hash = '0abcd';
@@ -179,7 +176,7 @@ describe('[vtxconfig]', (): void => {
         await vtx_status(this.store, VtxStatus.WrongNet, 20);
     });
 
-    test('Setting invalid net_id in allowed_nets config', async () => {
+    it('Setting invalid net_id in allowed_nets config', async function (): Promise<void> {
 
         const net_id = (await this.web3.eth.net.getId()) + 1;
         const hash = (await this.web3.eth.getBlock(0)).hash;
@@ -190,7 +187,7 @@ describe('[vtxconfig]', (): void => {
         await vtx_status(this.store, VtxStatus.WrongNet, 20);
     });
 
-    test('Using authorization', async () => {
+    it('Using authorization', async function (): Promise<void> {
 
         const window: any = {};
 

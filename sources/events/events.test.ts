@@ -5,6 +5,7 @@ import { getSagas }                                              from '../tools/
 import { Saga }                                                  from '@redux-saga/types';
 import { State }                                                 from '../state/index';
 import createSagaMiddleware, { SagaMiddleware }                  from 'redux-saga';
+import * as expect                                               from 'expect';
 import * as Ganache                                              from 'ganache-core';
 import { VtxeventsTypes }                                        from '../state/vtxevents';
 import { configureVtx }                                          from '../tools/configureVtx';
@@ -135,20 +136,20 @@ const killStore = (store: Store): void => {
 
 describe('[events]', (): void => {
 
-    beforeAll(() => {
+    before(function (): void {
         compile_contract();
     });
 
-    beforeEach(() => {
+    beforeEach(function (): void {
         this.store = buildStore();
         VtxContract.init(this.store);
     });
 
-    afterEach(() => {
+    afterEach(function (): void {
         killStore(this.store);
     });
 
-    test('Loads a spec, deploys instance, loads instance, get evm events', async () => {
+    it('Loads a spec, deploys instance, loads instance, get evm events', async function (): Promise<void> {
 
         loadContractSpec(this.store.dispatch, 'ValueStore', contracts.ValueStore.abi, {
             bin: contracts.ValueStore.evm.deployedBytecode.object,
@@ -198,7 +199,7 @@ describe('[events]', (): void => {
         expect(end).toHaveLength(1);
     });
 
-    test('Loads a spec, deploys instance, loads instance, get evm events with filter', async () => {
+    it('Loads a spec, deploys instance, loads instance, get evm events with filter', async function (): Promise<void> {
 
         loadContractSpec(this.store.dispatch, 'ValueStore', contracts.ValueStore.abi, {
             bin: contracts.ValueStore.evm.deployedBytecode.object,
@@ -252,7 +253,7 @@ describe('[events]', (): void => {
         expect(end).toHaveLength(1);
     });
 
-    test('Loads a spec, deploys instance, loads instance, get evm events with invalid filter', async () => {
+    it('Loads a spec, deploys instance, loads instance, get evm events with invalid filter', async function (): Promise<void> {
 
         loadContractSpec(this.store.dispatch, 'ValueStore', contracts.ValueStore.abi, {
             bin: contracts.ValueStore.evm.deployedBytecode.object,
@@ -306,7 +307,7 @@ describe('[events]', (): void => {
         expect(end).toHaveLength(0);
     });
 
-    test('Loads a spec, deploys instance, loads instance, get evm events with filters, do transactions', async () => {
+    it('Loads a spec, deploys instance, loads instance, get evm events with filters, do transactions', async function (): Promise<void> {
 
         loadContractSpec(this.store.dispatch, 'ValueStore', contracts.ValueStore.abi, {
             bin: contracts.ValueStore.evm.deployedBytecode.object,
@@ -376,5 +377,5 @@ describe('[events]', (): void => {
 
         expect(end_zero).toHaveLength(2);
         expect(end_one).toHaveLength(1);
-    }, 20000);
+    }).timeout(20000);
 });

@@ -4,6 +4,7 @@ import { getReducers }                                           from '../tools/
 import { getSagas }                                              from '../tools/getSagas';
 import { Saga }                                                  from '@redux-saga/types';
 import { State }                                                 from '../state/index';
+import * as expect                                               from 'expect';
 import createSagaMiddleware, { SagaMiddleware }                  from 'redux-saga';
 import * as Ganache                                              from 'ganache-core';
 import { configureVtx }                                          from '../tools/configureVtx';
@@ -105,8 +106,10 @@ const buildStore = (): Store => {
     const composer = compose;
     const initial_state: State = configureVtx(getInitialState(), {
         poll_timer: 10,
-        confirmation_threshold: 3
+        confirmation_threshold: 3,
+        allowed_nets: null
     });
+
     const reducers: Reducer = getReducers();
 
     const sagaMiddleware: SagaMiddleware<any> = createSagaMiddleware<any>();
@@ -128,20 +131,17 @@ const killStore = (store: Store): void => {
     store.dispatch(VtxpollKill());
 };
 
-describe('[blocks]', (): void => {
+describe('[blocks]', function (): void {
 
-    beforeAll(() => {
-    });
-
-    beforeEach(() => {
+    beforeEach(function (): void {
         this.store = buildStore();
     });
 
-    afterEach(() => {
+    afterEach(function (): void {
         killStore(this.store);
     });
 
-    test('Manually Add Block in store', async () => {
+    it('Manually Add Block in store', async function (): Promise<void> {
 
         const web3 = buildTestWeb3();
 
@@ -155,7 +155,7 @@ describe('[blocks]', (): void => {
 
     });
 
-    test('Fetch a block remotely', async () => {
+    it('Fetch a block remotely', async function (): Promise<void> {
 
         const web3: Web3 = buildTestWeb3();
         init(this.store.dispatch, web3);
@@ -169,7 +169,7 @@ describe('[blocks]', (): void => {
         expect(retrieved_block.number).toEqual(0);
     });
 
-    test('Wait for polling to fetch block remotely', async () => {
+    it('Wait for polling to fetch block remotely', async function (): Promise<void> {
 
         const web3: Web3 = buildTestWeb3();
         init(this.store.dispatch, web3);
