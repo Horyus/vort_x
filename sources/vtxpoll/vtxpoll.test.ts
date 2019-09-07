@@ -132,40 +132,42 @@ const killStore = (store: Store): void => {
 
 describe('[vtxpoll]', (): void => {
 
-    beforeAll(() => {
+    before(() => {
     });
 
-    beforeEach(async () => {
+    beforeEach(async function (): Promise<void> {
         this.web3 = buildTestWeb3();
         await fetch_net_infos(this.web3, this);
         this.store = buildStore();
     });
 
-    afterEach(() => {
+    afterEach(function (): void {
         killStore(this.store);
     });
 
-    test('Setting custom poll function', async (done: jest.DoneCallback) => {
+    it('Setting custom poll function', function (done: (e?: Error) => void): void {
 
         this.store.dispatch(VtxconfigSetWeb3(this.web3));
         this.store.dispatch(VtxconfigReset());
-        await vtx_status(this.store, VtxStatus.Loaded, 20);
+        vtx_status(this.store, VtxStatus.Loaded, 20).then((): void => {
 
-        const poll_name = 'test_poll';
-        const poll_interval = 1;
+            const poll_name = 'test_poll';
+            const poll_interval = 1;
 
-        let call = false;
+            let call = false;
 
-        const poll_cb = async (state: State, emit: Dispatch, new_block: boolean): Promise<void> => {
+            const poll_cb = async (state: State, emit: Dispatch, new_block: boolean): Promise<void> => {
 
-            if (!call) {
-                call = true;
-                return done();
-            }
+                if (!call) {
+                    call = true;
+                    return done();
+                }
 
-        };
+            };
 
-        this.store.dispatch(VtxpollAdd(poll_name, poll_interval, poll_cb));
+            this.store.dispatch(VtxpollAdd(poll_name, poll_interval, poll_cb));
+
+        });
 
     });
 

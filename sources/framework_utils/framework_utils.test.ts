@@ -1,8 +1,9 @@
 import { embark } from './embark';
+import * as expect                                               from 'expect';
 
-describe('[framework_utils]', () => {
+describe('[framework_utils]', function (): void {
 
-    test('embark.loadSpec bin:true permanent:true', () => {
+    it('embark.loadSpec bin:true permanent:true', function (): void {
 
         const embark_artifact = {
             _jsonInterface: [
@@ -24,7 +25,7 @@ describe('[framework_utils]', () => {
 
     });
 
-    test('embark.loadSpec bin:false permanent:false', () => {
+    it('embark.loadSpec bin:false permanent:false', function (): void {
 
         const embark_artifact = {
             _jsonInterface: [

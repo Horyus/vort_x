@@ -1,4 +1,5 @@
 import { Action } from 'redux';
+import Web3 = require('web3');
 export declare const VtxconfigActions: {
     VtxconfigSetWeb3: string;
     VtxconfigSetStatus: string;

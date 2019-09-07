@@ -4,17 +4,18 @@ import { getReducers }                                           from '../tools/
 import { getSagas }                                              from '../tools/getSagas';
 import { Saga }                                                  from '@redux-saga/types';
 import { State }                                                 from '../state/index';
-import createSagaMiddleware, { SagaMiddleware } from 'redux-saga';
-import * as Ganache                             from 'ganache-core';
-import { configureVtx }                         from '../tools/configureVtx';
-import { VtxpollKill }                          from '../vtxpoll/actions/action';
-import * as Fs                                  from 'fs';
-import { getAccount, getAccountList }           from './helpers/getters';
-import { ganache_mine, vtx_status }             from '../test_tools';
-import { addAccount, removeAccount }            from './helpers/dispatchers';
-import { init, reset, setWeb3, start }          from '../vtxconfig/helpers/dispatchers';
-import { VtxStatus }                            from '../state/vtxconfig';
-import { vtx_account }                          from '../test_tools/vtx_account';
+import * as expect                                               from 'expect';
+import createSagaMiddleware, { SagaMiddleware }                  from 'redux-saga';
+import * as Ganache                                              from 'ganache-core';
+import { configureVtx }                                          from '../tools/configureVtx';
+import { VtxpollKill }                                           from '../vtxpoll/actions/action';
+import * as Fs                                                   from 'fs';
+import { getAccount, getAccountList }                            from './helpers/getters';
+import { ganache_mine, vtx_status }                              from '../test_tools';
+import { addAccount, removeAccount }                             from './helpers/dispatchers';
+import { init, reset, setWeb3, start }                           from '../vtxconfig/helpers/dispatchers';
+import { VtxStatus }                                             from '../state/vtxconfig';
+import { vtx_account }                                           from '../test_tools/vtx_account';
 
 const Web3 = require('web3');
 const Solc = require('solc');
@@ -103,7 +104,7 @@ const compile_contract = (): void => {
 const fetch_net_infos = async (web3: Web3, val: any): Promise<void> => {
     val.net_id = await web3.eth.net.getId();
     val.genesis_hash = (await web3.eth.getBlock(0)).hash.toLowerCase();
-}
+};
 
 const buildStore = (net_id: number, genesis_hash: string): Store => {
     const composer = compose;
@@ -138,20 +139,17 @@ const killStore = (store: Store): void => {
 
 describe('[accounts]', (): void => {
 
-    beforeAll(() => {
-    });
-
-    beforeEach(async () => {
+    beforeEach(async function (): Promise<void> {
         this.web3 = buildTestWeb3();
         await fetch_net_infos(this.web3, this);
         this.store = buildStore(this.net_id, this.genesis_hash);
     });
 
-    afterEach(() => {
+    afterEach(function (): void {
         killStore(this.store);
     });
 
-    test('Invalid net id', async () => {
+    it('Invalid net id', async function (): Promise<void> {
 
         killStore(this.store);
         --this.net_id;
@@ -161,7 +159,7 @@ describe('[accounts]', (): void => {
         await vtx_status(this.store, VtxStatus.WrongNet, 10);
     });
 
-    test('Invalid genesis hash', async () => {
+    it('Invalid genesis hash', async function (): Promise<void> {
 
         killStore(this.store);
         this.genesis_hash += 'x';
@@ -171,7 +169,7 @@ describe('[accounts]', (): void => {
         await vtx_status(this.store, VtxStatus.WrongNet, 10);
     });
 
-    test('Fetch accounts, check balances', async () => {
+    it('Fetch accounts, check balances', async function (): Promise<void> {
 
         init(this.store.dispatch, this.web3);
         await vtx_status(this.store, VtxStatus.Loaded, 10);
@@ -191,7 +189,7 @@ describe('[accounts]', (): void => {
         expect(acc_lisa.transaction_count).toEqual(0);
     });
 
-    test('Add permanent accounts before starting store, Fetch accounts, check balances', async () => {
+    it('Add permanent accounts before starting store, Fetch accounts, check balances', async function (): Promise<void> {
 
         setWeb3(this.store.dispatch, this.web3);
 
@@ -213,7 +211,7 @@ describe('[accounts]', (): void => {
         expect(acc_lisa.transaction_count).toEqual(0);
     });
 
-    test('Fetch accounts, reset store, check accounts count', async () => {
+    it('Fetch accounts, reset store, check accounts count', async function (): Promise<void> {
 
         init(this.store.dispatch, this.web3);
         await vtx_status(this.store, VtxStatus.Loaded, 10);
@@ -233,7 +231,7 @@ describe('[accounts]', (): void => {
         expect(accounts).toHaveLength(1);
     });
 
-    test('Fetch accounts, transact, check balances, rm account', async () => {
+    it('Fetch accounts, transact, check balances, rm account', async function (): Promise<void> {
 
         init(this.store.dispatch, this.web3);
         await vtx_status(this.store, VtxStatus.Loaded, 10);

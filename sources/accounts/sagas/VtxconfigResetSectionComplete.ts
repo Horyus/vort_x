@@ -4,11 +4,12 @@ import { call, put, select }                            from 'redux-saga/effects
 import { VtxconfigResetSectionComplete }                from '../../vtxconfig/actions/actions';
 import { BigNumber }                                    from 'bignumber.js';
 import { AccountsAdd, AccountsReset, AccountsSetInfos } from '../actions/actions';
+import { State }                                        from '../../state';
 
 export function* VtxconfigResetSectionCompleteSaga(action: IVtxconfigResetSectionComplete): SagaIterator {
     if (action.section === 'vtxconfig') {
 
-        const state = yield select();
+        const state: State = yield select();
 
         const clear = state.vtxconfig.web3 === null;
 

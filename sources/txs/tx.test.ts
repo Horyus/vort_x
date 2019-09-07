@@ -4,6 +4,7 @@ import { getReducers }                                           from '../tools/
 import { getSagas }                                              from '../tools/getSagas';
 import { Saga }                                                  from '@redux-saga/types';
 import { State }                                                 from '../state/index';
+import * as expect                                               from 'expect';
 import createSagaMiddleware, { SagaMiddleware }                  from 'redux-saga';
 import { TxAdd, TxError, TxRemove, TxSet }                       from './actions/actions';
 import { Tx, TxStatus }                                          from '../state/txs';
@@ -116,17 +117,17 @@ const killStore = (store: Store): void => {
     store.dispatch(VtxpollKill());
 };
 
-describe('[txs]', (): void => {
+describe('[txs]', function (): void {
 
-    beforeEach(() => {
+    beforeEach(function (): void {
         this.store = buildStore();
     });
 
-    afterEach(() => {
+    afterEach(function (): void {
         killStore(this.store);
     });
 
-    test('Add basic transaction', (): void => {
+    it('Add basic transaction', function (): void {
 
         this.store.dispatch(
             TxAdd(TX_HASH_ONE, {
@@ -140,7 +141,7 @@ describe('[txs]', (): void => {
 
     });
 
-    test('Add basic transaction + Set transaction', (): void => {
+    it('Add basic transaction + Set transaction', function (): void {
 
         this.store.dispatch(
             TxAdd(TX_HASH_ONE, {
@@ -159,7 +160,7 @@ describe('[txs]', (): void => {
 
     });
 
-    test('Add basic transaction + Error transaction', (): void => {
+    it('Add basic transaction + Error transaction', function (): void {
 
         this.store.dispatch(
             TxAdd(TX_HASH_ONE, {
@@ -177,7 +178,7 @@ describe('[txs]', (): void => {
 
     });
 
-    test('Add basic transaction + Remove transaction', (): void => {
+    it('Add basic transaction + Remove transaction', function (): void {
 
         this.store.dispatch(
             TxAdd(TX_HASH_ONE, {
@@ -192,7 +193,7 @@ describe('[txs]', (): void => {
 
     });
 
-    test('Add 4 basic transactions + get two', (): void => {
+    it('Add 4 basic transactions + get two', function (): void {
 
         this.store.dispatch(
             TxAdd(TX_HASH_ONE, {
@@ -227,7 +228,7 @@ describe('[txs]', (): void => {
 
     });
 
-    test('Use addTransaction helper', (): void => {
+    it('Use addTransaction helper', function (): void {
 
         addTransaction(this.store.dispatch, TX_HASH_ONE);
 
@@ -235,7 +236,7 @@ describe('[txs]', (): void => {
 
     });
 
-    test('Use removeTransaction helper', (): void => {
+    it('Use removeTransaction helper', function (): void {
 
         addTransaction(this.store.dispatch, TX_HASH_ONE);
         removeTransaction(this.store.dispatch, TX_HASH_ONE);
@@ -244,36 +245,31 @@ describe('[txs]', (): void => {
 
     });
 
-    test('Use sendTransaction helper', async (done: jest.DoneCallback): Promise<void> => {
+    it('Use sendTransaction helper', async function (): Promise<void> {
 
-            const web3: Web3 = buildTestWeb3(1);
-            init(this.store.dispatch, web3);
-            await vtx_status(this.store, VtxStatus.Loaded, 10);
-            const initial_length: number = this.store.getState().vtxevents.length;
-            const id: number = sendTransaction(this.store.dispatch, {
-                from: FROM_ADDRESS_MIKE,
-                to: TO_ADDRESS_GEORGE,
-                value: '123',
-                gasPrice: '123456'
-            });
+        const web3: Web3 = buildTestWeb3(1);
+        init(this.store.dispatch, web3);
+        await vtx_status(this.store, VtxStatus.Loaded, 10);
+        const initial_length: number = this.store.getState().vtxevents.length;
+        const id: number = sendTransaction(this.store.dispatch, {
+            from: FROM_ADDRESS_MIKE,
+            to: TO_ADDRESS_GEORGE,
+            value: '123',
+            gasPrice: '123456'
+        });
 
-            await vtx_event(this.store, initial_length, VtxeventsTypes.TxBroadcasted, 10);
-            await ganache_mine(web3, 10);
-            await vtx_event(this.store, initial_length, VtxeventsTypes.TxConfirmed, 10);
-            const tx: Tx = getTransactionById(this.store.getState(), id);
+        await vtx_event(this.store, initial_length, VtxeventsTypes.TxBroadcasted, 10);
+        await ganache_mine(web3, 10);
+        await vtx_event(this.store, initial_length, VtxeventsTypes.TxConfirmed, 10);
+        const tx: Tx = getTransactionById(this.store.getState(), id);
 
-            if (tx === undefined) {
-                return done(
-                    new Error('Should not return undefined when requesting tx by its id')
-                );
-            }
+        if (tx === undefined) {
+            throw new Error('Should not return undefined when requesting tx by its id')
+        }
 
-            done();
-        },
-        60 * 1000
-    );
+    }).timeout(60000);
 
-    test('Use sendTransaction helper, reset and check transaction', async (done: jest.DoneCallback): Promise<void> => {
+    it('Use sendTransaction helper, reset and check transaction', async function (): Promise<void> {
 
         const web3: Web3 = buildTestWeb3();
         init(this.store.dispatch, web3);
@@ -290,10 +286,9 @@ describe('[txs]', (): void => {
         init(this.store.dispatch, web3);
         await vtx_state_check(this.store, 'txs', {}, 50);
 
-        done();
     });
 
-    test('Use followTransaction helper', async (done: jest.DoneCallback): Promise<void> => {
+    it('Use followTransaction helper', async function (): Promise<void> {
 
         const web3: Web3 = buildTestWeb3();
         init(this.store.dispatch, web3);
@@ -316,11 +311,8 @@ describe('[txs]', (): void => {
         const tx: Tx = getTransactionById(this.store.getState(), id);
 
         if (tx === undefined) {
-            return done(
-                new Error('Should not return undefined when requesting tx by its id')
-            );
+            throw new Error('Should not return undefined when requesting tx by its id');
         }
 
-        done();
     });
 });

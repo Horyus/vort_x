@@ -6,10 +6,11 @@ import { Block }                                              from '../../state/
 import { VtxeventErrorTypes, VtxeventsError, VtxeventsTypes } from '../../state/vtxevents';
 import { VtxeventsAdd }                                       from '../../vtxevents/actions/actions';
 import { BlocksFetched }                                      from '../actions/actions';
+import { State }                                              from '../../state';
 
 export function* BlocksFetchSaga(action: IBlocksFetch): SagaIterator {
 
-    const state = yield select();
+    const state: State = yield select();
 
     if (ready(state)) {
         const web3 = state.vtxconfig.web3;

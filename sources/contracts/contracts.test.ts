@@ -9,6 +9,7 @@ import * as Ganache                                              from 'ganache-c
 import { VtxeventsTypes }                                        from '../state/vtxevents';
 import { configureVtx }                                          from '../tools/configureVtx';
 import { VtxpollKill }                                           from '../vtxpoll/actions/action';
+import * as expect                                               from 'expect';
 import * as Fs                                                   from 'fs';
 import {
     deployContract,
@@ -144,22 +145,22 @@ const killStore = (store: Store): void => {
     store.dispatch(VtxpollKill());
 };
 
-describe('[contracts]', (): void => {
+describe('[contracts]', function (): void {
 
-    beforeAll(() => {
+    before(function (): void {
         compile_contract();
     });
 
-    beforeEach(() => {
+    beforeEach(function (): void {
         this.store = buildStore();
         VtxContract.init(this.store);
     });
 
-    afterEach(() => {
+    afterEach(function (): void {
         killStore(this.store);
     });
 
-    test('Loads a contract spec', async () => {
+    it('Loads a contract spec', async function (): Promise<void> {
 
         loadContractSpec(this.store.dispatch, 'ValueStore', contracts.ValueStore.abi);
 
@@ -174,7 +175,7 @@ describe('[contracts]', (): void => {
 
     });
 
-    test('Loads a contract spec then remove it', async () => {
+    it('Loads a contract spec then remove it', async function (): Promise<void> {
 
         loadContractSpec(this.store.dispatch, 'ValueStore', contracts.ValueStore.abi, {
             bin: contracts.ValueStore.evm.deployedBytecode.object,
@@ -197,7 +198,7 @@ describe('[contracts]', (): void => {
 
     });
 
-    test('Loads a spec, deploys instance, loads instance', async () => {
+    it('Loads a spec, deploys instance, loads instance', async function (): Promise<void> {
 
         loadContractSpec(this.store.dispatch, 'ValueStore', contracts.ValueStore.abi, {
             bin: contracts.ValueStore.evm.deployedBytecode.object,
@@ -235,7 +236,7 @@ describe('[contracts]', (): void => {
 
     });
 
-    test('Loads a spec, deploys instance, loads instance with permanent, alias and balance, check accounts', async () => {
+    it('Loads a spec, deploys instance, loads instance with permanent, alias and balance, check accounts', async function (): Promise<void> {
 
         loadContractSpec(this.store.dispatch, 'ValueStore', contracts.ValueStore.abi, {
             bin: contracts.ValueStore.evm.deployedBytecode.object,
@@ -268,7 +269,7 @@ describe('[contracts]', (): void => {
 
     });
 
-    test('Loads a spec, deploys instance, loads instance with alias, remove instance with alias', async () => {
+    it('Loads a spec, deploys instance, loads instance with alias, remove instance with alias', async function (): Promise<void> {
 
         loadContractSpec(this.store.dispatch, 'ValueStore', contracts.ValueStore.abi, {
             bin: contracts.ValueStore.evm.deployedBytecode.object,
@@ -312,7 +313,7 @@ describe('[contracts]', (): void => {
 
     });
 
-    test('Loads a spec, deploys instance, loads instance, reset, nothing should be there', async () => {
+    it('Loads a spec, deploys instance, loads instance, reset, nothing should be there', async function (): Promise<void> {
 
         const web3 = buildTestWeb3();
         const contract = new  web3.eth.Contract(contracts.ValueStore.abi);
@@ -345,7 +346,7 @@ describe('[contracts]', (): void => {
 
     });
 
-    test('Loads a spec, deploys instance, loads instance, reset, only instance remains', async () => {
+    it('Loads a spec, deploys instance, loads instance, reset, only instance remains', async function (): Promise<void> {
 
         const web3 = buildTestWeb3();
 
@@ -379,7 +380,7 @@ describe('[contracts]', (): void => {
 
     });
 
-    test('set web3, Loads a spec with invalid bin, deploys instance, loads instance, init, Wrong Net status', async () => {
+    it('set web3, Loads a spec with invalid bin, deploys instance, loads instance, init, Wrong Net status', async function (): Promise<void> {
 
         const web3 = buildTestWeb3();
         const contract = new  web3.eth.Contract(contracts.ValueStore.abi);
@@ -409,7 +410,7 @@ describe('[contracts]', (): void => {
 
     });
 
-    test('set web3, Loads a spec with invalid bin, deploys instance, loads instance, init, Loaded Status', async () => {
+    it('set web3, Loads a spec with invalid bin, deploys instance, loads instance, init, Loaded Status', async function (): Promise<void> {
 
         const web3 = buildTestWeb3();
         const contract = new  web3.eth.Contract(contracts.ValueStore.abi);
@@ -439,7 +440,7 @@ describe('[contracts]', (): void => {
 
     });
 
-    test('set web3, Loads a spec with invalid bin, deploys instance, loads instance, init, Loaded Status, switch to empty net, WrongNet, switch back, Loaded', async () => {
+    it('set web3, Loads a spec with invalid bin, deploys instance, loads instance, init, Loaded Status, switch to empty net, WrongNet, switch back, Loaded', async function (): Promise<void> {
 
         const web3 = buildTestWeb3();
         const contract = new  web3.eth.Contract(contracts.ValueStore.abi);
@@ -485,7 +486,7 @@ describe('[contracts]', (): void => {
         expect(spec_list[0]).toEqual('ValueStore');
     });
 
-    test('Loads a spec, deploys instance, loads instance, make tx call', async () => {
+    it('Loads a spec, deploys instance, loads instance, make tx call', async function (): Promise<void> {
 
         loadContractSpec(this.store.dispatch, 'ValueStore', contracts.ValueStore.abi, {
             bin: contracts.ValueStore.evm.deployedBytecode.object,
@@ -543,7 +544,7 @@ describe('[contracts]', (): void => {
         expect(tx.hash).toEqual(broad.tx_hash);
     });
 
-    test('Loads a spec, deploys instance from store, make tx call', async () => {
+    it('Loads a spec, deploys instance from store, make tx call', async function (): Promise<void> {
 
         loadContractSpec(this.store.dispatch, 'ValueStore', contracts.ValueStore.abi, {
             bin: contracts.ValueStore.evm.deployedBytecode.object,
