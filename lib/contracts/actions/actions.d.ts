@@ -1,4 +1,4 @@
-import { IContractsAddSpec, IContractsDeploy, IContractsNew, IContractsRemove, IContractsRemoveSpec, IContractsReset, IContractsSend } from './actionTypes';
+import { IContractsAddSpec, IContractsDeploy, IContractsInstanceSetValidity, IContractsNew, IContractsRemove, IContractsRemoveSpec, IContractsReset, IContractsSend } from './actionTypes';
 import { NewContractInfos, TxInfos } from '../../state/txs';
 export declare const ContractsDeploy: (contract: NewContractInfos, tx_infos: Partial<TxInfos>, args: any[], id: number) => IContractsDeploy;
 export declare const ContractsSend: (call: () => Promise<string>, id: number, method: string, args: any[], contract: string, address: string) => IContractsSend;
@@ -15,3 +15,4 @@ export declare const ContractsNew: (contract: string, address: string, options?:
 }) => IContractsNew;
 export declare const ContractsReset: () => IContractsReset;
 export declare const ContractsRemove: (contract: string, address_or_alias: string) => IContractsRemove;
+export declare const ContractsInstanceSetValidity: (contract_name: string, contract_address: string, validity: boolean) => IContractsInstanceSetValidity;

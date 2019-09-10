@@ -1,10 +1,10 @@
 import {
     ContractsActions,
-    IContractsAddSpec, IContractsDeploy,
+    IContractsAddSpec, IContractsDeploy, IContractsInstanceSetValidity,
     IContractsNew, IContractsRemove,
     IContractsRemoveSpec,
     IContractsReset, IContractsSend
-}                                    from './actionTypes';
+} from './actionTypes';
 import { alias_checker }             from '../../utils/alias_checker';
 import { address_checker }           from '../../utils/address_checker';
 import { NewContractInfos, TxInfos } from '../../state/txs';
@@ -58,4 +58,11 @@ export const ContractsRemove = (contract: string, address_or_alias: string): ICo
     type: ContractsActions.ContractsRemove,
     contract,
     address_or_alias: address_checker(address_or_alias)
+});
+
+export const ContractsInstanceSetValidity = (contract_name: string, contract_address: string, validity: boolean): IContractsInstanceSetValidity => ({
+    type: ContractsActions.ContractsInstanceSetValidity,
+    contract_name,
+    contract_address,
+    validity
 });

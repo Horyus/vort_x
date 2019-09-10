@@ -6,18 +6,18 @@ import { Saga }                                                  from '@redux-sa
 import { State }                                                 from '../state/index';
 import createSagaMiddleware, { SagaMiddleware }                  from 'redux-saga';
 import * as expect                                               from 'expect';
-import * as Ganache                                              from 'ganache-core';
-import { VtxeventsTypes }                                        from '../state/vtxevents';
-import { configureVtx }                                          from '../tools/configureVtx';
-import { VtxpollKill }                                           from '../vtxpoll/actions/action';
-import * as Fs                                                   from 'fs';
-import { getVtxEvents }                                          from '../vtxevents/helpers/getters';
-import { vtx_event, vtx_status }                                 from '../test_tools';
-import { init }                                                  from '../vtxconfig/helpers/dispatchers';
-import { VtxStatus }                                             from '../state/vtxconfig';
-import { loadContractInstance, loadContractSpec }                from '../contracts/helpers/dispatchers';
-import { getContract, getContractList }                          from '../contracts/helpers/getters';
-import { VtxContract }                                           from '../contracts/VtxContract';
+import * as Ganache                               from 'ganache-core';
+import { VtxeventsTypes }                         from '../state/vtxevents';
+import { configureVtx }                           from '../tools/configureVtx';
+import { VtxpollKill }                            from '../vtxpoll/actions/action';
+import * as Fs                                    from 'fs';
+import { getVtxEvents }                           from '../vtxevents/helpers/getters';
+import { ganache_mine, vtx_event, vtx_status }    from '../test_tools';
+import { init }                                   from '../vtxconfig/helpers/dispatchers';
+import { VtxStatus }                              from '../state/vtxconfig';
+import { loadContractInstance, loadContractSpec } from '../contracts/helpers/dispatchers';
+import { getContract, getContractList }           from '../contracts/helpers/getters';
+import { VtxContract }                            from '../contracts/VtxContract';
 import { vtx_valid_instance }                                    from '../test_tools/vtx_valid_contract';
 import { vtx_evm_event }                                         from '../test_tools/vtx_evm_event';
 import { vtx_evm_event_height }                                  from '../test_tools/vtx_evm_event_height';
@@ -79,8 +79,11 @@ const GANACHE_ARGS: any = (time: number): any => ({
     gasLimit: 0xffffffffff
 });
 
-const buildTestWeb3 = (time?: number): Web3 =>
-    new Web3(Ganache.provider(GANACHE_ARGS(time)));
+const buildTestWeb3 = (time?: number): Web3 => {
+    const web3 = new Web3(Ganache.provider(GANACHE_ARGS(time)));
+    web3.currentProvider.setMaxListeners(300);
+    return web3;
+}
 
 const contracts: any = {};
 
@@ -142,7 +145,6 @@ describe('[events]', (): void => {
 
     beforeEach(function (): void {
         this.store = buildStore();
-        VtxContract.init(this.store);
     });
 
     afterEach(function (): void {
@@ -183,13 +185,13 @@ describe('[events]', (): void => {
         expect((<any> add_events[0]).contract).toEqual('ValueStore');
         expect((<any> add_events[0]).address).toEqual(deployed.options.address);
 
-        expect(getContract(this.store.getState(), 'ValueStore', deployed.options.address)).toBeDefined();
-        expect(getContract(this.store.getState(), 'ValueStore', '@default')).toBeDefined();
+        expect(getContract(this.store, 'ValueStore', deployed.options.address)).toBeDefined();
+        expect(getContract(this.store, 'ValueStore', '@default')).toBeDefined();
         expect(getContractList(this.store.getState())['ValueStore'][0]).toEqual(deployed.options.address);
 
         await vtx_valid_instance(this.store, 'ValueStore', deployed.options.address);
 
-        const vtxContract = getContract(this.store.getState(), 'ValueStore', '@default');
+        const vtxContract = getContract(this.store, 'ValueStore', '@default');
 
         vtxContract.events.ValueChanged();
 
@@ -233,13 +235,13 @@ describe('[events]', (): void => {
         expect((<any> add_events[0]).contract).toEqual('ValueStore');
         expect((<any> add_events[0]).address).toEqual(deployed.options.address);
 
-        expect(getContract(this.store.getState(), 'ValueStore', deployed.options.address)).toBeDefined();
-        expect(getContract(this.store.getState(), 'ValueStore', '@default')).toBeDefined();
+        expect(getContract(this.store, 'ValueStore', deployed.options.address)).toBeDefined();
+        expect(getContract(this.store, 'ValueStore', '@default')).toBeDefined();
         expect(getContractList(this.store.getState())['ValueStore'][0]).toEqual(deployed.options.address);
 
         await vtx_valid_instance(this.store, 'ValueStore', deployed.options.address);
 
-        const vtxContract = getContract(this.store.getState(), 'ValueStore', '@default');
+        const vtxContract = getContract(this.store, 'ValueStore', '@default');
 
         const args = {
             _who: accounts[0]
@@ -287,13 +289,13 @@ describe('[events]', (): void => {
         expect((<any> add_events[0]).contract).toEqual('ValueStore');
         expect((<any> add_events[0]).address).toEqual(deployed.options.address);
 
-        expect(getContract(this.store.getState(), 'ValueStore', deployed.options.address)).toBeDefined();
-        expect(getContract(this.store.getState(), 'ValueStore', '@default')).toBeDefined();
+        expect(getContract(this.store, 'ValueStore', deployed.options.address)).toBeDefined();
+        expect(getContract(this.store, 'ValueStore', '@default')).toBeDefined();
         expect(getContractList(this.store.getState())['ValueStore'][0]).toEqual(deployed.options.address);
 
         await vtx_valid_instance(this.store, 'ValueStore', deployed.options.address);
 
-        const vtxContract = getContract(this.store.getState(), 'ValueStore', '@default');
+        const vtxContract = getContract(this.store, 'ValueStore', '@default');
 
         const args = {
             _who: accounts[1]
@@ -341,13 +343,13 @@ describe('[events]', (): void => {
         expect((<any> add_events[0]).contract).toEqual('ValueStore');
         expect((<any> add_events[0]).address).toEqual(deployed.options.address);
 
-        expect(getContract(this.store.getState(), 'ValueStore', deployed.options.address)).toBeDefined();
-        expect(getContract(this.store.getState(), 'ValueStore', '@default')).toBeDefined();
+        expect(getContract(this.store, 'ValueStore', deployed.options.address)).toBeDefined();
+        expect(getContract(this.store, 'ValueStore', '@default')).toBeDefined();
         expect(getContractList(this.store.getState())['ValueStore'][0]).toEqual(deployed.options.address);
 
         await vtx_valid_instance(this.store, 'ValueStore', deployed.options.address);
 
-        const vtxContract = getContract(this.store.getState(), 'ValueStore', '@default');
+        const vtxContract = getContract(this.store, 'ValueStore', '@default');
 
         const args_zero = {
             _who: accounts[0]

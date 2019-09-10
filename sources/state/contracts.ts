@@ -12,12 +12,12 @@ export interface ContractsSpecStore {
     [key: string]: ContractsSpec;
 }
 
-export interface ContractsInstancesStore {
-    [key: string]: { permament: boolean, instance: VtxContract };
+export interface ContractsInstances {
+    [key: string]: { permanent: boolean; valid: boolean; };
 }
 
 export interface ContractsTypeStore {
-    [key: string]: ContractsInstancesStore;
+    [key: string]: ContractsInstances;
 }
 
 export interface ContractAlias {

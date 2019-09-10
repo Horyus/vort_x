@@ -1,14 +1,11 @@
 .idea
 node_modules
 .todos.json
-sources
 coverage
 /examples
 docker-compose.yml
 Dockerfile
 /website
 /docs
-package-lock.json
-yarn.lock
 imgs
 

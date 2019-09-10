@@ -3,9 +3,9 @@ import { ContractsSection }           from '../../state/contracts';
 import {
     ContractsActions,
     ContractsActionTypes,
-    IContractsAddSpec, IContractsNew, IContractsRemove,
+    IContractsAddSpec, IContractsInstanceSetValidity, IContractsNew, IContractsRemove,
     IContractsRemoveSpec, IContractsReset
-}                                                                    from '../actions/actionTypes';
+} from '../actions/actionTypes';
 import { ContractsAddSpecReducer }                                   from './ContractsAddSpec';
 import { ContractsRemoveSoecReducer }                                from './ContractsRemoveSpec';
 import { ContractsResetReducer }                                     from './ContractsReset';
@@ -14,6 +14,7 @@ import { ContractsRemoveReducer }                                    from './Con
 import { IVtxconfigSetWeb3, VtxconfigActions, VtxconfigActionTypes } from '../../vtxconfig/actions/actionTypes';
 import { VtxconfigSetWeb3Reducer }                                   from './VtxconfigSetWeb3';
 import { InitialState }                                              from '../../state/index';
+import { ContractsInstanceSetValidity }                              from './ContractsInstanceSetValidity';
 
 export const ContractsReducer: Reducer<ContractsSection, ContractsActionTypes> =
     (state: ContractsSection = InitialState.contracts, action: ContractsActionTypes | VtxconfigActionTypes): ContractsSection => {
@@ -30,6 +31,8 @@ export const ContractsReducer: Reducer<ContractsSection, ContractsActionTypes> =
                 return ContractsRemoveReducer(state, action as IContractsRemove);
             case VtxconfigActions.VtxconfigSetWeb3:
                 return VtxconfigSetWeb3Reducer(state, action as IVtxconfigSetWeb3);
+            case ContractsActions.ContractsInstanceSetValidity:
+                return ContractsInstanceSetValidity(state, action as IContractsInstanceSetValidity);
             default:
                 return state;
         }

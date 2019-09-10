@@ -27,7 +27,6 @@ export {
     ContractsSection,
     ContractAliasStore,
     ContractAlias,
-    ContractsInstancesStore,
     ContractsSpec
 }                                                                                              from './state/contracts';
 export { VtxcacheElement, VtxcacheSection, VtxcacheStore }                                     from './state/vtxcache';

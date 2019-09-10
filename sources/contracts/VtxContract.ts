@@ -8,6 +8,7 @@ import { ContractsSend }                       from './actions/actions';
 import { keccak256 }                           from 'js-sha3';
 import { EventsFollowed }                      from '../state/events';
 import { EventsFollow }                        from '../events/actions/actions';
+import { address_checker }                     from '../utils/address_checker';
 
 const hexReg = /^[a-fA-F0-9]+$/;
 const methodReg = /^[a-zA-Z0-9_]+$/;
@@ -22,21 +23,22 @@ interface Events {
 
 export class VtxContract {
 
-    private static store: Store;
-    private _contract: any;
+    private readonly _store: Store;
+    private readonly _contract: any;
     private readonly _bin: string;
     private readonly _constructor_bin: string;
-    private _valid: boolean = false;
     private readonly _name: string;
     private readonly _methods: Methods = {};
     private readonly _events: Events = {};
     private readonly _address: string;
     private readonly _abi: any;
 
-    constructor(web3: Web3, name: string, address: string, abi: any, bin?: string, constructor_bin?: string) {
+    constructor(store: Store, name: string, address: string, abi: any, bin?: string, constructor_bin?: string) {
+        const web3 = (store.getState() as State).vtxconfig.web3;
+        this._store = store;
         this._contract = new web3.eth.Contract(abi, address);
         this._name = name;
-        this._address = address;
+        this._address = address_checker(address);
         this._abi = abi;
 
         let hex_begin = 0;
@@ -49,10 +51,6 @@ export class VtxContract {
 
         if (constructor_bin && (hexReg.test(constructor_bin) || hexReg.test(constructor_bin.slice((hex_begin = 2))))) {
             this._constructor_bin = constructor_bin.slice(hex_begin).toLowerCase();
-        }
-
-        if (!VtxContract.store) {
-            throw new Error('Call VtxContract.init(store) to properly init all the contracts');
         }
 
         this.generate_constant_calls();
@@ -80,20 +78,18 @@ export class VtxContract {
         return this._constructor_bin;
     }
 
-    private static get dispatch(): Dispatch {
-        if (!VtxContract.store) {
-            throw new Error('Call VtxContract.init(store) to properly init all the contracts');
-        }
-
-        return VtxContract.store.dispatch;
-    }
-
     public get fn(): Methods {
         return this._methods;
     }
 
     public get events(): Events {
         return this._events;
+    }
+
+    public get valid(): boolean {
+        const state: State = this._store.getState();
+        if (!state.contracts.instances[this._name][this._address]) return null;
+        return state.contracts.instances[this._name][this._address].valid;
     }
 
     public static event_sig = (contract_name: string, contract_address: string, method_name: string, args: {[key: string]: string; }): string => {
@@ -146,18 +142,6 @@ export class VtxContract {
         return keccak256(`0x${new Buffer(payload).toString('hex')}`);
     }
 
-    public static init = (store: Store): void => {
-        VtxContract.store = store;
-    }
-
-    private static readonly getState = (): State => {
-        if (!VtxContract.store) {
-            throw new Error('Call VtxContract.init(store) to properly init all the contracts');
-        }
-
-        return VtxContract.store.getState();
-    }
-
     private static readonly tx_inspect_args = (coinbase: string, args: any[]): [any[], any[]] => {
         if (args.length === 0) return [[], [{from: coinbase}]];
         const last = args[args.length - 1];
@@ -194,39 +178,17 @@ export class VtxContract {
 
     }
 
-    public reset = (web3: Web3): void => {
-        this._valid = false;
-        this._contract = new web3.eth.Contract(this._abi, this._address);
-    }
-
-    public readonly valid = async (): Promise<void> => {
-        if (this._valid) return;
-        if (!this._bin) {
-            this._valid = true;
-            return;
-        }
-
-        const code = (await VtxContract.store.getState().vtxconfig.web3.eth.getCode(this._address)).slice(2);
-
-        if (code.toLowerCase() !== this._bin) {
-            throw new Error(`Invalid Contract Instance at address ${this._contract.address}: no matching bin`);
-        }
-        this._valid = true;
-    }
-
-    public readonly isValid = (): boolean => this._valid;
-
     private readonly generate_transaction_calls = (): void => {
         for (const method of this._abi) {
             if (method.type === 'function' && method.constant === false) {
                 this._methods[method.name] = (...args: any[]): number => {
-                    if (!this._valid) throw new Error('VtxContract instance has not been validated');
+                    if (!this.valid) throw new Error(`Calling Transaction call on invalid contract: bytecode does not match the one present on chain (${this.valid})`);
 
                     const tx_id: number = get_tx_id();
-                    VtxContract.store.dispatch(ContractsSend(
+                    this._store.dispatch(ContractsSend(
                         async (): Promise<string> => {
 
-                            const coinbase = await VtxContract.store.getState().vtxconfig.coinbase;
+                            const coinbase = await this._store.getState().vtxconfig.coinbase;
                             const splitted_args = VtxContract.tx_inspect_args(coinbase, args);
                             const res = (await this._contract.methods[method.name](...splitted_args[0]).send(...splitted_args[1]));
                             return res.transactionHash;
@@ -252,12 +214,12 @@ export class VtxContract {
                 // TODO Compute return value
 
                 this._methods[method.name] = (...args: any[]): any => {
-                    if (!this._valid) return undefined;
+                    if (!this.valid) throw new Error(`Calling Constant call on invalid contract: bytecode does not match the one present on chain (${this.valid})`);
 
                     // TODO Argument check;
                     const sig: string = VtxContract.sig(this._name, this._address, method.name, ...args);
 
-                    const state: State = VtxContract.getState();
+                    const state: State = this._store.getState();
 
                     const cache: VtxcacheElement = state.vtxcache.store[sig];
 
@@ -272,10 +234,10 @@ export class VtxContract {
                             return this._contract.methods[method.name](...splitted_args[0]).call(...splitted_args[1]);
                         };
 
-                        VtxContract.dispatch(VtxcacheCreate(sig, cb));
+                        this._store.dispatch(VtxcacheCreate(sig, cb));
 
                     } else if (cache.required === false) {
-                        VtxContract.dispatch(VtxcacheSetRequired(sig));
+                        this._store.dispatch(VtxcacheSetRequired(sig));
                     }
 
                     const cache_value = state.vtxcache.store[sig];
@@ -294,16 +256,16 @@ export class VtxContract {
             if (event.type === 'event') {
 
                 this._events[event.name] = (args: {[key: string]: string; }): any => {
-                    if (!this._valid) return [];
+                    if (!this.valid) throw new Error(`Calling Event call on invalid contract: bytecode does not match the one present on chain (${this.valid})`);
 
                     const sig: string = VtxContract.event_sig(this._name, this._address, event.name, args);
 
-                    const state: State = VtxContract.getState();
+                    const state: State = this._store.getState();
 
                     const followed: EventsFollowed = state.events.followed[sig];
 
                     if (followed === undefined) {
-                        VtxContract.store.dispatch(EventsFollow(event.name, args, this._name, this._address, sig));
+                        this._store.dispatch(EventsFollow(event.name, args, this._name, this._address, sig));
                         return [];
                     }
 
@@ -315,7 +277,9 @@ export class VtxContract {
 
     }
 
-    public getPastEvents = async (...args: any[]): Promise<any> =>
-        this._contract.getPastEvents(...args)
+    public static getPastEvents = async (web3: any, abi: any, address: any, ...args: any[]): Promise<any> => {
+        const contract = new web3.eth.Contract(abi, address);
+        return contract.getPastEvents(...args);
+    }
 
 }

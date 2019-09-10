@@ -9,7 +9,13 @@ export declare const ContractsActions: {
     ContractsSetSigner: string;
     ContractsSend: string;
     ContractsDeploy: string;
+    ContractsInstanceSetValidity: string;
 };
+export interface IContractsInstanceSetValidity extends Action<string> {
+    contract_name: string;
+    contract_address: string;
+    validity: boolean;
+}
 export interface IContractsDeploy extends Action<string> {
     id: number;
     contract: NewContractInfos;
@@ -47,4 +53,4 @@ export interface IContractsRemove extends Action<string> {
 }
 export interface IContractsReset extends Action<string> {
 }
-export declare type ContractsActionTypes = IContractsAddSpec | IContractsRemoveSpec | IContractsNew | IContractsRemove;
+export declare type ContractsActionTypes = IContractsAddSpec | IContractsRemoveSpec | IContractsNew | IContractsRemove | IContractsInstanceSetValidity;

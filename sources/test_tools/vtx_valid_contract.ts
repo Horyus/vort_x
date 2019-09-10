@@ -5,7 +5,7 @@ export const vtx_valid_instance = async (store: Store, name: string, address: st
         (ok: any, ko: any): void => {
             let idx: number = 0;
             const interval_id = setInterval((): void => {
-                if (store.getState().contracts.instances[name][address].instance.isValid()) {
+                if (store.getState().contracts.instances[name][address].valid === true) {
                     clearInterval(interval_id);
                     ok();
                 }

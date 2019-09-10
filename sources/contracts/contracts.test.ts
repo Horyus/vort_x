@@ -90,8 +90,11 @@ const GANACHE_ARGS: any = (time: number): any => ({
     gasLimit: 0xffffffffff
 });
 
-const buildTestWeb3 = (time?: number): Web3 =>
-    new Web3(Ganache.provider(GANACHE_ARGS(time)));
+const buildTestWeb3 = (time?: number): Web3 => {
+    const web3 = new Web3(Ganache.provider(GANACHE_ARGS(time)));
+    web3.currentProvider.setMaxListeners(300);
+    return web3;
+}
 
 const contracts: any = {};
 
@@ -153,7 +156,6 @@ describe('[contracts]', function (): void {
 
     beforeEach(function (): void {
         this.store = buildStore();
-        VtxContract.init(this.store);
     });
 
     afterEach(function (): void {
@@ -221,7 +223,7 @@ describe('[contracts]', function (): void {
         await vtx_status(this.store, VtxStatus.Loaded, 10);
 
         loadContractInstance(this.store.dispatch, 'ValueStore', deployed.options.address, {alias: '@default', permanent: true});
-        expect(getContract(this.store.getState(), 'ValueStore', '@default').fn).toBeDefined();
+        expect(getContract(this.store, 'ValueStore', '@default').fn).toBeDefined();
 
         await vtx_event(this.store, 0, VtxeventsTypes.ContractsInstanceAdded, 10);
         const add_events = getVtxEvents(this.store.getState(), VtxeventsTypes.ContractsInstanceAdded);
@@ -230,8 +232,8 @@ describe('[contracts]', function (): void {
         expect((<any> add_events[0]).contract).toEqual('ValueStore');
         expect((<any> add_events[0]).address).toEqual(deployed.options.address);
 
-        expect(getContract(this.store.getState(), 'ValueStore', deployed.options.address)).toBeDefined();
-        expect(getContract(this.store.getState(), 'ValueStore', '@default')).toBeDefined();
+        expect(getContract(this.store, 'ValueStore', deployed.options.address)).toBeDefined();
+        expect(getContract(this.store, 'ValueStore', '@default')).toBeDefined();
         expect(getContractList(this.store.getState())['ValueStore'][0]).toEqual(deployed.options.address);
 
     });
@@ -260,8 +262,8 @@ describe('[contracts]', function (): void {
 
         loadContractInstance(this.store.dispatch, 'ValueStore', deployed.options.address, {alias: '@default', permanent: true, balance: true});
 
-        expect(getContract(this.store.getState(), 'ValueStore', deployed.options.address)).toBeDefined();
-        expect(getContract(this.store.getState(), 'ValueStore', '@default')).toBeDefined();
+        expect(getContract(this.store, 'ValueStore', deployed.options.address)).toBeDefined();
+        expect(getContract(this.store, 'ValueStore', '@default')).toBeDefined();
         expect(getContractList(this.store.getState())['ValueStore'][0]).toEqual(deployed.options.address);
         expect(this.store.getState().contracts.alias.ValueStore['@default']).toBeDefined();
         expect(getAccount(this.store.getState(), '@default')).toBeDefined();
@@ -293,8 +295,8 @@ describe('[contracts]', function (): void {
 
         loadContractInstance(this.store.dispatch, 'ValueStore', deployed.options.address, {alias: '@default', permanent: true});
 
-        expect(getContract(this.store.getState(), 'ValueStore', deployed.options.address)).toBeDefined();
-        expect(getContract(this.store.getState(), 'ValueStore', '@default')).toBeDefined();
+        expect(getContract(this.store, 'ValueStore', deployed.options.address)).toBeDefined();
+        expect(getContract(this.store, 'ValueStore', '@default')).toBeDefined();
         expect(getContractList(this.store.getState())['ValueStore'][0]).toEqual(deployed.options.address);
         expect(this.store.getState().contracts.alias.ValueStore['@default']).toBeDefined();
 
@@ -306,8 +308,8 @@ describe('[contracts]', function (): void {
         expect((<any> remove_events[0]).contract).toEqual('ValueStore');
         expect((<any> remove_events[0]).address).toEqual('@default');
 
-        expect(getContract(this.store.getState(), 'ValueStore', deployed.options.address)).toBeUndefined();
-        expect(getContract(this.store.getState(), 'ValueStore', '@default')).toBeUndefined();
+        expect(getContract(this.store, 'ValueStore', deployed.options.address)).toBeUndefined();
+        expect(getContract(this.store, 'ValueStore', '@default')).toBeUndefined();
         expect(Object.keys(getContractList(this.store.getState()))).toHaveLength(0);
         expect(this.store.getState().contracts.alias.ValueStore).toBeUndefined();
 
@@ -337,46 +339,12 @@ describe('[contracts]', function (): void {
 
         loadContractInstance(this.store.dispatch, 'ValueStore', deployed.options.address);
 
-        expect(getContract(this.store.getState(), 'ValueStore', deployed.options.address)).toBeDefined();
+        expect(getContract(this.store, 'ValueStore', deployed.options.address)).toBeDefined();
 
         init(this.store.dispatch, web3);
         await vtx_status(this.store, VtxStatus.Loaded, 20);
 
-        expect(getContract(this.store.getState(), 'ValueStore', deployed.options.address)).toBeUndefined();
-
-    });
-
-    it('Loads a spec, deploys instance, loads instance, reset, only instance remains', async function (): Promise<void> {
-
-        const web3 = buildTestWeb3();
-
-        const contract = new  web3.eth.Contract(contracts.ValueStore.abi);
-
-        const coinbase = await web3.eth.getCoinbase();
-        const deployed = await contract.deploy({
-            arguments: [5],
-            data: contracts.ValueStore.evm.bytecode.object
-        }).send({
-            from: coinbase,
-            gas: 0xffffff
-        });
-
-        init(this.store.dispatch, web3);
-
-        await vtx_status(this.store, VtxStatus.Loaded, 10);
-
-        loadContractSpec(this.store.dispatch, 'ValueStore', contracts.ValueStore.abi, {
-            bin: contracts.ValueStore.evm.deployedBytecode.object
-        });
-
-        loadContractInstance(this.store.dispatch, 'ValueStore', deployed.options.address, {permanent: true});
-
-        expect(getContract(this.store.getState(), 'ValueStore', deployed.options.address)).toBeDefined();
-
-        init(this.store.dispatch, web3);
-        await vtx_status(this.store, VtxStatus.Loaded, 10);
-
-        expect(getContract(this.store.getState(), 'ValueStore', deployed.options.address)).toBeDefined();
+        expect(getContract(this.store, 'ValueStore', deployed.options.address)).toBeUndefined();
 
     });
 
@@ -403,7 +371,7 @@ describe('[contracts]', function (): void {
 
         loadContractInstance(this.store.dispatch, 'ValueStore', deployed.options.address, {permanent: true});
 
-        expect(getContract(this.store.getState(), 'ValueStore', deployed.options.address)).toBeDefined();
+        expect(getContract(this.store, 'ValueStore', deployed.options.address)).toBeDefined();
 
         start(this.store.dispatch);
         await vtx_status(this.store, VtxStatus.WrongNet, 20);
@@ -433,7 +401,7 @@ describe('[contracts]', function (): void {
 
         loadContractInstance(this.store.dispatch, 'ValueStore', deployed.options.address, {permanent: true});
 
-        expect(getContract(this.store.getState(), 'ValueStore', deployed.options.address)).toBeDefined();
+        expect(getContract(this.store, 'ValueStore', deployed.options.address)).toBeDefined();
 
         start(this.store.dispatch);
         await vtx_status(this.store, VtxStatus.Loaded, 10);
@@ -463,7 +431,7 @@ describe('[contracts]', function (): void {
 
         loadContractInstance(this.store.dispatch, 'ValueStore', deployed.options.address, {permanent: true});
 
-        expect(getContract(this.store.getState(), 'ValueStore', deployed.options.address)).toBeDefined();
+        expect(getContract(this.store, 'ValueStore', deployed.options.address)).toBeDefined();
 
         start(this.store.dispatch);
         await vtx_status(this.store, VtxStatus.Loaded, 10);
@@ -478,7 +446,7 @@ describe('[contracts]', function (): void {
         init(this.store.dispatch, web3);
         await vtx_status(this.store, VtxStatus.Loaded, 10);
 
-        expect(getContract(this.store.getState(), 'ValueStore', deployed.options.address)).toBeDefined();
+        expect(getContract(this.store, 'ValueStore', deployed.options.address)).toBeDefined();
 
         const spec_list: string[] = getContractsSpecList(this.store.getState());
 
@@ -510,8 +478,7 @@ describe('[contracts]', function (): void {
 
         loadContractInstance(this.store.dispatch, 'ValueStore', deployed.options.address, {alias: '@default', permanent: true});
 
-        const vtxc = getContract(this.store.getState(), 'ValueStore', '@default');
-
+        const vtxc = getContract(this.store, 'ValueStore', '@default');
         const initial_length: number = this.store.getState().vtxevents.length;
         await vtx_valid_instance(this.store, 'ValueStore', deployed.options.address);
 
