@@ -13,12 +13,11 @@ export const ContractsNewReducer: Reducer<ContractsSection, IContractsNew> =
                     [action.contract]: {
                         ...state.instances[action.contract],
                         [action.address]: {
-                            permament: action.permanent,
-                            instance: new VtxContract(state.web3, action.contract, action.address, state.specs[action.contract].abi, state.specs[action.contract].bin, state.specs[action.contract].constructor_bin)
+                            permanent: !!action.permanent,
+                            valid: null
                         }
                     }
-                },
-                web3: state.web3
+                }
             };
         }
 
@@ -29,8 +28,8 @@ export const ContractsNewReducer: Reducer<ContractsSection, IContractsNew> =
                 [action.contract]: {
                     ...state.instances[action.contract],
                     [action.address]: {
-                        permament: action.permanent,
-                        instance: new VtxContract(state.web3, action.contract, action.address, state.specs[action.contract].abi, state.specs[action.contract].bin, state.specs[action.contract].constructor_bin)
+                        permanent: !!action.permanent,
+                        valid: null
                     }
                 }
             },
@@ -44,6 +43,5 @@ export const ContractsNewReducer: Reducer<ContractsSection, IContractsNew> =
                     }
                 }
             },
-            web3: state.web3
         };
     };

@@ -18,10 +18,10 @@ export const poll_events: VtxPollCb = async (state: State, emit: Dispatch, new_b
             const to: number = state.blocks.current_height;
 
             if (from <= to) {
-                const contract: VtxContract = state.contracts.instances[events[event_sig].contract][events[event_sig].address].instance;
-                if (!contract) continue ;
+                const spec = state.contracts.specs[events[event_sig].contract];
+                if (!spec) continue ;
 
-                const caught_events: Web3Event[] = await contract.getPastEvents(events[event_sig].event, {
+                const caught_events: Web3Event[] = await VtxContract.getPastEvents(state.vtxconfig.web3, spec.abi, events[event_sig].address, events[event_sig].event, {
                     fromBlock: from,
                     toBlock: to,
                     filter: events[event_sig].arguments

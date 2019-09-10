@@ -11,13 +11,15 @@ import * as expect                                               from 'expect';
 import { configureVtx }                                          from '../tools/configureVtx';
 import { VtxpollKill }                                           from '../vtxpoll/actions/action';
 import * as Fs                                                   from 'fs';
-import { VtxContract }                                           from './VtxContract';
-import { vtx_cache }                                             from '../test_tools/vtx_cache';
-import { ganache_mine, vtx_event, vtx_status }                   from '../test_tools';
-import { init }                                                  from '../vtxconfig/helpers/dispatchers';
-import { getTransactionById }                                    from '../txs/helpers/getters';
-import { Tx }                                                    from '../state/txs';
-import { VtxStatus }                                             from '../state/vtxconfig';
+import { VtxContract }                            from './VtxContract';
+import { vtx_cache }                              from '../test_tools/vtx_cache';
+import { ganache_mine, vtx_event, vtx_status }    from '../test_tools';
+import { init }                                   from '../vtxconfig/helpers/dispatchers';
+import { getTransactionById }                     from '../txs/helpers/getters';
+import { Tx }                                     from '../state/txs';
+import { VtxStatus }                              from '../state/vtxconfig';
+import { loadContractInstance, loadContractSpec } from './helpers/dispatchers';
+import { vtx_valid_instance }                     from '../test_tools/vtx_valid_contract';
 
 const Web3 = require('web3');
 const Solc = require('solc');
@@ -76,8 +78,11 @@ const GANACHE_ARGS: any = (time: number): any => ({
     gasLimit: 0xffffffffff
 });
 
-const buildTestWeb3 = (time?: number): Web3 =>
-    new Web3(Ganache.provider(GANACHE_ARGS(time)));
+const buildTestWeb3 = (time?: number): Web3 => {
+    const web3 = new Web3(Ganache.provider(GANACHE_ARGS(time)));
+    web3.currentProvider.setMaxListeners(300);
+    return web3;
+}
 
 const contracts: any = {};
 
@@ -145,35 +150,8 @@ describe('[VtxContract]', (): void => {
         killStore(this.store);
     });
 
-    it('Deploy contract, call constant method, not calling init on VortexContract', async function (): Promise<void> {
-
-        VtxContract.init(null);
-
-        const web3 = buildTestWeb3();
-        const contract = new  web3.eth.Contract(contracts.ValueStore.abi);
-
-        const coinbase = await web3.eth.getCoinbase();
-        const deployed = await contract.deploy({
-            arguments: [5],
-            data: contracts.ValueStore.evm.bytecode.object
-        }).send({
-            from: coinbase,
-            gas: 0xffffff
-        });
-
-        init(this.store.dispatch, web3);
-        await vtx_status(this.store, VtxStatus.Loaded, 100);
-
-        expect(function (): void {
-            new VtxContract(web3, 'ValueStore', deployed.options.address, contracts.ValueStore.abi, contracts.ValueStore.evm.deployedBytecode.object);
-        }).toThrow();
-
-    });
-
     it('Deploy contract, call constant method', async function (): Promise<void> {
 
-        VtxContract.init(this.store);
-
         const web3 = buildTestWeb3();
         const contract = new  web3.eth.Contract(contracts.ValueStore.abi);
 
@@ -186,12 +164,19 @@ describe('[VtxContract]', (): void => {
             gas: 0xffffff
         });
 
+        loadContractSpec(this.store.dispatch, 'ValueStore', contracts.ValueStore.abi, {
+            bin: contracts.ValueStore.evm.deployedBytecode.object,
+            permanent: true
+        });
+
+        loadContractInstance(this.store.dispatch, 'ValueStore', deployed.options.address, {permanent: true});
+
         init(this.store.dispatch, web3);
         await vtx_status(this.store, VtxStatus.Loaded, 100);
 
-        const vtx = new VtxContract(web3, 'ValueStore', deployed.options.address, contracts.ValueStore.abi, contracts.ValueStore.evm.deployedBytecode.object);
+        await vtx_valid_instance(this.store, 'ValueStore', deployed.options.address, 20);
 
-        await vtx.valid();
+        const vtx = new VtxContract(this.store, 'ValueStore', deployed.options.address, contracts.ValueStore.abi, contracts.ValueStore.evm.deployedBytecode.object);
 
         expect(vtx.fn.getValue()).toEqual(undefined);
 
@@ -204,8 +189,6 @@ describe('[VtxContract]', (): void => {
 
     it('Deploy contract, call constant method with invalid args', async function (): Promise<void> {
 
-        VtxContract.init(this.store);
-
         const web3 = buildTestWeb3();
         const contract = new  web3.eth.Contract(contracts.ValueStore.abi);
 
@@ -218,12 +201,19 @@ describe('[VtxContract]', (): void => {
             gas: 0xffffff
         });
 
+        loadContractSpec(this.store.dispatch, 'ValueStore', contracts.ValueStore.abi, {
+            bin: contracts.ValueStore.evm.deployedBytecode.object,
+            permanent: true
+        });
+
         init(this.store.dispatch, web3);
         await vtx_status(this.store, VtxStatus.Loaded, 100);
 
-        const vtx = new VtxContract(web3, 'ValueStore', deployed.options.address, contracts.ValueStore.abi, contracts.ValueStore.evm.deployedBytecode.object);
+        loadContractInstance(this.store.dispatch, 'ValueStore', deployed.options.address, {permanent: true});
 
-        await vtx.valid();
+        await vtx_valid_instance(this.store, 'ValueStore', deployed.options.address, 20);
+
+        const vtx = new VtxContract(this.store, 'ValueStore', deployed.options.address, contracts.ValueStore.abi, contracts.ValueStore.evm.deployedBytecode.object);
 
         expect(vtx.fn.getValue(123)).toEqual(undefined);
 
@@ -235,8 +225,6 @@ describe('[VtxContract]', (): void => {
 
     it('Deploy contract, call tx method', async function (): Promise<void> {
 
-        VtxContract.init(this.store);
-
         const web3 = buildTestWeb3();
         const contract = new  web3.eth.Contract(contracts.ValueStore.abi);
 
@@ -249,12 +237,19 @@ describe('[VtxContract]', (): void => {
             gas: 0xffffff
         });
 
+        loadContractSpec(this.store.dispatch, 'ValueStore', contracts.ValueStore.abi, {
+            bin: contracts.ValueStore.evm.deployedBytecode.object,
+            permanent: true
+        });
+
         init(this.store.dispatch, web3);
         await vtx_status(this.store, VtxStatus.Loaded, 100);
 
-        const vtx = new VtxContract(web3, 'ValueStore', deployed.options.address, contracts.ValueStore.abi, contracts.ValueStore.evm.deployedBytecode.object);
+        loadContractInstance(this.store.dispatch, 'ValueStore', deployed.options.address, {permanent: true});
 
-        await vtx.valid();
+        await vtx_valid_instance(this.store, 'ValueStore', deployed.options.address, 20);
+
+        const vtx = new VtxContract(this.store, 'ValueStore', deployed.options.address, contracts.ValueStore.abi, contracts.ValueStore.evm.deployedBytecode.object);
 
         const initial_length: number = this.store.getState().vtxevents.length;
 
@@ -271,8 +266,6 @@ describe('[VtxContract]', (): void => {
 
     it('Deploy contract, call tx method with wrong args', async function (): Promise<void> {
 
-        VtxContract.init(this.store);
-
         const web3 = buildTestWeb3();
         const contract = new  web3.eth.Contract(contracts.ValueStore.abi);
 
@@ -285,12 +278,20 @@ describe('[VtxContract]', (): void => {
             gas: 0xffffff
         });
 
+        loadContractSpec(this.store.dispatch, 'ValueStore', contracts.ValueStore.abi, {
+            bin: contracts.ValueStore.evm.deployedBytecode.object,
+            permanent: true
+        });
+
+
         init(this.store.dispatch, web3);
         await vtx_status(this.store, VtxStatus.Loaded, 100);
 
-        const vtx = new VtxContract(web3, 'ValueStore', deployed.options.address, contracts.ValueStore.abi, contracts.ValueStore.evm.deployedBytecode.object);
+        loadContractInstance(this.store.dispatch, 'ValueStore', deployed.options.address, {permanent: true});
 
-        await vtx.valid();
+        await vtx_valid_instance(this.store, 'ValueStore', deployed.options.address, 20);
+
+        const vtx = new VtxContract(this.store, 'ValueStore', deployed.options.address, contracts.ValueStore.abi, contracts.ValueStore.evm.deployedBytecode.object);
 
         const initial_length: number = this.store.getState().vtxevents.length;
 

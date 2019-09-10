@@ -5,8 +5,7 @@ import { IContractsReset }                                                      
 const reset_instances = (instances: ContractsTypeStore, web3: Web3): ContractsTypeStore => {
     for (const contract of Object.keys(instances)) {
         for (const instance of Object.keys(instances[contract])) {
-            if (!instances[contract][instance].permament) delete instances[contract][instance];
-            else instances[contract][instance].instance.reset(web3);
+            if (!instances[contract][instance].permanent) delete instances[contract][instance];
         }
 
         if (!Object.keys(instances[contract]).length) delete instances[contract];

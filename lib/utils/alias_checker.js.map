@@ -1,0 +1,1 @@
+{"version":3,"file":"alias_checker.js","sourceRoot":"","sources":["../../sources/utils/alias_checker.ts"],"names":[],"mappings":";;AAAA,IAAM,KAAK,GAAQ,SAAS,CAAC;AAEhB,QAAA,aAAa,GAAG,UAAC,KAAa;IACvC,IAAI,CAAC,KAAK;QAAE,OAAO,KAAK,CAAC;IAEzB,IAAI,CAAC,KAAK,CAAC,IAAI,CAAC,KAAK,CAAC,EAAE;QACpB,MAAM,IAAI,KAAK,CAAC,0BAAwB,KAAK,sDAAmD,CAAC,CAAC;KACrG;IACD,OAAO,KAAK,CAAC;AACjB,CAAC,CAAC"}

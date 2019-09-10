@@ -9,8 +9,15 @@ export const ContractsActions = {
     ContractsRemove: '[VTX][CONTRACTS] REMOVE',
     ContractsSetSigner: '[VTX][CONTRACTS] SET_SIGNER',
     ContractsSend: '[VTX][CONTRACTS] SEND',
-    ContractsDeploy: '[VTX][CONTRACTS] DEPLOY'
+    ContractsDeploy: '[VTX][CONTRACTS] DEPLOY',
+    ContractsInstanceSetValidity: '[VTX][CONTRACTS] INSTANCE SET VALIDITY'
 };
+
+export interface IContractsInstanceSetValidity extends Action<string> {
+    contract_name: string;
+    contract_address: string;
+    validity: boolean;
+}
 
 export interface IContractsDeploy extends Action<string> {
     id: number;
@@ -60,4 +67,5 @@ export type ContractsActionTypes =
     IContractsAddSpec
     | IContractsRemoveSpec
     | IContractsNew
-    | IContractsRemove;
+    | IContractsRemove
+    | IContractsInstanceSetValidity;

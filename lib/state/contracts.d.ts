@@ -1,4 +1,3 @@
-import { VtxContract } from '../contracts/VtxContract';
 export interface ContractsSpec {
     name: string;
     abi: any;
@@ -9,14 +8,14 @@ export interface ContractsSpec {
 export interface ContractsSpecStore {
     [key: string]: ContractsSpec;
 }
-export interface ContractsInstancesStore {
+export interface ContractsInstances {
     [key: string]: {
-        permament: boolean;
-        instance: VtxContract;
+        permanent: boolean;
+        valid: boolean;
     };
 }
 export interface ContractsTypeStore {
-    [key: string]: ContractsInstancesStore;
+    [key: string]: ContractsInstances;
 }
 export interface ContractAlias {
     address: string;
