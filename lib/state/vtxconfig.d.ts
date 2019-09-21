@@ -1,4 +1,3 @@
-import Web3 = require('web3');
 export declare const VtxStatus: {
     [key: string]: string;
 };
@@ -14,7 +13,7 @@ export interface VtxconfigAllowedNetworks {
     [key: number]: string;
 }
 export interface VtxconfigSection {
-    web3: Web3;
+    web3: any;
     last_error: Error;
     status: string;
     reset_status: VtxResetStatus;

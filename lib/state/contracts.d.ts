@@ -30,6 +30,6 @@ export interface ContractTypeAliasStore {
 export interface ContractsSection {
     specs: ContractsSpecStore;
     instances: ContractsTypeStore;
-    web3: Web3;
+    web3: any;
     alias: ContractTypeAliasStore;
 }

@@ -43,18 +43,16 @@ It can be found [here](https://github.com/horyus/ethvtx_embark)
 
 The repository contains a complete React Typescript Showcase.
 
+Start by setting up a ganache node in one terminal:
+```shell
+ganache-cli
+```
+
 To setup the showcase, run:
 ```shell
 git clone https://github.com/horyus/ethvtx
-cd ethvtx
-npm install
-npm run build
-cd examples
+cd ethvtx/examples
 npm run setup
-```
-
-Then, from the examples directory, run:
-```shell
 npm run start
 ```
 
