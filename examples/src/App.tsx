@@ -4,7 +4,7 @@ import { TxsShowcase }      from './txs_showcase/TxsShowcase';
 import Title                from './Title';
 import { StatusManager }    from './status_management/StatusManager';
 import { AccountsShowcase } from './accounts_management/AccountsShowcase';
-import { Grid, Box }             from 'grommet';
+import { ContractShowcase } from './contract_showcase/ContractShowcase';
 
 class App extends Component {
     render(): React.ReactNode {
@@ -13,6 +13,7 @@ class App extends Component {
                 <StatusManager>
                     <Title/>
                     <TxsShowcase/>
+                    <ContractShowcase/>
                     <AccountsShowcase/>
                 </StatusManager>
             </div>
