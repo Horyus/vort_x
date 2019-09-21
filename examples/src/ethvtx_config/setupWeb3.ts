@@ -1,9 +1,21 @@
-import { Store }                      from 'redux';
-import Web3                           from 'web3';
-import { start, setWeb3, addAccount, authorizeAndSetWeb3 } from 'ethvtx/lib/dispatchers';
+import { Store }                from 'redux';
+import Web3                     from 'web3';
+import {
+    start,
+    setWeb3,
+    addAccount,
+    authorizeAndSetWeb3,
+    loadContractSpec,
+    loadContractInstance
+}                               from 'ethvtx/lib/dispatchers';
+import SimpleStorage            from '../contracts/SimpleStorage.json';
+import { get_contract_address } from './getContractAddress';
 
 declare global {
-    interface Window { web3: any; ethereum: any; }
+    interface Window {
+        web3: any;
+        ethereum: any;
+    }
 }
 
 export const setupWeb3 = async (store: Store): Promise<void> => {
@@ -24,7 +36,19 @@ export const setupWeb3 = async (store: Store): Promise<void> => {
             web3: web3_getter
         });
 
-        addAccount(store.dispatch, '0xa087a6Ddc4BDB1028fe4431C8616F8E15Cf5F522', {alias: '@permanenttest', permanent: true});
+        loadContractSpec(store.dispatch, 'SimpleStorage', SimpleStorage.abi, {
+            permanent: true,
+            bin: SimpleStorage.deployedBytecode,
+            constructor_bin: SimpleStorage.bytecode
+        });
+
+        addAccount(store.dispatch, '0xa087a6Ddc4BDB1028fe4431C8616F8E15Cf5F522', {
+            alias: '@permanenttest',
+            permanent: true
+        });
+
+        const address = await get_contract_address();
+        console.log('Address Loaded', address);
 
         start(store.dispatch);
 
@@ -37,8 +61,19 @@ export const setupWeb3 = async (store: Store): Promise<void> => {
 
         setWeb3(store.dispatch, web3);
 
-        // SETUP CONTRACTS HERE
-        addAccount(store.dispatch, '0xa087a6Ddc4BDB1028fe4431C8616F8E15Cf5F522', {alias: '@permanenttest', permanent: true});
+        loadContractSpec(store.dispatch, 'SimpleStorage', SimpleStorage.abi, {
+            permanent: true,
+            bin: SimpleStorage.deployedBytecode,
+            constructor_bin: SimpleStorage.bytecode
+        });
+
+        addAccount(store.dispatch, '0xa087a6Ddc4BDB1028fe4431C8616F8E15Cf5F522', {
+            alias: '@permanenttest',
+            permanent: true
+        });
+
+        const address = await get_contract_address();
+        console.log('Address Loaded', address);
 
         start(store.dispatch);
     }
