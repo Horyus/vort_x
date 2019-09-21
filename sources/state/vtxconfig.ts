@@ -1,5 +1,3 @@
-import Web3 = require('web3');
-
 export const VtxStatus: {[key: string]: string} = {
     Loading: 'Loading',
     Authorizing: 'Authorizing',
@@ -24,7 +22,7 @@ export interface VtxconfigAllowedNetworks {
 }
 
 export interface VtxconfigSection {
-    web3: Web3;
+    web3: any;
     last_error: Error;
     status: string;
     reset_status: VtxResetStatus;

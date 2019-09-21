@@ -1,5 +1,3 @@
-import { VtxContract } from '../contracts/VtxContract';
-
 export interface ContractsSpec {
     name: string;
     abi: any;
@@ -36,6 +34,6 @@ export interface ContractTypeAliasStore {
 export interface ContractsSection {
     specs: ContractsSpecStore;
     instances: ContractsTypeStore;
-    web3: Web3;
+    web3: any;
     alias: ContractTypeAliasStore;
 }

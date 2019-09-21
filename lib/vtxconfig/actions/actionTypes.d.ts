@@ -1,5 +1,4 @@
 import { Action } from 'redux';
-import Web3 = require('web3');
 export declare const VtxconfigActions: {
     VtxconfigSetWeb3: string;
     VtxconfigSetStatus: string;
@@ -12,7 +11,7 @@ export declare const VtxconfigActions: {
 };
 export interface Authorization {
     enable: () => Promise<void>;
-    web3: () => Promise<Web3>;
+    web3: () => Promise<any>;
 }
 export interface IVtxconfigAuthorizeAndSetWeb3 extends Action<string> {
     authorization: Authorization;
@@ -27,7 +26,7 @@ export interface IVtxconfigSetInfos extends Action<string> {
     net: number;
 }
 export interface IVtxconfigSetWeb3 extends Action<string> {
-    web3: Web3;
+    web3: any;
 }
 export interface IVtxconfigSetStatus extends Action<string> {
     status: string;

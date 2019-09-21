@@ -1,5 +1,4 @@
 import { Action }    from 'redux';
-import Web3 = require('web3');
 
 export const VtxconfigActions = {
     VtxconfigSetWeb3: '[VTX][VTXCONFIG] SET_WEB3',
@@ -14,7 +13,7 @@ export const VtxconfigActions = {
 
 export interface Authorization {
     enable: () => Promise<void>;
-    web3: () => Promise<Web3>;
+    web3: () => Promise<any>;
 }
 
 export interface IVtxconfigAuthorizeAndSetWeb3 extends Action<string> {
@@ -33,7 +32,7 @@ export interface IVtxconfigSetInfos extends Action<string> {
 }
 
 export interface IVtxconfigSetWeb3 extends Action<string> {
-    web3: Web3;
+    web3: any;
 }
 
 export interface IVtxconfigSetStatus extends Action<string> {
