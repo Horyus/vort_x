@@ -9,6 +9,7 @@
         "coverage:upload": "cat ./coverage/lcov.info | coveralls",
         "test:lint": "tslint --project .",
         "test:editorconfig": "editorconfig-cli",
+        "test": "npm run test:lint && npm run test:editorconfig && npm run test:mocha",
         "build": "rm -rf lib && tsc",
         "version": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md"
     },

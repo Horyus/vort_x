@@ -4,7 +4,8 @@
     "description": "React Helpers for ethvtx",
     "main": "lib/index.js",
     "scripts": {
-        "build": "rm -rf lib && tsc"
+        "build": "rm -rf lib && tsc",
+        "test": "echo 'No Test Suite for ethvtx/react'"
     },
     "peerDependencies": {
         "ethvtx": "^2.0.6",

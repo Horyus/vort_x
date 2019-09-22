@@ -85,7 +85,7 @@
         "setup": "npm run setup:bring_ethvtx && npm run setup:bring_ethvtx_react && npm install && npm run setup:deploy_test_contract",
         "start": "node scripts/start.js",
         "build": "node scripts/build.js",
-        "test": "node scripts/test.js"
+        "test": "echo 'No Test Suite for ethvtx/examples'"
     },
     "eslintConfig": {
         "extends": "react-app"
