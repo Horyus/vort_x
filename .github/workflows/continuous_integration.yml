@@ -1,4 +1,4 @@
-name: e712 CI
+name: ethvtx CI
 
 on: [push]
 
