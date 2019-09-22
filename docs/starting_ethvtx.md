@@ -147,7 +147,7 @@ setAllowedNet(store.dispatch, network_id, network_genesis_hash);
 
 You can use our utilities to convert `embark` artifacts to `ethvtx` specs.
 
-You can have a look at the [**Embark Template**](https://github.com/horyus/ethvtx_embark) for a complete usage example.
+You can have a look at the [**Embark Template**](https://github.com/ticket721/ethvtx_embark) for a complete usage example.
 
 ```jsx
 

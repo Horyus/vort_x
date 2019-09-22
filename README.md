@@ -37,7 +37,7 @@ An extensive usage documentation can be found [here](http://doc.ethvtx.com)
 
 There is an example project showcasing how to use `ethvtx` in an embark project.
 
-It can be found [here](https://github.com/horyus/ethvtx_embark)
+It can be found [here](https://github.com/ticket721/ethvtx_embark)
 
 ### React TS Showcase Application
 
@@ -50,7 +50,7 @@ ganache-cli
 
 To setup the showcase, run:
 ```shell
-git clone https://github.com/horyus/ethvtx
+git clone https://github.com/ticket721/ethvtx
 cd ethvtx/examples
 npm run setup
 npm run start
@@ -64,5 +64,5 @@ Be sure to have [Metamask](https://metamask.io/) installed, and quadruple-check 
 
 | Service | Status |
 | :---: | :---: |
-| Travis CI | [![Build Status](https://travis-ci.org/horyus/ethvtx.svg?branch=develop)](https://travis-ci.org/horyus/ethvtx) |
+| Travis CI | [![Build Status](https://travis-ci.org/ticket721/ethvtx.svg?branch=develop)](https://travis-ci.org/ticket721/ethvtx) |
 | Coveralls | [![Coverage Status](https://coveralls.io/repos/github/Horyus/ethvtx/badge.svg?branch=develop)](https://coveralls.io/github/Horyus/ethvtx?branch=develop) |

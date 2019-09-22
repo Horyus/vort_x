@@ -14,7 +14,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/horyus/ethvtx.git"
+        "url": "git+https://github.com/ticket721/ethvtx.git"
     },
     "keywords": [
         "ethereum",
@@ -24,9 +24,9 @@
     "author": "Iulian Rotaru",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/horyus/ethvtx/issues"
+        "url": "https://github.com/ticket721/ethvtx/issues"
     },
-    "homepage": "https://github.com/horyus/ethvtx#readme",
+    "homepage": "https://github.com/ticket721/ethvtx#readme",
     "devDependencies": {
         "@commitlint/cli": "^8.1.0",
         "@commitlint/config-conventional": "^8.1.0",
