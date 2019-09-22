@@ -4,7 +4,7 @@
   Author: mortimr
   -->
 <div align="center" >
-<img width="40%" src="https://github.com/Horyus/ethvtx/raw/develop/imgs/logo.png" style="margin-bottom: 20px;">
+<img src="https://github.com/Horyus/ethvtx/raw/develop/imgs/logo.png" style="margin-bottom: 20px;">
 <h4>Ethereum-Ready & Framework-Agnostic Redux Store Configuration</h4>
 </div>
 
@@ -64,5 +64,4 @@ Be sure to have [Metamask](https://metamask.io/) installed, and quadruple-check 
 
 | Service | Status |
 | :---: | :---: |
-| Travis CI | [![Build Status](https://travis-ci.org/ticket721/ethvtx.svg?branch=develop)](https://travis-ci.org/ticket721/ethvtx) |
-| Coveralls | [![Coverage Status](https://coveralls.io/repos/github/Horyus/ethvtx/badge.svg?branch=develop)](https://coveralls.io/github/Horyus/ethvtx?branch=develop) |
+| Coveralls | [![Coverage Status](https://coveralls.io/repos/github/ticket721/ethvtx/badge.svg?branch=develop)](https://coveralls.io/github/ticket721/ethvtx?branch=develop) |
