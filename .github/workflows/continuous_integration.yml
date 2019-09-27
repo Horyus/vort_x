@@ -21,8 +21,17 @@ jobs:
               run: npm run test:editorconfig
             - name: Run Mocha test suite
               run: npm run test:mocha
-            - name: Coveralls
+            - name: Coveralls Parallel
               uses: coverallsapp/github-action@master
               with:
-                  github-token: ${{ secrets.github_token }}
+                github-token: ${{ secrets.github_token }}
+                parallel: true
+                path-to-lcov: ./coverage/lcov.info
+            - name: Coveralls Finished
+              uses: coverallsapp/github-action@master
+              with:
+                github-token: ${{ secrets.github_token }}
+                parallel-finished: true
+
+
 
