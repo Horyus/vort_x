@@ -5,19 +5,19 @@ import { getSagas }                                              from '../tools/
 import { Saga }                                                  from '@redux-saga/types';
 import { State }                                                 from '../state/index';
 import createSagaMiddleware, { SagaMiddleware }                  from 'redux-saga';
-import * as Ganache                                              from 'ganache-core';
-import { VtxeventsTypes }                                        from '../state/vtxevents';
-import * as expect                                               from 'expect';
-import { configureVtx }                                          from '../tools/configureVtx';
-import { VtxpollKill }                                           from '../vtxpoll/actions/action';
-import * as Fs                                                   from 'fs';
-import { VtxContract }                            from './VtxContract';
-import { vtx_cache }                              from '../test_tools/vtx_cache';
-import { ganache_mine, vtx_event, vtx_status }    from '../test_tools';
-import { init }                                   from '../vtxconfig/helpers/dispatchers';
-import { getTransactionById }                     from '../txs/helpers/getters';
-import { Tx }                                     from '../state/txs';
-import { VtxStatus }                              from '../state/vtxconfig';
+import * as Ganache                            from 'ganache-core';
+import { VtxeventsTypes }                      from '../state/vtxevents';
+import * as expect                             from 'expect';
+import { configureVtx }                        from '../tools/configureVtx';
+import { VtxpollKill }                         from '../vtxpoll/actions/action';
+import * as Fs                                 from 'fs';
+import { getContractMaterial, VtxContract }    from './VtxContract';
+import { vtx_cache }                           from '../test_tools/vtx_cache';
+import { ganache_mine, vtx_event, vtx_status } from '../test_tools';
+import { init }                                from '../vtxconfig/helpers/dispatchers';
+import { getTransactionById }                  from '../txs/helpers/getters';
+import { Tx }                                  from '../state/txs';
+import { VtxStatus }                           from '../state/vtxconfig';
 import { loadContractInstance, loadContractSpec } from './helpers/dispatchers';
 import { vtx_valid_instance }                     from '../test_tools/vtx_valid_contract';
 
@@ -173,15 +173,34 @@ describe('[VtxContract]', (): void => {
 
         init(this.store.dispatch, web3);
         await vtx_status(this.store, VtxStatus.Loaded, 100);
+        const web3_instance = this.store.getState().contracts.instances['ValueStore'][deployed.options.address].web3_instance;
 
         await vtx_valid_instance(this.store, 'ValueStore', deployed.options.address, 20);
 
-        const vtx = new VtxContract(this.store, 'ValueStore', deployed.options.address, contracts.ValueStore.abi, contracts.ValueStore.evm.deployedBytecode.object);
+        let vtx = new VtxContract(
+            this.store.dispatch,
+            getContractMaterial(this.store.getState(), 'ValueStore', deployed.options.address),
+            web3_instance,
+            'ValueStore',
+            deployed.options.address,
+            contracts.ValueStore.abi,
+            contracts.ValueStore.evm.deployedBytecode.object
+        );
 
         expect(vtx.fn.getValue()).toEqual(undefined);
 
         await ganache_mine(web3, 10);
-        await vtx_cache(this.store, VtxContract.sig('ValueStore', deployed.options.address, 'getValue'), 1, 200);
+        await vtx_cache(this.store, VtxContract.entity_sig('ValueStore', deployed.options.address), VtxContract.sig('ValueStore', deployed.options.address, 'getValue'), 1, 200);
+
+        vtx = new VtxContract(
+            this.store.dispatch,
+            getContractMaterial(this.store.getState(), 'ValueStore', deployed.options.address),
+            web3_instance,
+            'ValueStore',
+            deployed.options.address,
+            contracts.ValueStore.abi,
+            contracts.ValueStore.evm.deployedBytecode.object
+        );
 
         expect(parseInt(vtx.fn.getValue())).toEqual(5);
 
@@ -210,14 +229,33 @@ describe('[VtxContract]', (): void => {
         await vtx_status(this.store, VtxStatus.Loaded, 100);
 
         loadContractInstance(this.store.dispatch, 'ValueStore', deployed.options.address, {permanent: true});
+        const web3_instance = this.store.getState().contracts.instances['ValueStore'][deployed.options.address].web3_instance;
 
         await vtx_valid_instance(this.store, 'ValueStore', deployed.options.address, 20);
 
-        const vtx = new VtxContract(this.store, 'ValueStore', deployed.options.address, contracts.ValueStore.abi, contracts.ValueStore.evm.deployedBytecode.object);
+        let vtx = new VtxContract(
+            this.store.dispatch,
+            getContractMaterial(this.store.getState(), 'ValueStore', deployed.options.address),
+            web3_instance,
+            'ValueStore',
+            deployed.options.address,
+            contracts.ValueStore.abi,
+            contracts.ValueStore.evm.deployedBytecode.object
+        );
 
         expect(vtx.fn.getValue(123)).toEqual(undefined);
 
-        await vtx_cache(this.store, VtxContract.sig('ValueStore', deployed.options.address, 'getValue', 123), 0, 200);
+        await vtx_cache(this.store, VtxContract.entity_sig('ValueStore', deployed.options.address), VtxContract.sig('ValueStore', deployed.options.address, 'getValue', 123), 0, 200);
+
+        vtx = new VtxContract(
+            this.store.dispatch,
+            getContractMaterial(this.store.getState(), 'ValueStore', deployed.options.address),
+            web3_instance,
+            'ValueStore',
+            deployed.options.address,
+            contracts.ValueStore.abi,
+            contracts.ValueStore.evm.deployedBytecode.object
+        );
 
         expect(vtx.fn.getValue(123).error).toBeDefined();
 
@@ -246,10 +284,19 @@ describe('[VtxContract]', (): void => {
         await vtx_status(this.store, VtxStatus.Loaded, 100);
 
         loadContractInstance(this.store.dispatch, 'ValueStore', deployed.options.address, {permanent: true});
+        const web3_instance = this.store.getState().contracts.instances['ValueStore'][deployed.options.address].web3_instance;
 
         await vtx_valid_instance(this.store, 'ValueStore', deployed.options.address, 20);
 
-        const vtx = new VtxContract(this.store, 'ValueStore', deployed.options.address, contracts.ValueStore.abi, contracts.ValueStore.evm.deployedBytecode.object);
+        const vtx = new VtxContract(
+            this.store.dispatch,
+            getContractMaterial(this.store.getState(), 'ValueStore', deployed.options.address),
+            web3_instance,
+            'ValueStore',
+            deployed.options.address,
+            contracts.ValueStore.abi,
+            contracts.ValueStore.evm.deployedBytecode.object
+        );
 
         const initial_length: number = this.store.getState().vtxevents.length;
 
@@ -288,10 +335,19 @@ describe('[VtxContract]', (): void => {
         await vtx_status(this.store, VtxStatus.Loaded, 100);
 
         loadContractInstance(this.store.dispatch, 'ValueStore', deployed.options.address, {permanent: true});
+        const web3_instance = this.store.getState().contracts.instances['ValueStore'][deployed.options.address].web3_instance;
 
         await vtx_valid_instance(this.store, 'ValueStore', deployed.options.address, 20);
 
-        const vtx = new VtxContract(this.store, 'ValueStore', deployed.options.address, contracts.ValueStore.abi, contracts.ValueStore.evm.deployedBytecode.object);
+        const vtx = new VtxContract(
+            this.store.dispatch,
+            getContractMaterial(this.store.getState(), 'ValueStore', deployed.options.address),
+            web3_instance,
+            'ValueStore',
+            deployed.options.address,
+            contracts.ValueStore.abi,
+            contracts.ValueStore.evm.deployedBytecode.object
+        );
 
         const initial_length: number = this.store.getState().vtxevents.length;
 

@@ -6,6 +6,7 @@ import { Dispatch }                       from 'redux';
 import { VtxpollSetIntervalId }           from '../actions/action';
 import { VtxpollEntity }                  from '../../state/vtxpoll';
 import { ready }                          from '../../utils/ready';
+import { cloneDeep }                      from 'lodash';
 
 let timer = 0;
 let polling: { [key: string]: boolean } = null;
@@ -26,7 +27,8 @@ async function loop(dispatcher: Dispatch, state_getter: () => State): Promise<vo
 
     ++timer;
 
-    const state: State = state_getter();
+    const state: State = cloneDeep<State>(state_getter());
+
     const block_dependent: boolean = last_polling_block !== state.blocks.current_height;
     last_polling_block = state.blocks.current_height;
 

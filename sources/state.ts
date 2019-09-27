@@ -1,6 +1,6 @@
-export { State, InitialState }                                                                 from './state/index';
-export { TxInfos, Tx, TxSection, TxStatus, NewContractInfos }                                  from './state/txs';
-export { VtxconfigSection, VtxResetStatus, VtxStatus }                                         from './state/vtxconfig';
+export { State, InitialState }                                                   from './state/index';
+export { TxInfos, Tx, TxSection, TxStatus, NewContractInfos }                    from './state/txs';
+export { VtxconfigSection, VtxResetStatus, VtxStatus, VtxconfigAllowedNetworks } from './state/vtxconfig';
 export {
     VtxeventsTxAdded,
     Vtxevent,
@@ -17,9 +17,9 @@ export {
     VtxeventsContractsSpecAdded,
     VtxeventsContractsInstanceRemove,
     VtxeventsTxInvalid
-}                                                                                              from './state/vtxevents';
-export { VtxPollCb, VtxpollEntity, VtxpollSection }                                            from './state/vtxpoll';
-export { BlocksSection, BlockStore, Block }                                                    from './state/blocks';
+}                                                                                from './state/vtxevents';
+export { VtxPollCb, VtxpollEntity, VtxpollSection }                              from './state/vtxpoll';
+export { BlocksSection, BlockStore, Block }                                      from './state/blocks';
 export {
     ContractTypeAliasStore,
     ContractsSpecStore,
@@ -27,8 +27,8 @@ export {
     ContractsSection,
     ContractAliasStore,
     ContractAlias,
-    ContractsSpec
-}                                                                                              from './state/contracts';
-export { VtxcacheElement, VtxcacheSection, VtxcacheStore }                                     from './state/vtxcache';
-export { AccountsSection, AliasStore, AccountsStore, Account }                                 from './state/accounts';
-export { BigNumber }                                                                           from 'bignumber.js';
+    ContractsSpec, ContractsInstances
+}                                                                                from './state/contracts';
+export { VtxcacheElement, VtxcacheSection, VtxcacheStore, VtxcacheEntityStore }  from './state/vtxcache';
+export { AccountsSection, AliasStore, AccountsStore, Account }                   from './state/accounts';
+export { BigNumber }                                                             from 'bignumber.js';

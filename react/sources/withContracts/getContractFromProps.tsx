@@ -1,4 +1,5 @@
 import { ContractData, WrappedComponentProps } from './index';
+import { getAddress }                          from '../utils/getAddress';
 
 /**
  * @description Helper function to extract needed contract from props
@@ -12,7 +13,7 @@ export function getContractFromProps(props: WrappedComponentProps, contract_name
         return null;
     }
 
-    const contract_idx = props.contracts.findIndex((elem: ContractData): boolean => elem.contract === contract_name && elem.address === contract_address);
+    const contract_idx = props.contracts.findIndex((elem: ContractData): boolean => elem.contract === contract_name && getAddress(elem.address) === getAddress(contract_address));
 
     if (contract_idx !== -1 && props.contracts[contract_idx].instance && props.contracts[contract_idx].instance.valid === true) return props.contracts[contract_idx];
 

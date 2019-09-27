@@ -6,12 +6,19 @@ export const ContractsActions = {
     ContractsRemoveSpec: '[VTX][CONTRACTS] REMOVE_SPEC',
     ContractsReset: '[VTX][CONTRACTS] RESET',
     ContractsNew: '[VTX][CONTRACTS] NEW',
+    ContractsSetWeb3Instance: '[VTX][CONTRACTS] SET WEB3 INSTANCE',
     ContractsRemove: '[VTX][CONTRACTS] REMOVE',
     ContractsSetSigner: '[VTX][CONTRACTS] SET_SIGNER',
     ContractsSend: '[VTX][CONTRACTS] SEND',
     ContractsDeploy: '[VTX][CONTRACTS] DEPLOY',
     ContractsInstanceSetValidity: '[VTX][CONTRACTS] INSTANCE SET VALIDITY'
 };
+
+export interface IContractsSetWeb3Instance extends Action<string> {
+    contract_name: string;
+    contract_address: string;
+    clear: boolean;
+}
 
 export interface IContractsInstanceSetValidity extends Action<string> {
     contract_name: string;
@@ -68,4 +75,5 @@ export type ContractsActionTypes =
     | IContractsRemoveSpec
     | IContractsNew
     | IContractsRemove
-    | IContractsInstanceSetValidity;
+    | IContractsInstanceSetValidity
+    | IContractsSetWeb3Instance;

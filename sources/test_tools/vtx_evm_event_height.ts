@@ -1,11 +1,12 @@
 import { Store } from 'redux';
 
-export const vtx_evm_event_height = async (store: Store, sig: string, height: number, max?: number): Promise<void> =>
+export const vtx_evm_event_height = async (store: Store, entity: string, sig: string, height: number, max?: number): Promise<void> =>
     new Promise<void>(
         (ok: any, ko: any): void => {
             let idx: number = 0;
             const interval_id = setInterval((): void => {
-                if (store.getState().events.followed[sig] && store.getState().events.followed[sig].last_fetched >= height) {
+                const state = store.getState();
+                if (state.events[entity] && state.events[entity].followed[sig] && state.events[entity].followed[sig].last_fetched >= height) {
                     clearInterval(interval_id);
                     ok();
                 }

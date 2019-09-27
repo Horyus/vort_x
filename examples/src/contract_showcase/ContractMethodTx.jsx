@@ -9,7 +9,6 @@ import {
     FormGroup,
     FormInput,
 } from 'shards-react';
-import { connect } from 'react-redux';
 
 export class ContractMethodTxRaw extends React.Component {
 
@@ -26,7 +25,11 @@ export class ContractMethodTxRaw extends React.Component {
     }
 
     handleButtonClick = () => {
-        this.props.simple_storage_set(this.state.value);
+        const contract = getContractFromProps(this.props, 'SimpleStorage', this.props.address);
+
+        if (contract) {
+            contract.instance.fn.set(this.state.value);
+        }
     }
 
     render() {
@@ -54,23 +57,14 @@ export class ContractMethodTxRaw extends React.Component {
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
-
-    const contract = getContractFromProps(ownProps, 'SimpleStorage', ownProps.address);
-
-    return {
-        simple_storage_set: contract && contract.instance && contract.instance.valid ? contract.instance.fn.set : null
-    }
-};
-
-const loadContract = (props) => {
+const loadContract = (state, props) => {
 
     if (props.address) {
         return [
             {
                 contract: 'SimpleStorage',
                 address: props.address,
-                load: true
+                balance: true
             }
         ]
     } else {
@@ -79,10 +73,5 @@ const loadContract = (props) => {
 
 };
 
-export const ContractMethodTx =
-    withContracts(
-        {
-            contracts: loadContract,
-            mapStateToProps
-        },
-        connect(mapStateToProps)(ContractMethodTxRaw));
+export const ContractMethodTx = withContracts(loadContract, ContractMethodTxRaw);
+

@@ -10,6 +10,9 @@ export interface VtxcacheElement<T = any> {
 export interface VtxcacheStore {
     [key: string]: VtxcacheElement;
 }
+export interface VtxcacheEntityStore {
+    [key: string]: VtxcacheStore;
+}
 export interface VtxcacheSection {
-    store: VtxcacheStore;
+    store: VtxcacheEntityStore;
 }

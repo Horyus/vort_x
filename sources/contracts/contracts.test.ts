@@ -478,15 +478,18 @@ describe('[contracts]', function (): void {
 
         loadContractInstance(this.store.dispatch, 'ValueStore', deployed.options.address, {alias: '@default', permanent: true});
 
-        const vtxc = getContract(this.store, 'ValueStore', '@default');
         const initial_length: number = this.store.getState().vtxevents.length;
         await vtx_valid_instance(this.store, 'ValueStore', deployed.options.address);
+
+        let vtxc = getContract(this.store, 'ValueStore', '@default');
 
         const id = vtxc.fn.setValue(3);
 
         await vtx_event(this.store, initial_length, VtxeventsTypes.ContractsTxBroadcasted, 10);
         await ganache_mine(web3, 10);
         await vtx_event(this.store, initial_length, VtxeventsTypes.TxConfirmed, 10);
+
+        vtxc = getContract(this.store, 'ValueStore', '@default');
 
         const send_event = getVtxEvents(this.store.getState(), VtxeventsTypes.ContractsTxBroadcasted);
 

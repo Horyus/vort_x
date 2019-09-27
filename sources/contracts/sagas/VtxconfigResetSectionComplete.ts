@@ -1,11 +1,11 @@
-import { IVtxconfigResetSectionComplete }                    from '../../vtxconfig/actions/actionTypes';
-import { SagaIterator }                                      from 'redux-saga';
-import { call, put, select }                                 from 'redux-saga/effects';
-import { ContractsInstanceSetValidity, ContractsReset }      from '../actions/actions';
-import { VtxconfigResetSectionComplete, VtxconfigSetStatus } from '../../vtxconfig/actions/actions';
-import { State }                                             from '../../state/index';
-import { check_code_at }                                     from '../../utils/check_code_at';
-import { VtxStatus }                                         from '../../state';
+import { IVtxconfigResetSectionComplete }                                         from '../../vtxconfig/actions/actionTypes';
+import { SagaIterator }                                                           from 'redux-saga';
+import { call, put, select }                                                      from 'redux-saga/effects';
+import { ContractsInstanceSetValidity, ContractsReset, ContractsSetWeb3Instance } from '../actions/actions';
+import { VtxconfigResetSectionComplete, VtxconfigSetStatus }                      from '../../vtxconfig/actions/actions';
+import { State }                                                                  from '../../state/index';
+import { check_code_at }                                                          from '../../utils/check_code_at';
+import { VtxStatus }                                                              from '../../state';
 
 function* ValidateInstances(): SagaIterator {
     const state: State = yield select();
@@ -26,6 +26,17 @@ function* ValidateInstances(): SagaIterator {
 
 }
 
+function* BuildWeb3Instances(clear: boolean): SagaIterator {
+    const state: State = yield select();
+
+    for (const contract of Object.keys(state.contracts.instances)) {
+        for (const instance of Object.keys(state.contracts.instances[contract])) {
+            yield put(ContractsSetWeb3Instance(contract, instance, clear));
+        }
+    }
+
+}
+
 export function* VtxconfigResetSectionCompleteSaga(action: IVtxconfigResetSectionComplete): SagaIterator {
 
     if (action.section === 'vtxconfig') {
@@ -37,6 +48,7 @@ export function* VtxconfigResetSectionCompleteSaga(action: IVtxconfigResetSectio
             yield put(ContractsReset());
         }
 
+        yield call(BuildWeb3Instances, clear);
         yield call(ValidateInstances);
     }
 }

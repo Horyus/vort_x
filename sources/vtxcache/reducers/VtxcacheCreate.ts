@@ -7,13 +7,15 @@ export const VtxcacheCreateReducer: Reducer<VtxcacheSection, IVtxcacheCreate> =
         ...state,
         store: {
             ...state.store,
-            [action.signature]: {
-                signature: action.signature,
-                cb: action.cb,
-                block: null,
-                required: true,
-                data: undefined,
-                error: null
+            [action.entity]: {
+                [action.signature]: {
+                    signature: action.signature,
+                    cb: action.cb,
+                    block: null,
+                    required: true,
+                    data: undefined,
+                    error: null
+                }
             }
         }
     });

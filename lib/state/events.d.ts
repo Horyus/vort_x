@@ -33,7 +33,10 @@ export interface EventsDataStore {
 export interface EventsFollowedStore {
     [key: string]: EventsFollowed;
 }
-export interface EventsSection {
+export interface EventsEntitySection {
     followed: EventsFollowedStore;
     data: EventsDataStore;
+}
+export interface EventsSection {
+    [key: string]: EventsEntitySection;
 }

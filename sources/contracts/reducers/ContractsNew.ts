@@ -1,10 +1,13 @@
 import { Reducer }          from 'redux';
 import { ContractsSection } from '../../state/contracts';
 import { IContractsNew }    from '../actions/actionTypes';
-import { VtxContract }      from '../VtxContract';
 
 export const ContractsNewReducer: Reducer<ContractsSection, IContractsNew> =
     (state: ContractsSection, action: IContractsNew): ContractsSection => {
+
+        const spec = state.specs[action.contract];
+        const web3 = state.web3;
+
         if (!action.alias) {
             return {
                 ...state,
@@ -14,7 +17,8 @@ export const ContractsNewReducer: Reducer<ContractsSection, IContractsNew> =
                         ...state.instances[action.contract],
                         [action.address]: {
                             permanent: !!action.permanent,
-                            valid: null
+                            valid: null,
+                            web3_instance: web3 ? new web3.eth.Contract(spec.abi, action.address) : null
                         }
                     }
                 }
@@ -29,7 +33,8 @@ export const ContractsNewReducer: Reducer<ContractsSection, IContractsNew> =
                     ...state.instances[action.contract],
                     [action.address]: {
                         permanent: !!action.permanent,
-                        valid: null
+                        valid: null,
+                        web3_instance: web3 ? new web3.eth.Contract(spec.abi, action.address) : null
                     }
                 }
             },

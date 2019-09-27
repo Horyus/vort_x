@@ -1,6 +1,5 @@
-import { createStoreConsumer } from './StoreConsumer';
-import { createContractWrapper } from './ContractWrapper';
-export function withContracts(params, component) {
-    return createStoreConsumer(createContractWrapper(component, params.contracts, params.mapStateToProps, params.mapDispatchToProps));
+import { ContractBuilder } from './ContractBuilder';
+export function withContracts(contracts, component) {
+    return ContractBuilder(contracts, component);
 }
 //# sourceMappingURL=index.js.map

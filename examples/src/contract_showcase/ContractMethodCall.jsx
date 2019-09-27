@@ -5,11 +5,12 @@ import {
     CardHeader,
     CardBody
 } from 'shards-react';
-import { connect } from 'react-redux';
 
 export class ContractMethodCallRaw extends React.Component {
 
     render() {
+
+        const contract = getContractFromProps(this.props, 'SimpleStorage', this.props.address);
 
         return (
             <div>
@@ -20,7 +21,7 @@ export class ContractMethodCallRaw extends React.Component {
                         <p>Value stored by contracts is: <span style={{
                             fontSize: 20
                         }}>{
-                            this.props.simple_storage_get || 'Loading ...'
+                            contract && contract.instance.valid ? contract.instance.fn.get() || 'Loading ...' : 'Loading ...'
                         }</span></p>
                     </CardBody>
                 </Card>
@@ -29,22 +30,14 @@ export class ContractMethodCallRaw extends React.Component {
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
-    const contract = getContractFromProps(ownProps, 'SimpleStorage', ownProps.address);
-
-    return {
-        simple_storage_get: contract && contract.instance && contract.instance.valid ? contract.instance.fn.get() : null
-    }
-};
-
-const loadContract = (props) => {
+const loadContract = (state, props) => {
 
     if (props.address) {
         return [
             {
                 contract: 'SimpleStorage',
                 address: props.address,
-                load: true
+                balance: true
             }
         ]
     } else {
@@ -52,11 +45,6 @@ const loadContract = (props) => {
     }
 
 };
-export const ContractMethodCall =
-    withContracts(
-        {
-            contracts: loadContract,
-            mapStateToProps
-        },
-        connect(mapStateToProps)(ContractMethodCallRaw)
-    );
+
+export const ContractMethodCall = withContracts(loadContract, ContractMethodCallRaw);
+

@@ -4,25 +4,38 @@ import { IEventsCaught } from '../actions/actionTypes';
 
 export const EventsCaughtReducer: Reducer<EventsSection, IEventsCaught> =
     (state: EventsSection, action: IEventsCaught): EventsSection => {
-        if (state.data[action.signature]) {
+
+        if (!state[action.entity]) {
+            return {
+                ...state
+            };
+        }
+
+        if (state[action.entity].data[action.signature]) {
             return {
                 ...state,
-                data: {
-                    ...state.data,
-                    [action.signature]: [
-                        ...state.data[action.signature],
-                        action.infos
-                    ]
+                [action.entity]: {
+                    ...state[action.entity],
+                    data: {
+                        ...state[action.entity].data,
+                        [action.signature]: [
+                            ...state[action.entity].data[action.signature],
+                            action.infos
+                        ]
+                    }
                 }
             };
         } else {
             return {
                 ...state,
-                data: {
-                    ...state.data,
-                    [action.signature]: [
-                        action.infos
-                    ]
+                [action.entity]: {
+                    ...state[action.entity],
+                    data: {
+                        ...state[action.entity].data,
+                        [action.signature]: [
+                            action.infos
+                        ]
+                    }
                 }
             };
         }

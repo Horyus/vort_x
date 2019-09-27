@@ -7,18 +7,22 @@ export const poll_contracts_constant_calls: VtxPollCb = async (state: State, emi
 
         const current_block: number = state.blocks.current_height;
 
-        for (const sig of Object.keys(state.vtxcache.store)) {
+        for (const entity of Object.keys(state.vtxcache.store)) {
 
-            if (!new_block && state.vtxcache.store[sig].block !== null) continue ;
+            for (const sig of Object.keys(state.vtxcache.store[entity])) {
 
-            if (state.vtxcache.store[sig].required && state.vtxcache.store[sig].block !== current_block) {
-                try {
-                    const new_data: any = await state.vtxcache.store[sig].cb(current_block);
-                    emit(VtxcacheSetData(sig, new_data, current_block));
-                } catch (e) {
-                    emit(VtxcacheSetError(sig, e, current_block));
+                if (!new_block && state.vtxcache.store[entity][sig].block !== null) continue ;
+
+                if (state.vtxcache.store[entity][sig].required && state.vtxcache.store[entity][sig].block !== current_block) {
+                    try {
+                        const new_data: any = await state.vtxcache.store[entity][sig].cb(current_block);
+                        emit(VtxcacheSetData(entity, sig, new_data, current_block));
+                    } catch (e) {
+                        emit(VtxcacheSetError(entity, sig, e, current_block));
+                    }
                 }
             }
+
         }
 
 };

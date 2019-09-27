@@ -1,6 +1,7 @@
 import { Reducer }                    from 'redux';
 import { VtxcacheSection }            from '../../state/vtxcache';
 import {
+    IVtxcacheClear,
     IVtxcacheCreate, IVtxcacheReset,
     IVtxcacheSetData, IVtxcacheSetError,
     IVtxcacheSetRequired,
@@ -12,6 +13,7 @@ import { VtxcacheSetDataReducer }     from './VtxcacheSetData';
 import { VtxcacheCreateReducer }      from './VtxcacheCreate';
 import { VtxcacheSetErrorReducer }    from './VtxcacheSetError';
 import { VtxcacheResetReducer }       from './VtxcacheReset';
+import { VtxcacheClearReducer }       from './VtxcacheClear';
 import { InitialState }               from '../../state/index';
 
 export const VtxcacheReducer: Reducer<VtxcacheSection, VtxcacheActionTypes> =
@@ -27,6 +29,8 @@ export const VtxcacheReducer: Reducer<VtxcacheSection, VtxcacheActionTypes> =
                 return VtxcacheCreateReducer(state, action as IVtxcacheCreate);
             case VtxcacheActions.VtxcacheReset:
                 return VtxcacheResetReducer(state, action as IVtxcacheReset);
+            case VtxcacheActions.VtxcacheClear:
+                return VtxcacheClearReducer(state, action as IVtxcacheClear);
             default:
                 return state;
         }
