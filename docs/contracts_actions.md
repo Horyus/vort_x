@@ -16,10 +16,12 @@ export const ContractsActions = {
     ContractsRemoveSpec: '[VTX][CONTRACTS] REMOVE_SPEC',
     ContractsReset: '[VTX][CONTRACTS] RESET',
     ContractsNew: '[VTX][CONTRACTS] NEW',
+    ContractsSetWeb3Instance: '[VTX][CONTRACTS] SET WEB3 INSTANCE',
     ContractsRemove: '[VTX][CONTRACTS] REMOVE',
     ContractsSetSigner: '[VTX][CONTRACTS] SET_SIGNER',
     ContractsSend: '[VTX][CONTRACTS] SEND',
-    ContractsDeploy: '[VTX][CONTRACTS] DEPLOY'
+    ContractsDeploy: '[VTX][CONTRACTS] DEPLOY',
+    ContractsInstanceSetValidity: '[VTX][CONTRACTS] INSTANCE SET VALIDITY'
 };
 ```
 
@@ -63,9 +65,16 @@ These actions are used internally by the store to make things work. You should n
 
 ### `ContractsSend(call: () => Promise<string>, id: number, method: string, args: any[], contract: string, address: string) =>IContractsSend`
 
-Use internally to trigger sagas that handle transaction sending.
+Used internally to trigger sagas that handle transaction sending.
 
 ### `ContractsReset() => IContractsReset`
 
-Use internally to reset all the contracts of the store.
+Used internally to reset all the contracts of the store.
 
+### `ContractsInstanceSetValidity(contract_name: string, contract_address: string, validity: boolean) => IContractsInstanceSetValidity`
+
+Used internally to set contract validity when checks are done by `ethvtx`
+
+### `ContractsSetWeb3Instance(contract_name: string, contract_address: string, clear: boolean) => IContractsSetWeb3Instance`
+
+Used internally to share web3 instance with the contract section of the store

@@ -12,10 +12,11 @@ This is the intersting type. It contains all the informations about an account (
 
 ```jsx
 {
-    address: string,
-    balance: BigNumber,
-    transaction_count: number,
-    contract: boolean
+    address: string;
+    balance: BigNumber;
+    transaction_count: number;
+    contract: boolean;
+    permanent: boolean;
 }
 ```
 

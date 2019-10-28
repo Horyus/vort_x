@@ -1,10 +1,12 @@
 {
     "docs": {
         "Setup": ["install", "creating_store", "customizing_store", "starting_ethvtx", "ethvtx_status", "examples"],
+        "React": ["react_intro", "react_read_store", "react_emit_actions", "react_contract", "react_contract_read", "react_contract_tx", "react_contract_events"],
         "Accounts": ["accounts_intro", "accounts_state", "accounts_getters", "accounts_dispatchers", "accounts_actions"],
         "Blocks": ["blocks_intro", "blocks_state", "blocks_getters", "blocks_dispatchers", "blocks_actions"],
         "Transactions": ["transactions_intro", "transactions_state", "transactions_getters", "transactions_dispatchers", "transactions_actions"],
         "Contracts": ["contracts_intro", "contracts_state", "contracts_getters", "contracts_dispatchers", "vtxcontract", "contracts_actions"],
+        "Events": ["events_intro", "events_state", "events_actions"],
         "VTX": ["vtx_intro", "vtx_state", "vtx_getters", "vtx_dispatchers", "vtx_actions"]
     }
 }

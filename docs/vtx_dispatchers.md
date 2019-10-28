@@ -15,7 +15,7 @@ Sets the web3 instance into the store. Used when configuring the store, explaine
 
 ## `authorizeAndSetWeb3(dispatch: Dispatch, authorization: Authorization) => Promise<void>`
 
-Should be used just like `setWeb3` but only in the case where your wallet provider requires a manually authorization. This method returns a Promise that resolves when authorization is granted and web is set (or when no authorization is granted). Explained [**here**](/ethvtx/docs/starting_ethvtx#setting-web3)
+Should be used just like `setWeb3` but only in the case where your wallet provider requires a manual authorization. This method returns a Promise that resolves when authorization is granted and web3 is set (or when no authorization is granted). Explained [**here**](/ethvtx/docs/starting_ethvtx#setting-web3)
 
 ## `start(dispatch: Dispatch) => void`
 
@@ -23,7 +23,7 @@ Starts `ethvtx`. A usage example can be found [**here**](/ethvtx/docs/starting_e
 
 ## `reset(dispatch: Dispatch) => void`
 
-Basically, it's like calling start. It erases everything from the store (except the permanent contract specs and instances). Used internaly whenver the coinbase changes. You can use it if you ever need to reset the store.
+Basically, it's like calling start. It erases everything from the store (except the permanent contract specs and instances). Used internaly whenever the coinbase / network changes. You can use it if you ever need to reset the store.
 
 ```jsx
 

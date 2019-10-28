@@ -58,7 +58,7 @@ Setting up initial smart contracts and accounts should happen between setting th
 
 ### Manual
 
-Let's pretend you have a `SimpleStorage' contract, and you deployed two instances of it. If you wanted to load it you would do this. Also you have your friend Geroge's address that you want to keep in the store even between resets.
+Let's pretend you have a `SimpleStorage` contract, and you deployed two instances of it. If you wanted to load it you would do this. Also you have your friend Geroge's address that you want to keep in the store even between resets.
 
 Also, let's say that your contracts only exist on a network with network id of 1337.
 
@@ -122,7 +122,7 @@ loadContractInstance(store.dispatch, contract_name, contract_two_address, {
 
 addAccount(store.dispatch, '0xa087a6Ddc4BDB1028fe4431C8616F8E15Cf5F522', {
     permanent: true // By default false,
-    alias: '@myfriendgeorge' // This is optional
+    alias: '@myfriendgeorge' // This is optional, should be used for permanent contracts only
 });
 
 // You might need accounts that stay in the store even if the store resets.
@@ -229,7 +229,6 @@ To start `ethvtx` you need:
 * to recover reducers, initial state and sagas
 * to add your reducers, initial state and sagas if you have any
 * to create the redux store as shown in the store creation section
-* to initialize the contract engine with the store
 * to set the web3 instance
 * to load the smart contracts
 

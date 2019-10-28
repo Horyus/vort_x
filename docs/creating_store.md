@@ -75,21 +75,6 @@ const sagas = getSagas(store);
 
 It should be called after the store creation.
 
-## Contracts Engine
-
-After the store is created, you will need to initialize the contract engine.
-
-```jsx
-import { VtxContract } from 'ethvtx';
-
-...
-// Create the store
-...
-
-VtxContract.init(store);
-
-```
-
 ## Assembling everything
 
 ```jsx
@@ -126,10 +111,6 @@ const store = createStore(
 const sagas = getSagas(store);
 
 sagaMiddleware.run(sagas);
-
-// Initialize the contract engine
-VtxContract.init(store);
-
 
 ```
 

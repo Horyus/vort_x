@@ -29,22 +29,31 @@ The organization of the `contracts` might seem non-trivial to use, and it's norm
 }
 ```
 
+## ContractsInstance
+
+An contract instance is defined by a web3 `Contract` instance, the valid and the permenent flag. This flag will keep the contract from being removed when the store resets himself.
+
+```typescript
+{
+    [key: string]: { 
+        permanent: boolean; 
+        valid: boolean; 
+        web3_instance: any; 
+    };
+}
+```
+
 ## ContractsInstanceStore
 
-An contract instance is defined by an instance of the `VtxContract` class and the permenent flag. This flag will keep the contract from being removed when the store resets himself.
-
-```
+```typescript
 {
-    [key: string]: {
-        permament: boolean, 
-        instance: VtxContract 
-    };
+    [key: string]: ContractsInstances;
 }
 ```
 
 ## ContractTypeStore
 
-```
+```typescript
 {
     [key: string]: ContractsInstancesStore;
 }

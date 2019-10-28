@@ -40,7 +40,8 @@ export const VtxcacheActions = {
     VtxcacheSetData: '[VTX][VTXCACHE] SET_DATA',
     VtxcacheSetError: '[VTX][VTXCACHE] SET_ERROR',
     VtxcacheSetRequired: '[VTX][VTXCACHE] SET_REQUIRED',
-    VtxcacheReset: '[VTX][VTXCACHE] RESET'
+    VtxcacheReset: '[VTX][VTXCACHE] RESET',
+    VtxcacheClear: '[VTX][VTXCACHE] CLEAR'
 };
 ```
 
@@ -84,7 +85,7 @@ These actions are used internally by the store to make things work. You should n
 
 Set the current store status.
 
-## `VtxconfigResetSectionComplete(section: 'txs' | 'blocks' | 'vtxcache' | 'contracts' | ## 'vtxconfig' | 'accounts') => IVtxconfigResetSectionComplete`
+## `VtxconfigResetSectionComplete(section: 'txs' | 'blocks' | 'vtxcache' | 'contracts' | 'vtxconfig' | 'accounts') => IVtxconfigResetSectionComplete`
 
 Dispatched when a section of the store finished resetting. When all of them did, triggers the `VtxconfigResetComplete` action.
 
@@ -100,21 +101,25 @@ Dispatched to set the coinbase et network id.
 
 Adds a `VtxEvent` into the store. Can be useful to track what is happening in the store and get informations about main events.
 
-## `VtxcacheCreate = <T = any>(signature: string, cb: VtxcacheCb<T>) => IVtxcacheCreate`
+## `VtxcacheCreate = <T = any>(entity: string, signature: string, cb: VtxcacheCb<T>) => IVtxcacheCreate`
 
 Creates a cache section, that will get updated only if needed.
 
-## `VtxcacheSetData = <T = any>(signature: string, data: T, block: number) => IVtxcacheSetData`
+## `VtxcacheSetData = <T = any>(entity: string, signature: string, data: T, block: number) => IVtxcacheSetData`
 
 Sets the data at a specific cache section.
 
-## `VtxcacheSetRequired = (signature: string) => IVtxcacheSetRequired`
+## `VtxcacheSetRequired = (entity: string, signature: string) => IVtxcacheSetRequired`
 
 Sets the required flag to true at a specific cache section
 
-## `VtxcacheSetError = (signature: string, error: Error, block: number) => IVtxcacheSetError`
+## `VtxcacheSetError = (entity: string, signature: string, error: Error, block: number) => IVtxcacheSetError`
 
 Sets the error at a specific cache section
+
+## `VtxcacheClear(entity: string) => IVtxcacheClear`
+
+Clears cached data for a specific entity only
 
 ## `VtxcacheReset = () => IVtxcacheReset`
 

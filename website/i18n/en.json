@@ -77,6 +77,18 @@
         "title": "ethvtx status",
         "sidebar_label": "ethvtx status"
       },
+      "events_actions": {
+        "title": "Events Actions",
+        "sidebar_label": "Actions"
+      },
+      "events_intro": {
+        "title": "Events",
+        "sidebar_label": "Introduction"
+      },
+      "events_state": {
+        "title": "Events State",
+        "sidebar_label": "State"
+      },
       "examples": {
         "title": "Examples",
         "sidebar_label": "Examples"
@@ -84,6 +96,34 @@
       "install": {
         "title": "Installation",
         "sidebar_label": "Installation"
+      },
+      "react_contract_events": {
+        "title": "Get events emitted by contract",
+        "sidebar_label": "Get events emitted by contract"
+      },
+      "react_contract_read": {
+        "title": "Read data from contract",
+        "sidebar_label": "Read data from contract"
+      },
+      "react_contract_tx": {
+        "title": "Send transaction to contract",
+        "sidebar_label": "Send transaction to contract"
+      },
+      "react_contract": {
+        "title": "Use the withContracts HOC",
+        "sidebar_label": "Use the withContracts HOC"
+      },
+      "react_emit_actions": {
+        "title": "Dispatch actions",
+        "sidebar_label": "Dispatch actions"
+      },
+      "react_intro": {
+        "title": "React",
+        "sidebar_label": "Introduction"
+      },
+      "react_read_store": {
+        "title": "Reading the store",
+        "sidebar_label": "Reading the store"
       },
       "starting_ethvtx": {
         "title": "Starting ethvtx",
@@ -140,10 +180,12 @@
     },
     "categories": {
       "Setup": "Setup",
+      "React": "React",
       "Accounts": "Accounts",
       "Blocks": "Blocks",
       "Transactions": "Transactions",
       "Contracts": "Contracts",
+      "Events": "Events",
       "VTX": "VTX"
     }
   },
