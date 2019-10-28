@@ -1,3 +1,15 @@
+<a name="2.1.1"></a>
+## [2.1.1](https://github.com/ticket721/ethvtx/compare/v2.1.0...v2.1.1) (2019-10-28)
+
+
+### Bug Fixes
+
+* add readme to react-ethvtx ([5467c91](https://github.com/ticket721/ethvtx/commit/5467c91))
+* update docs homepage links ([678452d](https://github.com/ticket721/ethvtx/commit/678452d))
+* update logo format ([0354faa](https://github.com/ticket721/ethvtx/commit/0354faa))
+
+
+
 <a name="2.1.0"></a>
 # [2.1.0](https://github.com/ticket721/ethvtx/compare/v2.0.6...v2.1.0) (2019-10-28)
 
