@@ -86,7 +86,8 @@ Enumeration, representing the type of event that occured in the store.
     ContractsSpecRemoved: 'ContractsSpecRemoved',
     ContractsInstanceAdded: 'ContractsInstanceAdded',
     ContractsInstanceRemoved: 'ContractsInstanceRemoved',
-    ContractsTxBroadcasted: 'ContractsTxBroadcasted'
+    ContractsTxBroadcasted: 'ContractsTxBroadcasted',
+    ContractsDeployed: 'ContractsDeployed'
 }
 ```
 

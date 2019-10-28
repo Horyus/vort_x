@@ -1,6 +1,6 @@
 import { Reducer }                                    from 'redux';
 import { AccountsSection, AccountsStore, AliasStore } from '../../state/accounts';
-import { IAccountsAdd, IAccountsReset }               from '../actions/actionTypes';
+import { IAccountsReset }                             from '../actions/actionTypes';
 
 const ResetNonPermanentAccounts = (accounts: AccountsStore): AccountsStore => {
 

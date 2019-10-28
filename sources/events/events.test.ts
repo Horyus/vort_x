@@ -191,11 +191,15 @@ describe('[events]', (): void => {
 
         await vtx_valid_instance(this.store, 'ValueStore', deployed.options.address);
 
-        const vtxContract = getContract(this.store, 'ValueStore', '@default');
+        let vtxContract = getContract(this.store, 'ValueStore', '@default');
 
         vtxContract.events.ValueChanged();
 
-        await vtx_evm_event(this.store, VtxContract.event_sig('ValueStore', (<any> vtxContract)._address, 'ValueChanged', undefined), 1, 50);
+        const entity = VtxContract.entity_sig('ValueStore', deployed.options.address);
+
+        await vtx_evm_event(this.store, entity, VtxContract.event_sig('ValueStore', (<any> vtxContract)._address, 'ValueChanged', undefined), 1, 50);
+
+        vtxContract = getContract(this.store, 'ValueStore', '@default');
 
         const end = vtxContract.events.ValueChanged();
         expect(end).toHaveLength(1);
@@ -241,7 +245,7 @@ describe('[events]', (): void => {
 
         await vtx_valid_instance(this.store, 'ValueStore', deployed.options.address);
 
-        const vtxContract = getContract(this.store, 'ValueStore', '@default');
+        let vtxContract = getContract(this.store, 'ValueStore', '@default');
 
         const args = {
             _who: accounts[0]
@@ -249,7 +253,11 @@ describe('[events]', (): void => {
 
         vtxContract.events.ValueChanged(args);
 
-        await vtx_evm_event(this.store, VtxContract.event_sig('ValueStore', (<any> vtxContract)._address, 'ValueChanged', args), 1, 50);
+        const entity = VtxContract.entity_sig('ValueStore', deployed.options.address);
+
+        await vtx_evm_event(this.store, entity, VtxContract.event_sig('ValueStore', (<any> vtxContract)._address, 'ValueChanged', args), 1, 50);
+
+        vtxContract = getContract(this.store, 'ValueStore', '@default');
 
         const end = vtxContract.events.ValueChanged(args);
         expect(end).toHaveLength(1);
@@ -295,7 +303,7 @@ describe('[events]', (): void => {
 
         await vtx_valid_instance(this.store, 'ValueStore', deployed.options.address);
 
-        const vtxContract = getContract(this.store, 'ValueStore', '@default');
+        let vtxContract = getContract(this.store, 'ValueStore', '@default');
 
         const args = {
             _who: accounts[1]
@@ -303,7 +311,11 @@ describe('[events]', (): void => {
 
         vtxContract.events.ValueChanged(args);
 
-        await vtx_evm_event_height(this.store, VtxContract.event_sig('ValueStore', (<any> vtxContract)._address, 'ValueChanged', args), 1, 50);
+        const entity = VtxContract.entity_sig('ValueStore', deployed.options.address);
+
+        await vtx_evm_event_height(this.store, entity, VtxContract.event_sig('ValueStore', (<any> vtxContract)._address, 'ValueChanged', args), 1, 50);
+
+        vtxContract = getContract(this.store, 'ValueStore', '@default');
 
         const end = vtxContract.events.ValueChanged(args);
         expect(end).toHaveLength(0);
@@ -349,7 +361,7 @@ describe('[events]', (): void => {
 
         await vtx_valid_instance(this.store, 'ValueStore', deployed.options.address);
 
-        const vtxContract = getContract(this.store, 'ValueStore', '@default');
+        let vtxContract = getContract(this.store, 'ValueStore', '@default');
 
         const args_zero = {
             _who: accounts[0]
@@ -371,8 +383,12 @@ describe('[events]', (): void => {
             from: accounts[0]
         });
 
-        await vtx_evm_event_height(this.store, VtxContract.event_sig('ValueStore', (<any> vtxContract)._address, 'ValueChanged', args_zero), 3, 50);
-        await vtx_evm_event_height(this.store, VtxContract.event_sig('ValueStore', (<any> vtxContract)._address, 'ValueChanged', args_one), 3, 50);
+        const entity = VtxContract.entity_sig('ValueStore', deployed.options.address);
+
+        await vtx_evm_event_height(this.store, entity, VtxContract.event_sig('ValueStore', (<any> vtxContract)._address, 'ValueChanged', args_zero), 3, 50);
+        await vtx_evm_event_height(this.store, entity, VtxContract.event_sig('ValueStore', (<any> vtxContract)._address, 'ValueChanged', args_one), 3, 50);
+
+        vtxContract = getContract(this.store, 'ValueStore', '@default');
 
         const end_zero = vtxContract.events.ValueChanged(args_zero);
         const end_one = vtxContract.events.ValueChanged(args_one);

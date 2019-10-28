@@ -1,8 +1,8 @@
-import { State }           from '../../state';
-import { VtxContract }     from '../VtxContract';
-import { address_checker } from '../../utils/address_checker';
-import { is_alias }        from '../../utils/is_alias';
-import { Store }           from 'redux';
+import { State }                            from '../../state';
+import { getContractMaterial, VtxContract } from '../VtxContract';
+import { address_checker }                  from '../../utils/address_checker';
+import { is_alias }                         from '../../utils/is_alias';
+import { Store }                            from 'redux';
 
 /**
  * @description Get the list of contract specifications available in the store
@@ -41,7 +41,18 @@ export const getContract = (store: Store<State>, contract_name: string, address_
     // No instance
     if (!state.contracts.instances[contract_name] || !state.contracts.instances[contract_name][address_or_alias]) return undefined;
 
-    return new VtxContract(store, contract_name, address_or_alias, state.contracts.specs[contract_name].abi, state.contracts.specs[contract_name].bin, state.contracts.specs[contract_name].constructor_bin);
+    const web3_instance = store.getState().contracts.instances[contract_name][address_or_alias].web3_instance;
+
+    return new VtxContract(
+        store.dispatch,
+        getContractMaterial(store.getState(), contract_name, address_or_alias),
+        web3_instance,
+        contract_name,
+        address_or_alias,
+        state.contracts.specs[contract_name].abi,
+        state.contracts.specs[contract_name].bin,
+        state.contracts.specs[contract_name].constructor_bin
+    );
 };
 
 interface ContractList {

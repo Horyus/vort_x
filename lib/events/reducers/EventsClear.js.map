@@ -1,0 +1,1 @@
+{"version":3,"file":"EventsClear.js","sourceRoot":"","sources":["../../../sources/events/reducers/EventsClear.ts"],"names":[],"mappings":";;;;;;;;;;;;;AAIa,QAAA,WAAW,GACpB,UAAC,KAAoB,EAAE,MAAoB;IAEvC,IAAI,KAAK,CAAC,MAAM,CAAC,MAAM,CAAC,EAAE;QACtB,OAAO,KAAK,CAAC,MAAM,CAAC,MAAM,CAAC,CAAC;KAC/B;IAED,oBACO,KAAK,EACV;AAEN,CAAC,CAAC"}

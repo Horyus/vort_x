@@ -11,9 +11,9 @@ sidebar_label: Introduction
 * `vtxconfig` with configuration and crucial data
 * `vtxcache` with cached data from the smart contract calls
 * `vtxevents` with keys events happening in `ethvtx`
-* `vtxpoll` with all the informations for the polling engine
+* `vtxpoll` with all the information for the polling engine
 
-Several things might interreset you here
+Several things might interest you here:
 
 * Recover your `coinbase` address
 * Recover the `web3` instance

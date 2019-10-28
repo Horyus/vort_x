@@ -20,6 +20,8 @@ export {
     ContractsRemoveSpec,
     ContractsAddSpec,
     ContractsDeploy,
+    ContractsInstanceSetValidity,
+    ContractsSetWeb3Instance
 } from './contracts/actions/actions';
 
 export {
@@ -31,6 +33,8 @@ export {
     IContractsRemoveSpec,
     IContractsAddSpec,
     IContractsDeploy,
+    IContractsSetWeb3Instance,
+    IContractsInstanceSetValidity,
     ContractsActionTypes
 } from './contracts/actions/actionTypes';
 
@@ -41,7 +45,7 @@ export {
 }                                                                     from './txs/actions/actionTypes';
 
 export {
-    VtxcacheReset, VtxcacheSetData, VtxcacheSetRequired, VtxcacheCreate, VtxcacheSetError
+    VtxcacheReset, VtxcacheSetData, VtxcacheSetRequired, VtxcacheCreate, VtxcacheSetError, VtxcacheClear
 }   from './vtxcache/actions/actions';
 
 export {
@@ -52,11 +56,19 @@ export {
     IVtxcacheSetData,
     IVtxcacheSetRequired,
     VtxcacheActionTypes,
-    VtxcacheCb
+    VtxcacheCb,
+    IVtxcacheClear
 }   from './vtxcache/actions/actionTypes';
 
 export {
-    VtxconfigSetStatus, VtxconfigReset, VtxconfigSetWeb3, VtxconfigResetComplete, VtxconfigResetSectionComplete, VtxconfigSetAllowedNet, VtxconfigSetInfos
+    VtxconfigSetStatus,
+    VtxconfigReset,
+    VtxconfigSetWeb3,
+    VtxconfigResetComplete,
+    VtxconfigResetSectionComplete,
+    VtxconfigSetAllowedNet,
+    VtxconfigSetInfos,
+    VtxconfigAuthorizeAndSetWeb3
 }   from './vtxconfig/actions/actions';
 export {
     VtxconfigActions,
@@ -67,7 +79,9 @@ export {
     IVtxconfigSetWeb3,
     VtxconfigActionTypes,
     IVtxconfigSetAllowedNet,
-    IVtxconfigSetInfos
+    IVtxconfigSetInfos,
+    Authorization,
+    IVtxconfigAuthorizeAndSetWeb3
 }   from './vtxconfig/actions/actionTypes';
 
 export { VtxeventsAdd }                                          from './vtxevents/actions/actions';
@@ -76,8 +90,17 @@ export { IVtxeventsAdd, VtxeventsActions, VtxeventsActionTypes } from './vtxeven
 
 export {
     IVtxpollKill, IVtxpollSetIntervalId, VtxpollActions, VtxpollActionTypes, IVtxpollAdd
-}from './vtxpoll/actions/actionTypes';
+}                                                        from './vtxpoll/actions/actionTypes';
 export { VtxpollKill, VtxpollSetIntervalId, VtxpollAdd } from './vtxpoll/actions/action';
 
-export { IAccountsReset, AccountsActions, IAccountsSetInfos, IAccountsRemove, IAccountsAdd, AccountsActionTypes } from './accounts/actions/actionTypes';
+export {
+    IAccountsReset, AccountsActions, IAccountsSetInfos, IAccountsRemove, IAccountsAdd, AccountsActionTypes
+}                                                                       from './accounts/actions/actionTypes';
 export { AccountsReset, AccountsRemove, AccountsAdd, AccountsSetInfos } from './accounts/actions/actions';
+
+export {
+    EventsClear, EventsCaught, EventsFollow, EventsSetHeight
+}from './events/actions/actions';
+export {
+    IEventsClear, EventsActions, IEventsFollow, EventsActionTypes, IEventsCaught, IEventsSetHeight
+}   from './events/actions/actionTypes';

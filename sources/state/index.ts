@@ -41,8 +41,6 @@ export const InitialState: State = {
         alias: {}
     },
     events: {
-        data: {},
-        followed: {}
     },
 
     vtxconfig: {

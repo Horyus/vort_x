@@ -278,4 +278,52 @@ describe('[accounts]', (): void => {
         expect(acc_marc).toBeUndefined();
     });
 
+    it('Fetch accounts, transact, check balances, rm account without mentioning alias', async function (): Promise<void> {
+
+        init(this.store.dispatch, this.web3);
+        await vtx_status(this.store, VtxStatus.Loaded, 10);
+
+        addAccount(this.store.dispatch, FROM_ADDRESS_MARC, {alias: '@marc'});
+        addAccount(this.store.dispatch, TO_ADDRESS_LISA, {alias: '@lisa'});
+
+        await vtx_account(this.store, FROM_ADDRESS_MARC, 0, 50);
+        await vtx_account(this.store, TO_ADDRESS_LISA, 0, 50);
+
+        let acc_marc = getAccount(this.store.getState(), '@marc');
+        let acc_lisa = getAccount(this.store.getState(), '@lisa');
+
+        expect(acc_marc.balance.toString()).toEqual('81985529206280466');
+        expect(acc_marc.transaction_count).toEqual(0);
+        expect(acc_lisa.balance.toString()).toEqual('81985529206280466');
+        expect(acc_lisa.transaction_count).toEqual(0);
+
+        await this.web3.eth.sendTransaction({
+            from: FROM_ADDRESS_MARC,
+            to: TO_ADDRESS_LISA,
+            value: '0x1112',
+            gas: '0xffff',
+            gasPrice: '0xffffff'
+        });
+
+        await ganache_mine(this.web3, 10);
+
+        await vtx_account(this.store, FROM_ADDRESS_MARC, 2, 50);
+        await vtx_account(this.store, TO_ADDRESS_LISA, 2, 50);
+
+        acc_marc = getAccount(this.store.getState(), '@marc');
+        acc_lisa = getAccount(this.store.getState(), '@lisa');
+
+        expect(acc_marc.balance.toString()).toEqual('81985176884761096');
+        expect(acc_marc.transaction_count).toEqual(1);
+        expect(acc_lisa.balance.toString()).toEqual('81985529206284836');
+        expect(acc_lisa.transaction_count).toEqual(0);
+
+        removeAccount(this.store.dispatch, FROM_ADDRESS_MARC);
+
+        acc_marc = getAccount(this.store.getState(), FROM_ADDRESS_MARC);
+
+        expect(acc_marc).toBeUndefined();
+    });
+
+
 });

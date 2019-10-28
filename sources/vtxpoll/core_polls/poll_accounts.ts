@@ -10,7 +10,7 @@ export const poll_accounts: VtxPollCb = async (state: State, emit: Dispatch, new
 
     for (const account of Object.keys(state.accounts.accounts)) {
 
-        if (!new_block && state.accounts.accounts[account].balance !== null) continue ;
+        if (!new_block && state.accounts.accounts[account].balance !== null) continue;
 
         const balance: BigNumber = new BigNumber(await web3.eth.getBalance(account));
         const transaction_count: number = await web3.eth.getTransactionCount(account);
@@ -23,29 +23,6 @@ export const poll_accounts: VtxPollCb = async (state: State, emit: Dispatch, new
 
         if (state.accounts.accounts[account].balance !== balance || state.accounts.accounts[account].transaction_count !== transaction_count) {
             emit(AccountsSetInfos(account, balance, transaction_count, contract));
-        }
-
-    }
-
-    if (!new_block) {
-
-    } else {
-
-        for (const account of Object.keys(state.accounts.accounts)) {
-
-            const balance: BigNumber = new BigNumber(await web3.eth.getBalance(account));
-            const transaction_count: number = await web3.eth.getTransactionCount(account);
-
-            let contract = undefined;
-            if (state.accounts.accounts[account].contract === null) {
-                const code = (await web3.eth.getCode(account));
-                contract = code !== '0x' && code !== '0x0';
-            }
-
-            if (state.accounts.accounts[account].balance !== balance || state.accounts.accounts[account].transaction_count !== transaction_count) {
-                emit(AccountsSetInfos(account, balance, transaction_count, contract));
-            }
-
         }
 
     }

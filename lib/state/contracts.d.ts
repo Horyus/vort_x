@@ -12,6 +12,7 @@ export interface ContractsInstances {
     [key: string]: {
         permanent: boolean;
         valid: boolean;
+        web3_instance: any;
     };
 }
 export interface ContractsTypeStore {

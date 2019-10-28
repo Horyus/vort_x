@@ -5,12 +5,18 @@ export declare const ContractsActions: {
     ContractsRemoveSpec: string;
     ContractsReset: string;
     ContractsNew: string;
+    ContractsSetWeb3Instance: string;
     ContractsRemove: string;
     ContractsSetSigner: string;
     ContractsSend: string;
     ContractsDeploy: string;
     ContractsInstanceSetValidity: string;
 };
+export interface IContractsSetWeb3Instance extends Action<string> {
+    contract_name: string;
+    contract_address: string;
+    clear: boolean;
+}
 export interface IContractsInstanceSetValidity extends Action<string> {
     contract_name: string;
     contract_address: string;
@@ -53,4 +59,4 @@ export interface IContractsRemove extends Action<string> {
 }
 export interface IContractsReset extends Action<string> {
 }
-export declare type ContractsActionTypes = IContractsAddSpec | IContractsRemoveSpec | IContractsNew | IContractsRemove | IContractsInstanceSetValidity;
+export declare type ContractsActionTypes = IContractsAddSpec | IContractsRemoveSpec | IContractsNew | IContractsRemove | IContractsInstanceSetValidity | IContractsSetWeb3Instance;

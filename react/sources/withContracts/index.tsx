@@ -1,17 +1,20 @@
-import * as React                from 'react';
-import { VtxContract }           from 'ethvtx';
-import { Dispatch }              from 'redux';
-import { State }                 from 'ethvtx/lib/state';
-import { createStoreConsumer }   from './StoreConsumer';
-import { createContractWrapper } from './ContractWrapper';
+import * as React          from 'react';
+import { VtxContract }     from 'ethvtx';
+import { State }           from 'ethvtx/lib/state';
+import { ContractBuilder } from './ContractBuilder';
 
 // 1. Custom Redux Context
 // 2. Loading Component
 
 export interface ContractParams {
     contract: string;
-    address: string;
-    load?: boolean;
+    address?: string;
+    alias?: string;
+    balance?: boolean;
+    persist_cache?: boolean;
+    persist_balance?: boolean;
+    persist_events?: boolean;
+    persist_contract?: boolean;
 }
 
 interface ContractInstance {
@@ -22,24 +25,13 @@ export interface WrappedComponentProps {
     contracts: ContractData[];
 }
 
+export type ContractParamsLoader<InitialProps, ReduxState extends State = State> = (state: ReduxState, props: InitialProps) => ContractParams[];
+
 export type ContractData = ContractParams & ContractInstance;
 
-export interface WithContractsParams<ReceivedProps, ReduxState = any, ReduxStateProps = any, ReduxDispatchProps = any> {
-    contracts: ContractParams[] | ((props: any) => ContractParams[]);
-    mapStateToProps?: (state: ReduxState, ownProps: ReceivedProps) => ReduxStateProps;
-    mapDispatchToProps?: (dispatch: Dispatch, ownProps: ReceivedProps) => ReduxDispatchProps;
-}
-
 export function withContracts<ReceivedProps, ReduxState extends State = State, ReduxStateProps = any, ReduxDispatchProps = any>(
-    params: WithContractsParams<ReceivedProps, ReduxState, ReduxStateProps, ReduxDispatchProps>,
+    contracts: ContractParams[] | ContractParamsLoader<ReceivedProps, ReduxState>,
     component: React.ComponentType<ReceivedProps & WrappedComponentProps>
 ): React.ComponentType<ReceivedProps> {
-    return createStoreConsumer<ReceivedProps>(
-        createContractWrapper<ReceivedProps, ReduxState & State, ReduxStateProps, ReduxDispatchProps>(
-            component,
-            params.contracts,
-            params.mapStateToProps,
-            params.mapDispatchToProps
-        )
-    );
+    return ContractBuilder<ReceivedProps>(contracts, component)
 }

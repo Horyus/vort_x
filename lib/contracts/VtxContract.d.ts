@@ -1,12 +1,21 @@
-import { Store } from 'redux';
+import { State, VtxcacheStore } from '../state';
+import { Dispatch } from 'redux';
+import { EventsEntitySection } from '../state/events';
 interface Methods {
     [key: string]: (...args: any[]) => any;
 }
 interface Events {
     [key: string]: (...args: any[]) => any;
 }
+export interface VtxContractMaterial {
+    cache: VtxcacheStore;
+    events: EventsEntitySection;
+    valid: boolean;
+    coinbase: string;
+}
+export declare const getContractMaterial: (state: State, contract: string, address: string) => VtxContractMaterial;
 export declare class VtxContract {
-    private readonly _store;
+    private readonly _dispatch;
     private readonly _contract;
     private readonly _bin;
     private readonly _constructor_bin;
@@ -15,7 +24,10 @@ export declare class VtxContract {
     private readonly _events;
     private readonly _address;
     private readonly _abi;
-    constructor(store: Store, name: string, address: string, abi: any, bin?: string, constructor_bin?: string);
+    private readonly _entity_signature;
+    private readonly material;
+    static entity_sig(name: string, address: string): string;
+    constructor(dispatch: Dispatch, material: VtxContractMaterial, instance: any, name: string, address: string, abi: any, bin?: string, constructor_bin?: string);
     readonly address: string;
     readonly abi: any;
     readonly web3_instance: any;

@@ -1,6 +1,6 @@
-import { Reducer }                                      from 'redux';
-import { ContractsSection }                             from '../../state/contracts';
-import { IContractsInstanceSetValidity, IContractsNew } from '../actions/actionTypes';
+import { Reducer }                       from 'redux';
+import { ContractsSection }              from '../../state/contracts';
+import { IContractsInstanceSetValidity } from '../actions/actionTypes';
 
 export const ContractsInstanceSetValidity: Reducer<ContractsSection, IContractsInstanceSetValidity> =
     (state: ContractsSection, action: IContractsInstanceSetValidity): ContractsSection => {

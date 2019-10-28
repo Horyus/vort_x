@@ -3,11 +3,18 @@ import {
     IContractsAddSpec, IContractsDeploy, IContractsInstanceSetValidity,
     IContractsNew, IContractsRemove,
     IContractsRemoveSpec,
-    IContractsReset, IContractsSend
+    IContractsReset, IContractsSend, IContractsSetWeb3Instance
 } from './actionTypes';
 import { alias_checker }             from '../../utils/alias_checker';
 import { address_checker }           from '../../utils/address_checker';
 import { NewContractInfos, TxInfos } from '../../state/txs';
+
+export const ContractsSetWeb3Instance = (contract_name: string, contract_address: string, clear: boolean): IContractsSetWeb3Instance => ({
+    type: ContractsActions.ContractsSetWeb3Instance,
+    contract_name,
+    contract_address,
+    clear
+});
 
 export const ContractsDeploy = (contract: NewContractInfos, tx_infos: Partial<TxInfos>, args: any[], id: number): IContractsDeploy => ({
     type: ContractsActions.ContractsDeploy,

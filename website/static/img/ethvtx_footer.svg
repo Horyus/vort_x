@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 500 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
+    <g transform="matrix(5.62858,0,0,5.58168,-1302.8,-577.781)">
+        <text x="242.663px" y="154.451px" style="font-family:'Roboto-Thin', 'Roboto Thin';font-weight:250;font-size:50px;fill:white;">eth</text>
+    </g>
+    <g transform="matrix(3.84653,0,0,3.81447,-993.182,-514.396)">
+        <text x="277.017px" y="246.272px" style="font-family:'Roboto-Regular', 'Roboto';font-size:50px;fill:url(#_Linear1);">VTX</text>
+    </g>
+    <g transform="matrix(1.63333,0,0,1.63333,98.716,116.158)">
+        <path d="M242.623,-68.056L242.623,231.944L-57.377,231.944L-57.377,-68.056L242.623,-68.056ZM232.623,-58.056L-47.377,-58.056L-47.377,221.944L232.623,221.944L232.623,-58.056Z" style="fill:white;"/>
+    </g>
+    <defs>
+        <linearGradient id="_Linear1" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(93.4476,-56.6427,56.1707,94.2329,277.292,257.009)"><stop offset="0" style="stop-color:rgb(255,169,191);stop-opacity:1"/><stop offset="0.33" style="stop-color:rgb(159,215,255);stop-opacity:1"/><stop offset="0.67" style="stop-color:rgb(255,204,174);stop-opacity:1"/><stop offset="1" style="stop-color:rgb(236,177,222);stop-opacity:1"/></linearGradient>
+    </defs>
+</svg>

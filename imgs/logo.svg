@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 1000 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
+    <g transform="matrix(3.44607,0,0,3.41736,-450.697,-284.306)">
+        <text x="242.663px" y="154.451px" style="font-family:'Roboto-Thin', 'Roboto Thin';font-weight:250;font-size:50px;fill:rgb(32,32,32);">eth</text>
+    </g>
+    <g transform="matrix(2.35502,0,0,2.33539,-261.132,-245.499)">
+        <text x="277.017px" y="246.272px" style="font-family:'Roboto-Regular', 'Roboto';font-size:50px;fill:url(#_Linear1);">VTX</text>
+    </g>
+    <g transform="matrix(-1.5,-1.73472e-16,1.73472e-16,-1.5,650,372.499)">
+        <path d="M200,0L200,200L0,200L0,0L200,0ZM190,10L16.667,16.667L10,190L195,195L190,10Z" style="fill:rgb(32,32,32);"/>
+    </g>
+    <g transform="matrix(1,0,0,1,-264.361,2.49896)">
+        <text x="357.659px" y="418.779px" style="font-family:'Roboto-Light', 'Roboto Light';font-weight:300;font-size:29.167px;">ether<tspan x="422.714px " y="418.779px ">e</tspan>um-r<tspan x="497.539px " y="418.779px ">e</tspan>ady &amp; fr<tspan x="609.321px " y="418.779px ">a</tspan>mework-agnostic r<tspan x="863.119px " y="418.779px ">e</tspan>dux st<tspan x="955.547px 971.882px 981.424px " y="418.779px 418.779px 418.779px ">ore</tspan> conﬁgur<tspan x="1108.07px " y="418.779px ">a</tspan>tion</text>
+    </g>
+    <defs>
+        <linearGradient id="_Linear1" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(93.4476,-56.6427,56.1707,94.2329,277.292,257.009)"><stop offset="0" style="stop-color:rgb(255,169,191);stop-opacity:1"/><stop offset="0.33" style="stop-color:rgb(159,215,255);stop-opacity:1"/><stop offset="0.67" style="stop-color:rgb(255,204,174);stop-opacity:1"/><stop offset="1" style="stop-color:rgb(236,177,222);stop-opacity:1"/></linearGradient>
+    </defs>
+</svg>

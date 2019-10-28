@@ -4,8 +4,13 @@ export declare const EventsActions: {
     EventsFollow: string;
     EventsCaught: string;
     EventsSetHeight: string;
+    EventsClear: string;
 };
+export interface IEventsClear extends Action<string> {
+    entity: string;
+}
 export interface IEventsFollow extends Action<string> {
+    entity: string;
     event: string;
     arguments: {
         [key: string]: string;
@@ -15,11 +20,13 @@ export interface IEventsFollow extends Action<string> {
     contract: string;
 }
 export interface IEventsCaught extends Action<string> {
+    entity: string;
     signature: string;
     infos: Web3Event;
 }
 export interface IEventsSetHeight extends Action<string> {
+    entity: string;
     signature: string;
     new_height: number;
 }
-export declare type EventsActionTypes = IEventsFollow | IEventsCaught | IEventsSetHeight;
+export declare type EventsActionTypes = IEventsFollow | IEventsCaught | IEventsSetHeight | IEventsClear;

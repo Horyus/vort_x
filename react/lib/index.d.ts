@@ -1,2 +1,2 @@
-export { withContracts, WrappedComponentProps, ContractData, ContractParams, WithContractsParams } from './withContracts';
+export { withContracts, WrappedComponentProps, ContractData, ContractParams, ContractParamsLoader } from './withContracts';
 export { getContractFromProps } from './withContracts/getContractFromProps';

@@ -17,7 +17,9 @@ export const get_contract_address = async (): Promise<string | null> => {
 
         const web3_instance = await web3_getter();
         const net = await web3_instance.eth.net.getId();
-        address = (SimpleStorage as any).networks[net].address;
+        if ((SimpleStorage as any).networks[net]) {
+            address = (SimpleStorage as any).networks[net].address;
+        }
 
     }
 
