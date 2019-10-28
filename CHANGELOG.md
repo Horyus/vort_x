@@ -1,3 +1,30 @@
+<a name="2.1.0"></a>
+# [2.1.0](https://github.com/ticket721/ethvtx/compare/v2.0.6...v2.1.0) (2019-10-28)
+
+
+### Bug Fixes
+
+* ci name ([1d9c690](https://github.com/ticket721/ethvtx/commit/1d9c690))
+* pour store data into VtxContract instances ([#124](https://github.com/ticket721/ethvtx/issues/124)) ([36def6f](https://github.com/ticket721/ethvtx/commit/36def6f)), closes [#96](https://github.com/ticket721/ethvtx/issues/96)
+* switch to mocha ([170cd76](https://github.com/ticket721/ethvtx/commit/170cd76))
+
+
+### Features
+
+* add issue templates ([12c7f66](https://github.com/ticket721/ethvtx/commit/12c7f66))
+* add test script ([36edb61](https://github.com/ticket721/ethvtx/commit/36edb61))
+* change contract to support withContract HOC ([ee387f6](https://github.com/ticket721/ethvtx/commit/ee387f6))
+* complete VtxContract refactoring done ([398f250](https://github.com/ticket721/ethvtx/commit/398f250))
+* coveralls parallel build support ([42d00e9](https://github.com/ticket721/ethvtx/commit/42d00e9))
+* create react component library ([c2b525d](https://github.com/ticket721/ethvtx/commit/c2b525d))
+* fix coverage upload ([8c606e5](https://github.com/ticket721/ethvtx/commit/8c606e5))
+* switch to github actions ([8cbc4ae](https://github.com/ticket721/ethvtx/commit/8cbc4ae))
+* update example ([755726b](https://github.com/ticket721/ethvtx/commit/755726b))
+* update react example ([72ef317](https://github.com/ticket721/ethvtx/commit/72ef317))
+* update repo image and location ([e10ada7](https://github.com/ticket721/ethvtx/commit/e10ada7))
+
+
+
 <a name="2.0.6"></a>
 ## [2.0.6](https://github.com/ticket721/ethvtx/compare/v2.0.5...v2.0.6) (2019-05-12)
 
