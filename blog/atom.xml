@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://horyus.github.io/ethvtx/blog</id>
+    <id>https://ticket721.github.io/ethvtx/blog</id>
     <title>ethvtx Blog</title>
     <updated>2019-03-18T06:00:00Z</updated>
     <generator>Feed for Node.js</generator>
-    <link rel="alternate" href="https://horyus.github.io/ethvtx/blog"/>
+    <link rel="alternate" href="https://ticket721.github.io/ethvtx/blog"/>
     <subtitle>The best place to stay up-to-date with the latest ethvtx news and events.</subtitle>
-    <logo>https://horyus.github.io/ethvtx/</logo>
+    <logo>https://ticket721.github.io/ethvtx/</logo>
     <rights>Copyright © 2019 Horyus</rights>
     <entry>
         <title type="html"><![CDATA[Version 2.0.0 is live !]]></title>
-        <id>https://horyus.github.io/ethvtx/blog/2019/03/18/launch.html</id>
-        <link href="https://horyus.github.io/ethvtx/blog/2019/03/18/launch.html">
+        <id>https://ticket721.github.io/ethvtx/blog/2019/03/18/launch.html</id>
+        <link href="https://ticket721.github.io/ethvtx/blog/2019/03/18/launch.html">
         </link>
         <updated>2019-03-18T06:00:00Z</updated>
         <summary type="html"><![CDATA[<p>Version 2.0.0 is live and brings a lot of improvments from last versions. The store has completely been revamped (mainly on the data refresh part). The documentation got an upgrade aswell.</p> <ul> <li><a href="/ethvtx/docs/accounts_intro">Follow accounts, get balances and transaction counts</a></li> <li><a href="/ethvtx/docs/blocks_intro">Get blo...</a></li></ul>]]></summary>

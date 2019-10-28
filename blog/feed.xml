@@ -2,21 +2,21 @@
 <rss version="2.0">
     <channel>
         <title>ethvtx Blog</title>
-        <link>https://horyus.github.io/ethvtx/blog</link>
+        <link>https://ticket721.github.io/ethvtx/blog</link>
         <description>The best place to stay up-to-date with the latest ethvtx news and events.</description>
         <lastBuildDate>Mon, 18 Mar 2019 06:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>Feed for Node.js</generator>
         <image>
             <title>ethvtx Blog</title>
-            <url>https://horyus.github.io/ethvtx/</url>
-            <link>https://horyus.github.io/ethvtx/blog</link>
+            <url>https://ticket721.github.io/ethvtx/</url>
+            <link>https://ticket721.github.io/ethvtx/blog</link>
         </image>
         <copyright>Copyright © 2019 Horyus</copyright>
         <item>
             <title><![CDATA[Version 2.0.0 is live !]]></title>
-            <link>https://horyus.github.io/ethvtx/blog/2019/03/18/launch.html</link>
-            <guid>https://horyus.github.io/ethvtx/blog/2019/03/18/launch.html</guid>
+            <link>https://ticket721.github.io/ethvtx/blog/2019/03/18/launch.html</link>
+            <guid>https://ticket721.github.io/ethvtx/blog/2019/03/18/launch.html</guid>
             <pubDate>Mon, 18 Mar 2019 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>Version 2.0.0 is live and brings a lot of improvments from last versions. The store has completely been revamped (mainly on the data refresh part). The documentation got an upgrade aswell.</p> <ul> <li><a href="/ethvtx/docs/accounts_intro">Follow accounts, get balances and transaction counts</a></li> <li><a href="/ethvtx/docs/blocks_intro">Get blo...</a></li></ul>]]></description>
         </item>

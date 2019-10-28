@@ -1,0 +1,173 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Use the withContracts HOC · ethvtx</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Contracts are a different part of the store. To properly interact with Contracts, you **NEED** to use the `withContracts` HOC in order to recover the `VtxContract` instance."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Use the withContracts HOC · ethvtx"/><meta property="og:type" content="website"/><meta property="og:url" content="https://ticket721.github.io/ethvtx/"/><meta property="og:description" content="Contracts are a different part of the store. To properly interact with Contracts, you **NEED** to use the `withContracts` HOC in order to recover the `VtxContract` instance."/><meta property="og:image" content="https://ticket721.github.io/ethvtx/img/docusaurus.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://ticket721.github.io/ethvtx/img/docusaurus.png"/><link rel="shortcut icon" href="/ethvtx/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://ticket721.github.io/ethvtx/blog/atom.xml" title="ethvtx Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://ticket721.github.io/ethvtx/blog/feed.xml" title="ethvtx Blog RSS Feed"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/ethvtx/js/scrollSpy.js"></script><link rel="stylesheet" href="/ethvtx/css/main.css"/><script src="/ethvtx/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/ethvtx/"><h2 class="headerTitle">ethvtx</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/ethvtx/docs/install" target="_self">Docs</a></li><li class=""><a href="/ethvtx/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>React</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Setup</h3><ul class=""><li class="navListItem"><a class="navItem" href="/ethvtx/docs/install">Installation</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/creating_store">Creating the store</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/customizing_store">Customizing the store</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/starting_ethvtx">Starting ethvtx</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/ethvtx_status">ethvtx status</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/examples">Examples</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">React</h3><ul class=""><li class="navListItem"><a class="navItem" href="/ethvtx/docs/react_intro">Introduction</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/react_read_store">Reading the store</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/react_emit_actions">Dispatch actions</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/ethvtx/docs/react_contract">Use the withContracts HOC</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/react_contract_read">Read data from contract</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/react_contract_tx">Send transaction to contract</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/react_contract_events">Get events emitted by contract</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Accounts</h3><ul class=""><li class="navListItem"><a class="navItem" href="/ethvtx/docs/accounts_intro">Introduction</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/accounts_state">State</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/accounts_getters">Getters</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/accounts_dispatchers">Dispatchers</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/accounts_actions">Actions</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Blocks</h3><ul class=""><li class="navListItem"><a class="navItem" href="/ethvtx/docs/blocks_intro">Introduction</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/blocks_state">State</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/blocks_getters">Getters</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/blocks_dispatchers">Dispatchers</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/blocks_actions">Actions</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Transactions</h3><ul class=""><li class="navListItem"><a class="navItem" href="/ethvtx/docs/transactions_intro">Introduction</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/transactions_state">State</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/transactions_getters">Getters</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/transactions_dispatchers">Dispatchers</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/transactions_actions">Actions</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Contracts</h3><ul class=""><li class="navListItem"><a class="navItem" href="/ethvtx/docs/contracts_intro">Introduction</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/contracts_state">State</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/contracts_getters">Getters</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/contracts_dispatchers">Dispatchers</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/vtxcontract">VtxContract</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/contracts_actions">Actions</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Events</h3><ul class=""><li class="navListItem"><a class="navItem" href="/ethvtx/docs/events_intro">Introduction</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/events_state">State</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/events_actions">Actions</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">VTX</h3><ul class=""><li class="navListItem"><a class="navItem" href="/ethvtx/docs/vtx_intro">Introduction</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/vtx_state">State</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/vtx_getters">Getters</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/vtx_dispatchers">Dispatchers</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/vtx_actions">Actions</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Use the withContracts HOC</h1></header><article><div><span><p>Contracts are a different part of the store. To properly interact with Contracts, you <strong>NEED</strong> to use the <code>withContracts</code> HOC in order to recover the <code>VtxContract</code> instance.</p>
+<p>A <code>VtxContract</code> instance is an object that will allow you to both read data (constant calls and events) from a smart contract and trigger transactions. By using the <code>withContracts</code> helper, you will be sure that the refreshing flow preserved.</p>
+<h2><a class="anchor" aria-hidden="true" id="the-smart-contract"></a><a href="#the-smart-contract" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The Smart Contract</h2>
+<p>Let's say we have the following contract in the exemples that follow.</p>
+<pre><code class="hljs css language-solidity">pragma solidity ^<span class="hljs-number">0.5</span><span class="hljs-number">.0</span>;
+
+contract SimpleStorage {
+    <span class="hljs-keyword">uint</span> <span class="hljs-keyword">public</span> storedData;
+    <span class="hljs-function"><span class="hljs-keyword">event</span> <span class="hljs-title">ValueChanged</span>(<span class="hljs-params">address indexed who, <span class="hljs-keyword">uint</span> new_value</span>)</span>;
+
+    constructor(<span class="hljs-keyword">uint</span> initialValue) <span class="hljs-keyword">public</span> {
+        storedData = initialValue;
+    }
+
+    <span class="hljs-function">function <span class="hljs-title">set</span>(<span class="hljs-params"><span class="hljs-keyword">uint</span> x</span>) <span class="hljs-keyword">public</span></span> {
+        storedData = x;
+        <span class="hljs-function">emit <span class="hljs-title">ValueChanged</span>(<span class="hljs-params">msg.sender, x</span>)</span>;
+    }
+
+    <span class="hljs-function">function <span class="hljs-title">get</span>(<span class="hljs-params"></span>) <span class="hljs-keyword">public</span> view <span class="hljs-title">returns</span> (<span class="hljs-params"><span class="hljs-keyword">uint</span> retVal</span>)</span> {
+        <span class="hljs-keyword">return</span> storedData;
+    }
+
+}
+</code></pre>
+<p>In the following sections, we will see how we can use the three items that the contract expose: <code>set</code>, <code>get</code> and the <code>ValueChanged</code> event.</p>
+<h2><a class="anchor" aria-hidden="true" id="loading-the-spec"></a><a href="#loading-the-spec" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Loading the Spec</h2>
+<p>Loading the spec is simple, and is explained <a href="/ethvtx/docs/starting_ethvtx#setting-initial-smart-contracts-accounts"><strong>here</strong></a>. When you contract is compiled, you should be able to recover the informations required to build the spec (abi, binary code ...)</p>
+<h2><a class="anchor" aria-hidden="true" id="loading-the-contract-in-a-react-component"></a><a href="#loading-the-contract-in-a-react-component" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Loading the Contract in a React Component</h2>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> { withContracts, getContractFromProps } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-ethvtx'</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ContractLoaderContainer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+
+    render() {
+
+        <span class="hljs-keyword">const</span> contract = getContractFromProps(<span class="hljs-keyword">this</span>.props, <span class="hljs-string">'SimpleStorage'</span>, <span class="hljs-keyword">this</span>.props.address);
+
+        <span class="hljs-keyword">return</span> (
+            <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+            {
+                contracts !== null ? 'Loaded !' : 'Loading ...'
+            }
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+        );
+    }
+}
+
+<span class="hljs-keyword">const</span> loadContract = <span class="hljs-function">(<span class="hljs-params">state, props</span>) =&gt;</span> {
+
+    <span class="hljs-keyword">if</span> (props.address) {
+        <span class="hljs-keyword">return</span> [
+            {
+                <span class="hljs-attr">contract</span>: <span class="hljs-string">'SimpleStorage'</span>,
+                <span class="hljs-attr">address</span>: props.address,
+                <span class="hljs-attr">balance</span>: <span class="hljs-literal">true</span>
+            }
+        ]
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">return</span> [];
+    }
+
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> ContractLoader = withContracts(loadContract, ContractLoaderContainer);
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="withcontracts"></a><a href="#withcontracts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>withContracts</code></h2>
+<pre><code class="hljs css language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">withContracts</span>(<span class="hljs-params">contracts_or_function, component</span>);
+</span></code></pre>
+<h3><a class="anchor" aria-hidden="true" id="contracts_or_function"></a><a href="#contracts_or_function" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>contracts_or_function</code></h3>
+<h4><a class="anchor" aria-hidden="true" id="contractparams"></a><a href="#contractparams" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ContractParams</h4>
+<pre><code class="hljs">{
+<span class="hljs-symbol">    contract:</span> string;
+    address?: string;
+    alias?: string;
+    balance?: <span class="hljs-keyword">boolean</span>;
+    persist_cache?: <span class="hljs-keyword">boolean</span>;
+    persist_balance?: <span class="hljs-keyword">boolean</span>;
+    persist_events?: <span class="hljs-keyword">boolean</span>;
+    persist_contract?: <span class="hljs-keyword">boolean</span>;
+}
+</code></pre>
+<p>The first argument is either an array of objects of type <code>ContractParams</code>, or a function taking the store <code>state</code> and the given <code>props</code> as arguments and returning an array of object of type <code>ContractParams</code>.</p>
+<p>To sum things up, this</p>
+<pre><code class="hljs css language-javascript">withContracts([
+    {
+        <span class="hljs-attr">contract</span>: <span class="hljs-string">'SimpleStorage'</span>,
+        <span class="hljs-attr">address</span>: <span class="hljs-string">'0x6C90AeCe04198DA2d5CA9B956b8F95aF8041DE37'</span>
+    }
+], ContractBuilder)
+</code></pre>
+<p>is the same as this</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> loadContract = <span class="hljs-function">(<span class="hljs-params">state, props</span>) =&gt;</span> ({
+    <span class="hljs-attr">contract</span>: <span class="hljs-string">'SimpleStorage'</span>,
+    <span class="hljs-attr">address</span>: <span class="hljs-string">'0x6C90AeCe04198DA2d5CA9B956b8F95aF8041DE37'</span>
+})
+
+withContracts(loadContract, ContractBuilder)
+</code></pre>
+<p>The function allows more modularity, taking address or contract type from props.</p>
+<p>The <code>ContractParams</code> is defined by the following fields</p>
+<table>
+<thead>
+<tr><th style="text-align:center">Name</th><th style="text-align:center">Optional</th><th style="text-align:center">Description</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align:center"><code>contract</code></td><td style="text-align:center">No</td><td style="text-align:center">Name of the Contract Spec to use</td></tr>
+<tr><td style="text-align:center"><code>address</code></td><td style="text-align:center">Yes</td><td style="text-align:center">Can be omitted if using an <code>alias</code></td></tr>
+<tr><td style="text-align:center"><code>alias</code></td><td style="text-align:center">Yes</td><td style="text-align:center">Load a contract based on the given <code>alias</code></td></tr>
+<tr><td style="text-align:center"><code>balance</code></td><td style="text-align:center">Yes</td><td style="text-align:center">If contract is not in store (and address is provided), <code>withContracts</code> will load the contract instance for you ! This argument allows you to also add the contract address in the <code>accounts</code> section of the store.</td></tr>
+<tr><td style="text-align:center"><code>persist_cache</code></td><td style="text-align:center">Yes</td><td style="text-align:center">If contracts are loaded, the instances are also destroyed when all components using a specific instance are unmounted. To keep the cache of the contract, set this flag to true.</td></tr>
+<tr><td style="text-align:center"><code>persist_balance</code></td><td style="text-align:center">Yes</td><td style="text-align:center">To keep the balance of the contract, set this flag to true.</td></tr>
+<tr><td style="text-align:center"><code>persist_events</code></td><td style="text-align:center">Yes</td><td style="text-align:center">To keep the events of the contract, set this flag to true.</td></tr>
+<tr><td style="text-align:center"><code>persist_contract</code></td><td style="text-align:center">Yes</td><td style="text-align:center">To keep the instance of the contract, set this flag to true.</td></tr>
+</tbody>
+</table>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/ethvtx/docs/react_emit_actions"><span class="arrow-prev">← </span><span>Dispatch actions</span></a><a class="docs-next button" href="/ethvtx/docs/react_contract_read"><span>Read data from contract</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#the-smart-contract">The Smart Contract</a></li><li><a href="#loading-the-spec">Loading the Spec</a></li><li><a href="#loading-the-contract-in-a-react-component">Loading the Contract in a React Component</a></li><li><a href="#withcontracts"><code>withContracts</code></a><ul class="toc-headings"><li><a href="#contracts_or_function"><code>contracts_or_function</code></a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/ethvtx/" class="nav-home"><img src="/ethvtx/img/ethvtx_footer.svg" alt="ethvtx" width="66" height="58"/></a><div><h5>Community</h5><a href="/ethvtx/en/users.html">User Showcase</a><a href="https://gitter.im/ethvtx/general">Project Chat</a></div><div><h5>More</h5><a href="/ethvtx/blog">Blog</a><a href="https://github.com/horyus/ethvtx">GitHub</a><a class="github-button" href="https://github.com/ticket721/ethvtx" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section></footer></div></body></html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Reading the store · ethvtx</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="To read the store, simply use the native `connect` HOC provided by `react-redux` to directly access the state. You can then use one of the many **getters** defined for each section of the store to easily recover the data you need."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Reading the store · ethvtx"/><meta property="og:type" content="website"/><meta property="og:url" content="https://ticket721.github.io/ethvtx/"/><meta property="og:description" content="To read the store, simply use the native `connect` HOC provided by `react-redux` to directly access the state. You can then use one of the many **getters** defined for each section of the store to easily recover the data you need."/><meta property="og:image" content="https://ticket721.github.io/ethvtx/img/docusaurus.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://ticket721.github.io/ethvtx/img/docusaurus.png"/><link rel="shortcut icon" href="/ethvtx/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://ticket721.github.io/ethvtx/blog/atom.xml" title="ethvtx Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://ticket721.github.io/ethvtx/blog/feed.xml" title="ethvtx Blog RSS Feed"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/ethvtx/js/scrollSpy.js"></script><link rel="stylesheet" href="/ethvtx/css/main.css"/><script src="/ethvtx/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/ethvtx/"><h2 class="headerTitle">ethvtx</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/ethvtx/docs/install" target="_self">Docs</a></li><li class=""><a href="/ethvtx/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>React</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Setup</h3><ul class=""><li class="navListItem"><a class="navItem" href="/ethvtx/docs/install">Installation</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/creating_store">Creating the store</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/customizing_store">Customizing the store</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/starting_ethvtx">Starting ethvtx</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/ethvtx_status">ethvtx status</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/examples">Examples</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">React</h3><ul class=""><li class="navListItem"><a class="navItem" href="/ethvtx/docs/react_intro">Introduction</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/ethvtx/docs/react_read_store">Reading the store</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/react_emit_actions">Dispatch actions</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/react_contract">Use the withContracts HOC</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/react_contract_read">Read data from contract</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/react_contract_tx">Send transaction to contract</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/react_contract_events">Get events emitted by contract</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Accounts</h3><ul class=""><li class="navListItem"><a class="navItem" href="/ethvtx/docs/accounts_intro">Introduction</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/accounts_state">State</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/accounts_getters">Getters</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/accounts_dispatchers">Dispatchers</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/accounts_actions">Actions</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Blocks</h3><ul class=""><li class="navListItem"><a class="navItem" href="/ethvtx/docs/blocks_intro">Introduction</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/blocks_state">State</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/blocks_getters">Getters</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/blocks_dispatchers">Dispatchers</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/blocks_actions">Actions</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Transactions</h3><ul class=""><li class="navListItem"><a class="navItem" href="/ethvtx/docs/transactions_intro">Introduction</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/transactions_state">State</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/transactions_getters">Getters</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/transactions_dispatchers">Dispatchers</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/transactions_actions">Actions</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Contracts</h3><ul class=""><li class="navListItem"><a class="navItem" href="/ethvtx/docs/contracts_intro">Introduction</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/contracts_state">State</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/contracts_getters">Getters</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/contracts_dispatchers">Dispatchers</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/vtxcontract">VtxContract</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/contracts_actions">Actions</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Events</h3><ul class=""><li class="navListItem"><a class="navItem" href="/ethvtx/docs/events_intro">Introduction</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/events_state">State</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/events_actions">Actions</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">VTX</h3><ul class=""><li class="navListItem"><a class="navItem" href="/ethvtx/docs/vtx_intro">Introduction</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/vtx_state">State</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/vtx_getters">Getters</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/vtx_dispatchers">Dispatchers</a></li><li class="navListItem"><a class="navItem" href="/ethvtx/docs/vtx_actions">Actions</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Reading the store</h1></header><article><div><span><p>To read the store, simply use the native <code>connect</code> HOC provided by <code>react-redux</code> to directly access the state. You can then use one of the many <strong>getters</strong> defined for each section of the store to easily recover the data you need.</p>
+<p>If the <code>mapStateToProps</code> function and the <code>connect</code> HOC is not something you know, I suggest you take a look at <a href="https://react-redux.js.org/introduction/basic-tutorial">how <code>redux</code> &amp; <code>react-redux</code> work</a> before using <code>ethvtx</code></p>
+<p>These getters will never fail and will return <code>undefined</code> if there is no data for what you ask. It's your job to make sure the data you look for in the store is actually there (we cover this in the next page).</p>
+<h2><a class="anchor" aria-hidden="true" id="accounts-recover-balances"></a><a href="#accounts-recover-balances" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Accounts - Recover balances</h2>
+<p>Easily get balances of any ethereum address.</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">const</span> mapStateToProps = (state: State, ownProps: <span class="hljs-built_in">any</span>): <span class="hljs-function"><span class="hljs-params">any</span> =&gt;</span> {
+    <span class="hljs-keyword">return</span> {
+        account: getAccount(state, ownProps.address)
+    }
+}
+</code></pre>
+<p>All <code>account</code> getters are documented <a href="/ethvtx/docs/accounts_getters"><strong>here</strong></a></p>
+<h2><a class="anchor" aria-hidden="true" id="blocks-recover-blocks"></a><a href="#blocks-recover-blocks" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Blocks - Recover blocks</h2>
+<p>Here, we always recover the last fetched block.</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">const</span> mapStateToProps = <span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> {
+    <span class="hljs-keyword">return</span> {
+        block: getBlock(state, state.blocks.current_height)
+    };
+}
+</code></pre>
+<p>All <code>blocks</code> getters are documented <a href="/ethvtx/docs/blocks_getters"><strong>here</strong></a></p>
+<h2><a class="anchor" aria-hidden="true" id="transactions-get-transactions"></a><a href="#transactions-get-transactions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Transactions - Get transactions</h2>
+<p>Get all transactions made by the <code>coinbase</code> address (that are stored into the store)</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">const</span> mapStateToProps = <span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> {
+    <span class="hljs-keyword">return</span> {
+        all_txs: getTransactions(state, {
+            <span class="hljs-keyword">from</span>: state.vtxconfig.coinbase
+        })
+    }
+};
+</code></pre>
+<p>All <code>txs</code> getters are documented <a href="/ethvtx/docs/txs_getters"><strong>here</strong></a></p>
+<h2><a class="anchor" aria-hidden="true" id="getters"></a><a href="#getters" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Getters</h2>
+<table>
+<thead>
+<tr><th style="text-align:center">Section</th><th style="text-align:center">Link</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align:center"><code>accounts</code></td><td style="text-align:center"><a href="/ethvtx/docs/accounts_getters"><strong>here</strong></a></td></tr>
+<tr><td style="text-align:center"><code>blocks</code></td><td style="text-align:center"><a href="/ethvtx/docs/blocks_getters"><strong>here</strong></a></td></tr>
+<tr><td style="text-align:center"><code>txs</code></td><td style="text-align:center"><a href="/ethvtx/docs/txs_getters"><strong>here</strong></a></td></tr>
+<tr><td style="text-align:center"><code>contracts</code></td><td style="text-align:center"><a href="/ethvtx/docs/contracts_getters"><strong>here</strong></a></td></tr>
+<tr><td style="text-align:center"><code>vtc</code></td><td style="text-align:center"><a href="/ethvtx/docs/vtx_getters"><strong>here</strong></a></td></tr>
+</tbody>
+</table>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/ethvtx/docs/react_intro"><span class="arrow-prev">← </span><span>Introduction</span></a><a class="docs-next button" href="/ethvtx/docs/react_emit_actions"><span>Dispatch actions</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#accounts-recover-balances">Accounts - Recover balances</a></li><li><a href="#blocks-recover-blocks">Blocks - Recover blocks</a></li><li><a href="#transactions-get-transactions">Transactions - Get transactions</a></li><li><a href="#getters">Getters</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/ethvtx/" class="nav-home"><img src="/ethvtx/img/ethvtx_footer.svg" alt="ethvtx" width="66" height="58"/></a><div><h5>Community</h5><a href="/ethvtx/en/users.html">User Showcase</a><a href="https://gitter.im/ethvtx/general">Project Chat</a></div><div><h5>More</h5><a href="/ethvtx/blog">Blog</a><a href="https://github.com/horyus/ethvtx">GitHub</a><a class="github-button" href="https://github.com/ticket721/ethvtx" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section></footer></div></body></html>
