@@ -4,7 +4,7 @@
   Author: mortimr
   -->
 <div align="center" >
-<img src="https://github.com/ticket721/ethvtx/raw/develop/imgs/logo.svg" style="margin-bottom: 20px;">
+<img src="https://github.com/ticket721/ethvtx/raw/develop/imgs/logo.png" style="margin-bottom: 20px;">
 </div>
 
 ## Introduction
