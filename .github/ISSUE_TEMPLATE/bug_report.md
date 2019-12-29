@@ -2,7 +2,7 @@
 name: Bug report
 about: Create a report to help us improve
 title: ''
-labels: "[status] \U0001F4CC to do, [type] \U0001F527 fix"
+labels: ''
 assignees: ''
 
 ---
