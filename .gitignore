@@ -5,3 +5,4 @@ coverage
 ethvtx*.gz
 website/build
 .nyc_output
+package-lock.json

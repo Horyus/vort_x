@@ -28,14 +28,14 @@ export declare class VtxContract {
     private readonly material;
     static entity_sig(name: string, address: string): string;
     constructor(dispatch: Dispatch, material: VtxContractMaterial, instance: any, name: string, address: string, abi: any, bin?: string, constructor_bin?: string);
-    readonly address: string;
-    readonly abi: any;
-    readonly web3_instance: any;
-    readonly bin: string;
-    readonly constructor_bin: string;
-    readonly fn: Methods;
-    readonly events: Events;
-    readonly valid: boolean;
+    get address(): string;
+    get abi(): any;
+    get web3_instance(): any;
+    get bin(): string;
+    get constructor_bin(): string;
+    get fn(): Methods;
+    get events(): Events;
+    get valid(): boolean;
     static event_sig: (contract_name: string, contract_address: string, method_name: string, args: {
         [key: string]: string;
     }) => string;

@@ -5,13 +5,15 @@
     "main": "lib/index.js",
     "scripts": {
         "test:clean": "rm -rf coverage && rm -rf .nyc_output",
-        "test:mocha": "npm run test:clean && nyc ts-mocha -p ./tsconfig.json --timeout 10000 sources/**/**.test.ts",
+        "test:mocha": "yarn test:clean && nyc ts-mocha -p ./tsconfig.json --timeout 10000 sources/**/**.test.ts",
         "coverage:upload": "cat ./coverage/lcov.info | coveralls",
         "test:lint": "tslint --project .",
         "test:editorconfig": "editorconfig-cli",
-        "test": "npm run test:lint && npm run test:editorconfig && npm run test:mocha",
+        "test": "yarn test:lint && yarn test:editorconfig && yarn test:mocha",
         "build": "rm -rf lib && tsc",
-        "version": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md"
+        "version": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md",
+        "@lerna/postinstall": "yarn build",
+        "@lerna/postclean": "rm -rf lib"
     },
     "repository": {
         "type": "git",
