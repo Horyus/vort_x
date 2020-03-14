@@ -13,22 +13,17 @@ jobs:
               uses: actions/setup-node@v1
               with:
                   node-version: 12.x
+
+            - name: Install Yarn Globally
+              run: npm install -g yarn@1.22.4
             - name: Install dependencies
-              uses: borales/actions-yarn@v2.0.0
-              with:
-                  cmd: install
+              run: yarn install
             - name: Run TSLint
-              uses: borales/actions-yarn@v2.0.0
-              with:
-                  cmd: test:lint
+              run: yarn test:lint
             - name: Run Editorconfig
-              uses: borales/actions-yarn@v2.0.0
-              with:
-                  cmd: test:editorconfig
+              run: yarn test:editorconfig
             - name: Run Mocha test suite
-              uses: borales/actions-yarn@v2.0.0
-              with:
-                  cmd: test:mocha
+              run: yarn test:mocha
             - name: Coveralls Parallel
               uses: coverallsapp/github-action@master
               with:
