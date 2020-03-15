@@ -9,7 +9,7 @@
         "experimentalDecorators": true,
         "downlevelIteration": true,
         "strictNullChecks": false,
-        "typeRoots": ["jest"]
+        "typeRoots": ["jest", "node"]
     },
     "exclude": [
         "node_modules",
