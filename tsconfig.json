@@ -2,6 +2,7 @@
     "compilerOptions": {
         "module": "commonjs",
         "target": "es5",
+        "lib": ["es2015", "dom"],
         "outDir": "lib",
         "sourceMap": true,
         "declaration": true,
@@ -9,7 +10,7 @@
         "experimentalDecorators": true,
         "downlevelIteration": true,
         "strictNullChecks": false,
-        "typeRoots": ["jest", "node"]
+        "types": ["mocha", "node"]
     },
     "exclude": [
         "node_modules",
