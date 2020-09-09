@@ -53,7 +53,7 @@
         "mocha": "^6.2.0",
         "nyc": "^14.1.1",
         "redux": "^4.0.1",
-        "redux-saga": "^0.16.2",
+        "redux-saga": "^1.1.3",
         "solc": "0.5.11",
         "ts-mocha": "^6.0.0",
         "tslint": "^5.12.1",
@@ -78,7 +78,7 @@
     },
     "peerDependencies": {
         "redux": "^4.0.1",
-        "redux-saga": "^0.16.2"
+        "redux-saga": "^1.1.3"
     },
     "dependencies": {
         "bignumber.js": "^9.0.0",
