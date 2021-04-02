@@ -31,7 +31,7 @@
     },
     "homepage": "https://github.com/ticket721/ethvtx#readme",
     "devDependencies": {
-        "@commitlint/cli": "^8.1.0",
+        "@commitlint/cli": "^12.1.0",
         "@commitlint/config-conventional": "^8.1.0",
         "@htmlacademy/editorconfig-cli": "^1.0.0",
         "@istanbuljs/nyc-config-typescript": "^0.1.3",
